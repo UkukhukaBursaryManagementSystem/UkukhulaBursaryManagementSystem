@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Student Application</title>
+    <link rel="stylesheet" href="../src/styles/student-form-styles.css">
+</head>
+<body>
+
+    <form method="post" class="student-application-form">
+
+        <fieldset class="personal-field-set student-application-form-field">
+            <legend>Student Personal Information</legend>
+
+            <label for="first-name">FirstName</label>
+            <input type="text" name="first-name" id="first-name" required>
+
+            <label for="last-name">LastName</label>
+            <input type="text" name="last-name" id="last-name" required>
+
+            <label for="id-number">ID Number</label>
+            <input type="text" name="id-number" id="id-number" required>
+
+            <label for="sex">Sex</label>
+            <select id="sex" required>
+                <option>Male</option>
+                <option>Female</option>
+            </select>
+
+            <label for="ethnicity">Ethnicity</label>
+            <select id="ethnicity" required>
+                <option>Coloured</option>
+                <option>African</option>
+                <option>Indian</option>
+            </select>
+        </fieldset>
+
+        <fieldset >
+            <legend>Student Contact Information</legend>
+            <label for="phone">Contact Number</label>
+            <input type="tel" id="phone" name="phone" pattern="^(\+27|0)[6-8][0-9]{8}$" required>
+            <label for="student-email">Email</label>
+            <input type="email" name="student-email" id="student-email" required>
+        </fieldset>
+
+        <input type="submit" value="submit" >
+    </form>
+    
+</body>
+</html>
