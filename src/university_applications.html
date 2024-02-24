@@ -22,6 +22,11 @@
   </head>
   <body>
     <h2>University Applications</h2>
+    <section id="filter-university-application">
+      <select id="select-university">
+        <option value="all">Select a university</option>
+      </select>
+    </section>
     <table id="applicationsTable">
       <thead>
         <tr>
@@ -37,26 +42,66 @@
 
     <script src="fetch_data.js"></script>
     <script>
+      let data;
       (async () => {
-        const data = await fetchData(
+        data = await fetchData(
           "http://localhost:8080/universities/applications"
         );
         const applicationsTableBody = document.getElementById(
           "applicationsTableBody"
         );
 
+        const universitySelect = document.getElementById("select-university");
+
         data.forEach((application) => {
           const row = document.createElement("tr");
           row.innerHTML = `
+          <td>${application.id}</td>
+          <td>${application.universityName}</td>
+          <td>${application.motivation}</td>
+          <td>${application.applicationStatus}</td>
+          <td>${application.reviewerComment}</td>
+        `;
+          applicationsTableBody.appendChild(row);
+
+          const option = document.createElement("option");
+          option.value = application.universityName;
+          option.textContent = application.universityName;
+          universitySelect.appendChild(option);
+        });
+
+        universitySelect.addEventListener("change", async (event) => {
+          const selectedUniversity = event.target.value;
+          if (selectedUniversity === "all") {
+            displayApplications(data);
+          } else {
+            const filteredData = data.filter(
+              (application) => application.universityName === selectedUniversity
+            );
+            displayApplications(filteredData);
+          }
+        });
+
+        function displayApplications(filteredData) {
+          const applicationsTableBody = document.getElementById(
+            "applicationsTableBody"
+          );
+          applicationsTableBody.innerHTML = "";
+
+          filteredData.forEach((application) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
             <td>${application.id}</td>
             <td>${application.universityName}</td>
             <td>${application.motivation}</td>
             <td>${application.applicationStatus}</td>
             <td>${application.reviewerComment}</td>
           `;
-          applicationsTableBody.appendChild(row);
-        });
+            applicationsTableBody.appendChild(row);
+          });
+        }
       })();
+      console.log(data);
     </script>
   </body>
 </html>
