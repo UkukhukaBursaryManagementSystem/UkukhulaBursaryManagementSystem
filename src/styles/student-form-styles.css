@@ -1,20 +1,61 @@
-student-application-form {
+:root{
+    --normal-font-size : 18px;
+    --font-family : Arial;
+}
+body{
+    font: var(--font-family);
+}
+.student-application-form {
     width: 50%;
     display: flex;
     flex-direction: column;
     row-gap: 50px;
     margin: 0 auto;
+    font-size: var(--normal-font-size);
+    align-items: center;
 }
 
 
-personal-fieldset {
+.personal-field-set {
     display: flex;
+    flex-direction: column;
+    border: solid;
+    border-radius: 20px;
+    border-color: rgb(182, 178, 178) ;
+    justify-content: center;
+    width: 100%;
 }
-student-application-form-field {
-    display: flex;
-    flex-wrap: wrap;
+
+
+.personal-field-set input,.personal-field-set select,.personal-field-set textarea {
+    height: 30px;
+    border: solid;
+    border-color: rgb(182, 178, 178) ;
+    border-radius: 3px;
+    font-size: var(--normal-font-size);
+}
+
+.personal-field-set legend {
+    font-size: 25px;
+}
+
+.submit-button {
+    height: fit-content;
+    width: fit-content;
+    padding: 25px 50px;
+    border-radius: 10px;
+    font: var(--font-family);
+    font-size: var(--normal-font-size);
+    font-weight: bold;
+    margin-top: 0 auto;
+    
 }
 
 label {
     margin-top: 30px;
+    font-size: var(--normal-font-size);
+}
+
+h1, p {
+    text-align: center;
 }

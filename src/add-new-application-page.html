@@ -8,9 +8,11 @@
 </head>
 <body>
 
+    <h1>Student Application Form</h1>
+    <p>Please complete the form below to apply for a student</p>
     <form method="post" class="student-application-form">
 
-        <fieldset class="personal-field-set student-application-form-field">
+        <fieldset class="personal-field-set">
             <legend>Student Personal Information</legend>
 
             <label for="first-name">FirstName</label>
@@ -36,7 +38,7 @@
             </select>
         </fieldset>
 
-        <fieldset >
+        <fieldset class="personal-field-set">
             <legend>Student Contact Information</legend>
             <label for="phone">Contact Number</label>
             <input type="tel" id="phone" name="phone" pattern="^(\+27|0)[6-8][0-9]{8}$" required>
@@ -44,7 +46,21 @@
             <input type="email" name="student-email" id="student-email" required>
         </fieldset>
 
-        <input type="submit" value="submit" >
+        <fieldset class="personal-field-set">
+            <legend>Student Academic Information</legend>
+            <label for="student-study-course">Course Of Study</label>
+            <input type="text" name="student-study-course" id="student-study-course" required>
+        </fieldset>
+
+        <fieldset class="personal-field-set">
+            <legend>Application Motivation</legend>
+            <label for="Motivation">Head Of Department Motivation</label>
+            <textarea cols="10" rows="15" id="Motivation" placeholder="Please enter a brief motivation for why the student...">
+
+            </textarea>
+        </fieldset>
+
+        <input class="submit-button" type="submit" value="Submit" >
     </form>
     
 </body>
