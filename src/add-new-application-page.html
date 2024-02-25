@@ -8,74 +8,69 @@
 </head>
 <body>
 
-    <h1>Student Application Form</h1>
-    <p>Please complete the form below to apply for a student</p>
-    <form method="post" class="student-application-form">
+    <article class="student-application">
+        <h1>Student Application Form</h1>
+        <p>Please complete the form below to apply for a student</p>
+        <form method="post" class="student-application-form">
 
-        <fieldset class="personal-field-set">
-            <legend>Student Personal Information</legend>
+            <fieldset class="personal-field-set">
+                <legend>Student Personal Information</legend>
 
-            <label for="first-name">FirstName</label>
-            <input type="text" name="first-name" id="first-name" required>
+                <label for="first-name">FirstName</label>
+                <input type="text" name="first-name" id="first-name" required>
 
-            <label for="last-name">LastName</label>
-            <input type="text" name="last-name" id="last-name" required>
+                <label for="last-name">LastName</label>
+                <input type="text" name="last-name" id="last-name" required>
 
-            <label for="id-number">ID Number</label>
-            <input type="text" name="id-number" id="id-number" required>
+                <label for="id-number">ID Number</label>
+                <input type="text" name="id-number" id="id-number" required>
 
-            <label for="sex">Sex</label>
-            <select id="sex" required>
-                <option>Male</option>
-                <option>Female</option>
-            </select>
+                <label for="sex">Sex</label>
+                <select id="sex" required>
+                </select>
 
-            <label for="ethnicity">Ethnicity</label>
-            <select id="ethnicity" required>
-                <option>Coloured</option>
-                <option>African</option>
-                <option>Indian</option>
-            </select>
-        </fieldset>
+                <label for="ethnicity">Ethnicity</label>
+                <select id="ethnicity" name="ethnicity" required>
+                </select>
+            </fieldset>
 
-        <fieldset class="personal-field-set">
-            <legend>Student Contact Information</legend>
-            <label for="phone">Contact Number</label>
-            <input type="tel" id="phone" name="phone" pattern="^(\+27|0)[6-8][0-9]{8}$" required>
-            <label for="student-email">Email</label>
-            <input type="email" name="student-email" id="student-email" required>
-        </fieldset>
+            <fieldset class="personal-field-set">
+                <legend>Student Contact Information</legend>
+                <label for="phone">Contact Number</label>
+                <input type="tel" id="phone" name="phone" pattern="^(\+27|0)[6-8][0-9]{8}$" required>
+                <label for="student-email">Email</label>
+                <input type="email" name="student-email" id="student-email" required>
+            </fieldset>
 
-        <fieldset class="personal-field-set">
-            <legend>Student Academic Information</legend>
-            <label for="student-study-course">Course Of Study</label>
-            <input type="text" name="student-study-course" id="student-study-course" required>
-            <label for="bursary-amount">Bursary Amount</label>
-            <input type="number" id="bursary-amount" name="bursary-amount" required>
-            <label for="university">Student University</label>
-            <select id="university" name="university" required>
-            </select>
-            <label for="department">Student University Department</label>
-            <select id="department" name="department" required>
-            </select>
-        </fieldset>
+            <fieldset class="personal-field-set">
+                <legend>Student Academic Information</legend>
+                <label for="student-study-course">Course Of Study</label>
+                <input type="text" name="student-study-course" id="student-study-course" required>
+                <label for="bursary-amount">Bursary Amount</label>
+                <input type="number" id="bursary-amount" name="bursary-amount" required>
+                <label for="university">Student University</label>
+                <select id="university" name="university" required>
+                </select>
+                <label for="department">Student University Department</label>
+                <select id="department" name="department" required>
+                </select>
+            </fieldset>
 
-        <fieldset class="personal-field-set">
-            <legend>Application Motivation</legend>
-            <label for="head-of-department">Head Of Department Applying</label>
-            <select id="head-of-department" name="head-of-department" required>
-            </select>
-            <label for="Motivation">Head Of Department Motivation</label>
-            <textarea cols="10" rows="15" id="Motivation" placeholder="Please enter a brief motivation for why the student...">
+            <fieldset class="personal-field-set">
+                <legend>Application Motivation</legend>
+                <label for="head-of-department">Head Of Department Applying</label>
+                <select id="head-of-department" name="head-of-department" required>
+                </select>
+                <label for="Motivation">Head Of Department Motivation</label>
+                <textarea cols="10" rows="10" id="Motivation" placeholder="Please enter a brief motivation for the student..."></textarea>
+            </fieldset>
 
-            </textarea>
-        </fieldset>
-
-        <input class="submit-button" type="submit" value="Submit" >
+            <input class="submit-button" type="submit" value="Submit" >
     </form>
+    </article>
 
 
-    <script src="../src/fetch_data.js"></script>
+    <script type="module" src="../src/fetch-general-data.js"></script>
     
 </body>
 </html>

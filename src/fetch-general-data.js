@@ -1,45 +1,56 @@
-function fetchGenders(){
-    const selectElement = document.getElementById('sex');
+import  {fetchData} from  '../src/fetch_data.js'
+let data;
 
-fetch(`http://localhost:8080/universities`, {
-  method: "GET",
-  headers: {
-    "Content-Type": "application/json",
-  },
-})
-.then(response => {
-  if (!response.ok) {
-    throw new Error('Failed to fetch options');
-  }
-  return response.json();
-}).then(data => {
-  data.forEach(option => {
+
+const selectSexElement = document.getElementById('sex');
+data = await fetchData(`http://localhost:8080/biological-sex`);
+data.forEach(option => {
     const optionElement = document.createElement('option');
     optionElement.value = option.id;
     optionElement.textContent = option.name;
-    selectElement.appendChild(optionElement);
-  });
-})
-}
+    selectSexElement.appendChild(optionElement);
+});
 
-const selectElement = document.getElementById('sex');
-
-fetch(`http://localhost:8080/universities`, {
-  method: "GET",
-  headers: {
-    "Content-Type": "application/json",
-  },
-})
-.then(response => {
-  if (!response.ok) {
-    throw new Error('Failed to fetch options');
-  }
-  return response.json();
-}).then(data => {
-  data.forEach(option => {
+const selectEthnicityElement = document.getElementById('ethnicity');
+data = await fetchData(`http://localhost:8080/ethnicity`);
+data.forEach(option => {
     const optionElement = document.createElement('option');
     optionElement.value = option.id;
     optionElement.textContent = option.name;
-    selectElement.appendChild(optionElement);
-  });
-})
+    selectEthnicityElement.appendChild(optionElement);
+});
+
+
+const selectDepartmentElement = document.getElementById('department');
+data = await fetchData(`http://localhost:8080/department`);
+data.forEach(option => {
+    const optionElement = document.createElement('option');
+    optionElement.value = option.id;
+    optionElement.textContent = option.name;
+    selectDepartmentElement.appendChild(optionElement);
+});
+
+const selectHeadOfDepartmentElement = document.getElementById('head-of-department');
+data = await fetchData(`http://localhost:8080/hod`);
+data.forEach(option => {
+    const optionElement = document.createElement('option');
+    optionElement.value = option.id;
+    optionElement.textContent = option.name;
+    selectHeadOfDepartmentElement.appendChild(optionElement);
+});
+
+
+
+
+
+
+
+
+const selectUniverisytElement = document.getElementById('university');
+data = await fetchData(`http://localhost:8080/universities`);
+data.forEach(option => {
+    const optionElement = document.createElement('option');
+    optionElement.value = option.id;
+    optionElement.textContent = option.name;
+    selectUniverisytElement.appendChild(optionElement);
+});

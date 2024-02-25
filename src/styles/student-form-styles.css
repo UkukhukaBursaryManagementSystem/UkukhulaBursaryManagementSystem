@@ -2,11 +2,15 @@
     --normal-font-size : 18px;
     --font-family : Arial;
 }
+*{
+    box-sizing: border-box;
+}
 body{
     font: var(--font-family);
+    scroll-behavior: smooth;
 }
 .student-application-form {
-    width: 50%;
+    width: 45%;
     display: flex;
     flex-direction: column;
     row-gap: 50px;
@@ -27,8 +31,15 @@ body{
 }
 
 
-.personal-field-set input,.personal-field-set select,.personal-field-set textarea {
+.personal-field-set input,.personal-field-set select {
     height: 30px;
+    border: solid;
+    border-color: rgb(182, 178, 178) ;
+    border-radius: 3px;
+    font-size: var(--normal-font-size);
+}
+
+.personal-field-set textarea{
     border: solid;
     border-color: rgb(182, 178, 178) ;
     border-radius: 3px;
