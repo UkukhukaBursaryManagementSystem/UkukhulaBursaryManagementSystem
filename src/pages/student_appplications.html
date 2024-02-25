@@ -1,6 +1,53 @@
-//add Application
-//update application
-//get all applications
-//delete application
-// create link for document upload
-//get applications submitted by the hod
+//add Application //update application //get all applications //delete
+application // create link for document upload //get applications submitted by
+the hod //add Application //update application //get all applications //delete
+application // create link for document upload //get applications submitted by
+the hod
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+    <title>StudentApplication</title>
+  </head>
+  <body>
+    <section id="selection">
+      <h2>View Student Applications</h2>
+      <label for="filter">Filter by HOD Name:</label>
+      <input type="text" id="hodName" name="hodName">
+      <button id="fetch-button">Fetch Applications</button>
+  </section>
+    <section id="table">
+      <h1>Student Application Table</h1>
+
+      <table>
+        <thead>
+          <tr>
+            <th>ApplicationID</th>
+            <th>FullName</th>
+            <th>ID Number</th>
+            <th>Gender</th>
+            <th>Ethnicity</th>
+            <th>Phone Number</th>
+            <th>Email Address</th>
+            <th>UniversityName</th>
+            <th>Department</td>
+            <th>CourseOfStudy</th>
+            <th>ReviewerComment</th>
+            <th>Motivation</th>
+            <th>BursaryAmount</th>
+            <th>FundingYear</th>
+            <th>Status</th>
+            <th>HodName</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+        </tbody>
+      </table>
+    </section>
+  </body>
+</html>
