@@ -1,12 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
-  fetchData(); // Call the function to fetch data when the document is loaded
+  const fetchButton = document.getElementById("fetch-button");
+  fetchButton.addEventListener("click", function () {
+    const hodName = document.getElementById("hodName").value;
+    fetchDataByHodName(hodName);
+  });
+  fetchAllStudentApplicationData();
 });
 
-async function fetchData() {
+async function fetchAllStudentApplicationData() {
   try {
-    const response = await fetch(
-      "http://localhost:8080/student-applications-by-hod?hodName=Benjamin%20Perez"
-    );
+    const response = await fetch(`http://localhost:8080/student-applications`);
     const data = await response.json();
     populateTable(data);
   } catch (error) {
@@ -33,7 +36,6 @@ function populateTable(data) {
             <td>${student.universityName}</td>
             <td>${student.department}</td>
             <td>${student.courseOfStudy}</td>
-        
             <td>${student.reviewerComment}</td>
             <td>${student.motivation}</td>
             <td>${student.bursaryAmount}</td>
