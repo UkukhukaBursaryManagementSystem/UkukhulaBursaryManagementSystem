@@ -1,12 +1,13 @@
 let username = '';
 
+
 // What to do during authentication, be login or token aquiring
 function addMsalEventCallback(msalObject) {
         msalObject.addEventCallback((event) => {
         if (
             (event.eventType === msal.EventType.LOGIN_SUCCESS ||
-                event.eventType === msal.EventType.ACQUIRE_TOKEN_SUCCESS) &&
-            event.payload.account
+             event.eventType === msal.EventType.ACQUIRE_TOKEN_SUCCESS) &&
+             event.payload.account
         ) {
             const account = event.payload.account;
             msalObject.setActiveAccount(account);
@@ -30,6 +31,7 @@ function handleMsalRedirectPromise(msalObject) {
     });
 }
 
+
 function selectAccount(msalObject) {
     
     const currentAccounts = msalObject.getAllAccounts();
@@ -41,6 +43,7 @@ function selectAccount(msalObject) {
         showWelcomeMessage(username, currentAccounts);
     }
 }
+
 
 async function addAnotherAccount(event, msalObject) {
     if (event.target.innerHTML.includes("@")) {
@@ -81,6 +84,7 @@ async function addAnotherAccount(event, msalObject) {
     }
 }
 
+
 function handleResponse(response, msalObject) {
     if (response !== null) {
         const accounts = msalObject.getAllAccounts();
@@ -91,7 +95,6 @@ function handleResponse(response, msalObject) {
         selectAccount();
     }
 }
-
 
 
 function signOut(msalObject) {

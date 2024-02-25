@@ -2,7 +2,7 @@ const msalConfig = {
     auth: {
         clientId: '63a971df-2a0c-45a7-a5cd-36a53c39a99d', 
         authority: 'https://login.microsoftonline.com/common', 
-        redirectUri: 'http://localhost:5500/pages/admin.html', 
+        redirectUri: 'http://localhost:5500/src/pages/admin.html', 
         postLogoutRedirectUri: 'http://localhost:5500/index.html',
     },
     cache: {
