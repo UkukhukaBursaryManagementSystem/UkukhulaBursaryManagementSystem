@@ -17,6 +17,19 @@ async function fetchAllStudentApplicationData() {
   }
 }
 
+async function fetchDataByHodName(hodName) {
+  hodName = hodName.split(" ");
+  try {
+    const response = await fetch(
+      `http://localhost:8080/student-applications-by-hod?hodName=${hodName[0]}%20${hodName[1]}`
+    );
+    const data = await response.json();
+    populateTable(data);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+}
+
 function populateTable(data) {
   const tableBody = document.getElementById("table-body");
   tableBody.innerHTML = "";
