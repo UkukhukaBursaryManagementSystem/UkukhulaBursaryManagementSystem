@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 async function fetchAllStudentApplicationData() {
   try {
-    const response = await fetch(`http://localhost:8080/student-applications`);
+    const response = await fetch(`http://localhost:8080/student-application`);
     const data = await response.json();
     populateTable(data);
   } catch (error) {
@@ -36,11 +36,10 @@ function populateTable(data) {
 
   data.forEach((student) => {
     const row = document.createElement("tr");
-
+    const FullName = `${student.firstName} ${student.lastName}`;
     row.innerHTML = `
             <td>${student.applicationID}</td>                                       
-            <td>${student.firstName}</td>
-            <td>${student.lastName}</td>
+            <td>${FullName}</td>
             <td>${student.idnumber}</td>
             <td>${student.genderIdentity}</td>
             <td>${student.ethnicity}</td>
