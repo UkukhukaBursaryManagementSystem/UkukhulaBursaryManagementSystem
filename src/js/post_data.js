@@ -8,3 +8,5 @@ async function post(url, body) {
   });
   return JSON.stringify(result);
 }
+
+export {fetchData}
