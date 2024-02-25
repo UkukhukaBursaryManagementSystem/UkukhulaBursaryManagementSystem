@@ -1,0 +1,33 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+
+label {
+    font: 15px Roboto, arial;
+    font-weight: 200;
+}
+
+#role {
+    margin: 10px 5px 10px 0;
+    font: 15px Roboto, arial;
+    width: 100%;
+    padding: 0 5px;
+    max-width: 202px;
+    min-height: 41px;
+
+}
+
+
+#login {
+    padding: 0;
+    display: flex;
+}
