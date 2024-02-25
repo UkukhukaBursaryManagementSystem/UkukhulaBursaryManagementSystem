@@ -40,7 +40,7 @@ function selectAccount(msalObject) {
         return;
     } else if (currentAccounts.length >= 1) {
         username = msalObject.getActiveAccount().username;
-        showWelcomeMessage(username, currentAccounts);
+        return currentAccounts[0];
     }
 }
 
@@ -107,5 +107,35 @@ function signOut(msalObject) {
 
     clearStorage(account);
     msalObject.logoutRedirect(logoutRequest);
+}
+
+
+function aquireAccessTokenSilent(msalObject, accessTokenRequest) {
+    msalObject
+    .acquireTokenSilent(accessTokenRequest)
+    .then((accessTokenResponse) => {
+    // Acquire token silent success
+    let accessToken = accessTokenResponse.accessToken;
+    // Call your API with token
+    callApi(accessToken);
+    })
+    .catch((error) => {
+    //Acquire token silent failure, and send an interactive request
+    if (error instanceof InteractionRequiredAuthError) {
+      publicClientApplication
+        .acquireTokenPopup(accessTokenRequest)
+        .then((accessTokenResponse) => {
+          // Acquire token interactive success
+          let accessToken = accessTokenResponse.accessToken;
+          // Call your API with token
+          callApi(accessToken);
+        })
+        .catch((error) => {
+          // Acquire token interactive failure
+          console.log(error);
+        });
+    }
+    console.log(error);
+  });
 }
 
