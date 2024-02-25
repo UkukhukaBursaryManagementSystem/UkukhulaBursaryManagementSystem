@@ -1,1 +1,154 @@
-//must be able to delete, edit and create application
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>University Allocations</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th,
+      td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>University Allocations</h2>
+
+    <section id="add-new-allocation">
+      <form id="allocation-form">
+        <label for="university-id">University ID:</label>
+        <input type="text" id="university-id" name="universityId" /><br /><br />
+
+        <label for="amount">Amount:</label>
+        <input type="text" id="amount" name="amount" /><br /><br />
+
+        <label for="bursary-details">Bursary Details:</label>
+        <input
+          type="text"
+          id="bursary-details"
+          name="bursaryDetailsId"
+        /><br /><br />
+
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+    <section id="filter-university-allocation">
+      <select id="select-year">
+        <option value="all">All allocations</option>
+      </select>
+    </section>
+    <table id="university-allocations-table">
+      <thead>
+        <tr>
+          <th>University Name</th>
+          <th>Amount</th>
+          <th>Year</th>
+        </tr>
+      </thead>
+      <tbody id="allocations-table-body"></tbody>
+    </table>
+
+    <script src="fetch_data.js"></script>
+
+    <script>
+      let data;
+      (async () => {
+        data = await fetchData("http://localhost:8080/allocations/all");
+        const applicationsTableBody = document.getElementById(
+          "allocations-table-body"
+        );
+
+        const yearSelect = document.getElementById("select-year");
+
+        data.forEach((allocation) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+          <td>${allocation.universityName}</td>
+          <td>${allocation.amount}</td>
+          <td>${allocation.year}</td>
+        `;
+          applicationsTableBody.appendChild(row);
+
+          const option = document.createElement("option");
+          option.value = allocation.year;
+          option.textContent = allocation.year;
+          yearSelect.appendChild(option);
+        });
+
+        yearSelect.addEventListener("change", async (event) => {
+          const selectedYear = event.target.value;
+          if (selectedYear === "all") {
+            displayApplications(data);
+          } else {
+            const filteredData = data.filter(
+              (allocation) => allocation.year === parseInt(selectedYear)
+            );
+            displayApplications(filteredData);
+          }
+        });
+
+        function displayApplications(filteredData) {
+          const applicationsTableBody = document.getElementById(
+            "allocations-table-body"
+          );
+          applicationsTableBody.innerHTML = "";
+
+          filteredData.forEach((allocation) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+            <td>${allocation.universityName}</td>
+            <td>${allocation.amount}</td>
+            <td>${allocation.year}</td>
+          `;
+            applicationsTableBody.appendChild(row);
+          });
+        }
+      })();
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const allocationForm = document.getElementById("allocation-form");
+
+        allocationForm.addEventListener("submit", async (event) => {
+          event.preventDefault();
+
+          const formData = new FormData(allocationForm);
+          const requestData = {};
+
+          formData.forEach((value, key) => {
+            requestData[key] = value;
+          });
+          try {
+            const response = await fetch(
+              "http://localhost:8080/allocations/addnew",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(requestData),
+              }
+            );
+
+            if (response.ok) {
+              alert("Allocation added successfully!");
+              location.reload();
+            } else {
+              throw new Error("Failed to add allocation");
+            }
+          } catch (error) {
+            alert(error);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
