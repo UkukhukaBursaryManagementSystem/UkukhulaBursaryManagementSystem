@@ -61,10 +61,19 @@
       <tbody id="allocations-table-body"></tbody>
     </table>
 
-    <script src="fetch_data.js"></script>
-    <script src="add_option_values.js"></script>
+    <script type="module"></script>
+    <script src="../add_option_values.js"></script>
 
     <script>
+      const fetchData = async function fetchData(url) {
+        const result = await fetch(url, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        return result.json();
+      };
       const allocateEvenlyButton = document.getElementById("allocate-evenly");
       allocateEvenlyButton.addEventListener("click", () => {
         fetch("http://localhost:8080/allocations/allocate-to-all", {
