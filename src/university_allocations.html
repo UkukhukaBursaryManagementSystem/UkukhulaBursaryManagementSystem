@@ -25,21 +25,22 @@
 
     <section id="add-new-allocation">
       <form id="allocation-form">
-        <label for="university-id">University ID:</label>
-        <input type="text" id="university-id" name="universityId" /><br /><br />
+        <label for="university-name">University Name:</label>
+        <input
+          type="text"
+          id="university-name"
+          name="universityName"
+        /><br /><br />
 
         <label for="amount">Amount:</label>
         <input type="text" id="amount" name="amount" /><br /><br />
 
-        <label for="bursary-details">Bursary Details:</label>
-        <input
-          type="text"
-          id="bursary-details"
-          name="bursaryDetailsId"
-        /><br /><br />
+        <label for="bursary-year">year</label>
+        <input type="text" id="bursary-year" name="year" /><br /><br />
 
         <button type="submit">Submit</button>
       </form>
+      <button>Allocate to all approved</button>
     </section>
     <section id="filter-university-allocation">
       <select id="select-year">
@@ -125,6 +126,7 @@
 
           formData.forEach((value, key) => {
             requestData[key] = value;
+            console.log(requestData);
           });
           try {
             const response = await fetch(
