@@ -10,7 +10,7 @@ body{
     scroll-behavior: smooth;
 }
 .student-application-form {
-    width: 45%;
+    /* width: 45%; */
     display: flex;
     flex-direction: column;
     row-gap: 50px;
@@ -18,16 +18,18 @@ body{
     font-size: var(--normal-font-size);
     align-items: center;
 }
-
+.student-application {
+    width: 100vw;
+}
 
 .personal-field-set {
     display: flex;
     flex-direction: column;
-    border: solid;
-    border-radius: 20px;
+    border: none;
+    border-bottom: solid;
     border-color: rgb(182, 178, 178) ;
     justify-content: center;
-    width: 100%;
+    width: 90%;
 }
 
 
@@ -36,7 +38,8 @@ body{
     border: solid;
     border-color: rgb(182, 178, 178) ;
     border-radius: 3px;
-    font-size: var(--normal-font-size);
+    font-size: 16px;
+
 }
 
 .personal-field-set textarea{
