@@ -40,7 +40,7 @@
 
         <button type="submit">Submit</button>
       </form>
-      <button>Allocate to all approved</button>
+      <button id="allocate-evenly">Allocate to all approved</button>
     </section>
     <section id="filter-university-allocation">
       <select id="select-year">
@@ -65,6 +65,26 @@
     <script src="add_option_values.js"></script>
 
     <script>
+      const allocateEvenlyButton = document.getElementById("allocate-evenly");
+      allocateEvenlyButton.addEventListener("click", () => {
+        fetch("http://localhost:8080/allocations/allocate-to-all", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => {
+            if (response.ok) {
+              return response.json();
+            } else {
+              throw new Error("Failed to allocate evenly");
+            }
+          })
+          .catch((error) => {
+            alert("Error allocating evenly:", error.message);
+            alert("Error allocating evenly: " + error.message);
+          });
+      });
       let data;
       (async () => {
         data = await fetchData("http://localhost:8080/allocations/all");
