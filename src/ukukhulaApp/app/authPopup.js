@@ -15,8 +15,8 @@ function selectAccount() {
     }
 }
 
-debugger
-async function handleResponse(response) {
+
+function handleResponse(response) {
 
     if (response !== null) {
 
@@ -27,7 +27,7 @@ async function handleResponse(response) {
         
         try
         {
-            const resultToken = fetch("http://localhost:8080/auth/login", {
+            fetch("http://localhost:8080/auth/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -39,14 +39,14 @@ async function handleResponse(response) {
                 {
                     return { error: `An error occured: ${response}` };
                 }
-                response.json();
+                return response.json();
             }).then(data => { 
-                return data; 
+                sessionStorage.setItem("accessToken",data.accessToken); 
             }).catch(error => { 
                 return { error: `An error occured: ${error}` }; 
             });
 
-            const resultUser = fetch(`http://localhost:8080/john.doe@example`, {
+            fetch(`http://localhost:8080/${username}`, {
                 method: "GET", 
                 headers: { "Content-Type" : "application/json" } 
             }).then(response => {
@@ -54,19 +54,20 @@ async function handleResponse(response) {
                 {
                     return { error: `An error occured: ${response}` };
                 }
-                response.json();
+                return response.json();
             }).then(data => { 
-                return data; 
+                sessionStorage.setItem("userFromDataBase", data.email); 
             }).catch(error => {
                 return { error: `An error occured: ${error}` };
                 });
 
             
 
-            if (resultUser.email === username && role.toLowerCase === "admin") 
+            if (sessionStorage.getItem("userFromDataBase") === username && role.toLowerCase === "admin") 
             {
                 window.location.href = "http://localhost:3000/pages/admin.html";
-            } else if (resultUser.email === "john.doe@example.com" && role.toLowerCase === "hod")
+
+            } else if (sessionStorage.getItem("userFromDataBase") == username && role.toLowerCase === "hod")
             {
                 window.location.href = "http://localhost:3000/pages/university_applications.html";
                 
@@ -75,8 +76,6 @@ async function handleResponse(response) {
                 window.location.href = "http://localhost:3000/"
             }
          
-            sessionStorage.setItem("usertoken", resultToken);
-
         } catch(error)
         {
             return { error: `An error occured: ${error}` };
