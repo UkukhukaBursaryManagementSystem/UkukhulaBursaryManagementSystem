@@ -41,7 +41,7 @@ async function handleResponse(response) {
                 }
                 response.json();
             }).then(data => { 
-                return JSON.stringify(data) 
+                return data; 
             }).catch(error => { 
                 return { error: `An error occured: ${error}` }; 
             });
@@ -56,7 +56,7 @@ async function handleResponse(response) {
                 }
                 response.json();
             }).then(data => { 
-                return JSON.stringify(data) 
+                return data; 
             }).catch(error => {
                 return { error: `An error occured: ${error}` };
                 });
