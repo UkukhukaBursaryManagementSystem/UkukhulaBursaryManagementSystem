@@ -15,20 +15,75 @@ function selectAccount() {
     }
 }
 
-function handleResponse(response) {
-    try
-    {
-        if (response !== null) {
-        sessionStorage.setItem("username", response.account.username);
-        sessionStorage.setItem("name", response.account.name)
-        sessionStorage.setItem("token", response.accessToken)
-        window.location.href = "http://localhost:3000/pages/admin.html"
-        } else {
-            selectAccount();
+debugger
+async function handleResponse(response) {
+
+    if (response !== null) {
+
+        const username = response.account.username;
+        sessionStorage.setItem("username", username);
+
+        const role = document.getElementById("role").value;
+        
+        try
+        {
+            const resultToken = fetch("http://localhost:8080/auth/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                role: `${role}`,
+                email: `${sessionStorage.getItem("username")}`
+            })
+            }).then(response => {
+                if (!response.ok)
+                {
+                    return { error: `An error occured: ${response}` };
+                }
+                response.json();
+            }).then(data => { 
+                return JSON.stringify(data) 
+            }).catch(error => { 
+                return { error: `An error occured: ${error}` }; 
+            });
+
+            const resultUser = fetch(`http://localhost:8080/john.doe@example`, {
+                method: "GET", 
+                headers: { "Content-Type" : "application/json" } 
+            }).then(response => {
+                if(!response.ok)
+                {
+                    return { error: `An error occured: ${response}` };
+                }
+                response.json();
+            }).then(data => { 
+                return JSON.stringify(data) 
+            }).catch(error => {
+                return { error: `An error occured: ${error}` };
+                });
+
+            
+
+            if (resultUser.email === username && role.toLowerCase === "admin") 
+            {
+                window.location.href = "http://localhost:3000/pages/admin.html";
+            } else if (resultUser.email === "john.doe@example.com" && role.toLowerCase === "hod")
+            {
+                window.location.href = "http://localhost:3000/pages/university_applications.html";
+                
+            } else
+            {
+                window.location.href = "http://localhost:3000/"
+            }
+         
+            sessionStorage.setItem("usertoken", resultToken);
+
+        } catch(error)
+        {
+            return { error: `An error occured: ${error}` };
         }
-    } catch (error)
-    {
-        console.log(error);
+
+    } else {
+        selectAccount();
     }
 }
 
@@ -66,6 +121,11 @@ function getTokenPopup(request) {
 }
 
 const loginButton = document.querySelector("#login");
-loginButton.addEventListener("click", () => myMSALObj.loginPopup(loginRequest).then(handleResponse).catch(error));
+loginButton.addEventListener("click", () => myMSALObj
+                                            .loginPopup(loginRequest)
+                                            .then(handleResponse)
+                                            .catch(error => {
+                                                return;
+                                            }));
 
 selectAccount();
