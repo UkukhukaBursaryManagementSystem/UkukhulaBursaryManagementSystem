@@ -3,24 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/style.css" />
     <title>University Allocations</title>
-    <style>
-      table {
-        border-collapse: collapse;
-        width: 100%;
-      }
-      th,
-      td {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-      }
-      th {
-        background-color: #f2f2f2;
-      }
-    </style>
   </head>
   <body>
+    <header>
+      <nav>
+        <a href="./admin.html"> Home</a>
+        <a href="./student_appplications.html"> Student Applications</a>
+        <a href="./university_applications.html">University Applications</a>
+        <a href="./student_allocations.html">Student Allocations</a>
+        <a href="./university_allocations.html"> University Allocations</a>
+      </nav>
+    </header>
+
     <h2>University Allocations</h2>
 
     <section id="add-new-allocation">
@@ -61,19 +57,19 @@
       <tbody id="allocations-table-body"></tbody>
     </table>
 
-    <script type="module"></script>
     <script src="../add_option_values.js"></script>
+    <script src="../js/fetch_data.js"></script>
 
     <script>
-      const fetchData = async function fetchData(url) {
-        const result = await fetch(url, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        return result.json();
-      };
+      // const fetchData = async function fetchData(url) {
+      //   const result = await fetch(url, {
+      //     method: "GET",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //   });
+      //   return result.json();
+      // };
       const allocateEvenlyButton = document.getElementById("allocate-evenly");
       allocateEvenlyButton.addEventListener("click", () => {
         fetch("http://localhost:8080/allocations/allocate-to-all", {
