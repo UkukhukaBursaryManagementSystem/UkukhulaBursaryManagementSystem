@@ -1,0 +1,74 @@
+body{
+    font-family: 'Arial';
+    font-size: 18px;
+}
+
+*{
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+p{
+    max-width: 90%;
+    width: auto;
+    display: inline-block;
+}
+
+
+.student-upload-form {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    row-gap: 20px;
+    align-items: center;
+    justify-content: space-evenly;
+}
+form{
+    max-width: 90%;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    /* border: solid; */
+    padding-bottom: 20px;
+
+}
+fieldset {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    width: auto;
+    min-height: 150px ;
+}
+
+.upload-button{
+    padding: 10px 30px;
+    width: fit-content;
+}
+
+legend {
+    font-weight: bold;
+}
+
+label {
+    font-style: italic;
+    margin-left: 16px;
+}
+
+input[type="file"]::file-selector-button {
+    border-radius: 4px;
+    padding: 0 16px;
+    height: 40px;
+    cursor: pointer;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    
+    margin-left: 16px;
+}
+
