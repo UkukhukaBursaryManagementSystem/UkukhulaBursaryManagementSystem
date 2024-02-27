@@ -3,6 +3,7 @@ async function fetchData(url) {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
+      // "Authorization": `Bearer ${accessTokenAquired}`
     },
   });
   return result.json();
