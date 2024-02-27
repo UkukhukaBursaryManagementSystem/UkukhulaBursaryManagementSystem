@@ -40,68 +40,79 @@
       <tbody id="applicationsTableBody"></tbody>
     </table>
 
-    <script src="fetch_data.js"></script>
-    <script>
-      let data;
-      (async () => {
-        data = await fetchData(
-          "http://localhost:8080/universities/applications"
-        );
-        const applicationsTableBody = document.getElementById(
-          "applicationsTableBody"
-        );
+    <script></script>
 
-        const universitySelect = document.getElementById("select-university");
-
-        data.forEach((application) => {
-          const row = document.createElement("tr");
-          row.innerHTML = `
-          <td>${application.id}</td>
-          <td>${application.universityName}</td>
-          <td>${application.motivation}</td>
-          <td>${application.applicationStatus}</td>
-          <td>${application.reviewerComment}</td>
-        `;
-          applicationsTableBody.appendChild(row);
-
-          const option = document.createElement("option");
-          option.value = application.universityName;
-          option.textContent = application.universityName;
-          universitySelect.appendChild(option);
+    <script  >
+            const fetchData = async function fetchData(url) {
+        const result = await fetch(url, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
         });
+        return result.json();
+      }
 
-        universitySelect.addEventListener("change", async (event) => {
-          const selectedUniversity = event.target.value;
-          if (selectedUniversity === "all") {
-            displayApplications(data);
-          } else {
-            const filteredData = data.filter(
-              (application) => application.universityName === selectedUniversity
-            );
-            displayApplications(filteredData);
-          }
-        });
+            let data;
+            (async () => {
+              data = await fetchData(
+                "http://localhost:8080/universities/applications"
+              );
+              const applicationsTableBody = document.getElementById(
+                "applicationsTableBody"
+              );
 
-        function displayApplications(filteredData) {
-          const applicationsTableBody = document.getElementById(
-            "applicationsTableBody"
-          );
-          applicationsTableBody.innerHTML = "";
+              const universitySelect = document.getElementById("select-university");
 
-          filteredData.forEach((application) => {
-            const row = document.createElement("tr");
-            row.innerHTML = `
-            <td>${application.id}</td>
-            <td>${application.universityName}</td>
-            <td>${application.motivation}</td>
-            <td>${application.applicationStatus}</td>
-            <td>${application.reviewerComment}</td>
-          `;
-            applicationsTableBody.appendChild(row);
-          });
-        }
-      })();
-      console.log(data);
+              data.forEach((application) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                <td>${application.id}</td>
+                <td>${application.universityName}</td>
+                <td>${application.motivation}</td>
+                <td>${application.applicationStatus}</td>
+                <td>${application.reviewerComment}</td>
+              `;
+                applicationsTableBody.appendChild(row);
+
+                const option = document.createElement("option");
+                option.value = application.universityName;
+                option.textContent = application.universityName;
+                universitySelect.appendChild(option);
+              });
+
+              universitySelect.addEventListener("change", async (event) => {
+                const selectedUniversity = event.target.value;
+                if (selectedUniversity === "all") {
+                  displayApplications(data);
+                } else {
+                  const filteredData = data.filter(
+                    (application) => application.universityName === selectedUniversity
+                  );
+                  displayApplications(filteredData);
+                }
+              });
+
+              function displayApplications(filteredData) {
+                const applicationsTableBody = document.getElementById(
+                  "applicationsTableBody"
+                );
+                applicationsTableBody.innerHTML = "";
+
+                filteredData.forEach((application) => {
+                  const row = document.createElement("tr");
+                  row.innerHTML = `
+                  <td>${application.id}</td>
+                  <td>${application.universityName}</td>
+                  <td>${application.motivation}</td>
+                  <td>${application.applicationStatus}</td>
+                  <td>${application.reviewerComment}</td>
+                `;
+                  applicationsTableBody.appendChild(row);
+                });
+              }
+            })();
+            console.log(data);
     </script>
   </body>
 </html>
