@@ -7,3 +7,6 @@ async function fetchData(url) {
   });
   return result.json();
 }
+
+
+export {fetchData}
