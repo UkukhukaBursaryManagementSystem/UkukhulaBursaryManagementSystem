@@ -21,7 +21,7 @@ function handleResponse(response) {
         sessionStorage.setItem("username", response.account.username);
         sessionStorage.setItem("name", response.account.name)
         sessionStorage.setItem("token", response.accessToken)
-        window.location.href = "http://localhost:3000/admin.html"
+        window.location.href = "http://localhost:3000/pages/admin.html"
     } else {
         selectAccount();
     }
