@@ -1,35 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ukukhula Documents Upload</title>
-    <link rel="stylesheet" href="../css/documents-upload.css">
-</head>
-<body>
+    <link rel="stylesheet" href="../css/documents-upload.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="./admin.html"> Home</a>
+        <a href="./student_appplications.html"> Student Applications</a>
+        <a href="university_applications.html">University Applications</a>
+        <a href="./student_allocations.html">Student Allocations</a>
+        <a href="./university_allocations.html"> University Allocations</a>
+      </nav>
+    </header>
 
     <article class="student-upload-form">
-        <h1>Bursary Documents</h1>
-        <p>Please upload all the required documents below</p>
-        <form id="fileUploadForm" enctype="multipart/form-data">
-            <fieldset >
-                <legend>Resume</legend>
-                <label for="resume"><em>Upload your CV/Resume here.Only .pdf accepted</em></label>
-                <input  type="file" id="resume" name="resume" accept="application/pdf" required>
-            </fieldset>
-            <fieldset>
-                <legend>Academic Transcript</legend>
-                <label for="transcript">Upload your Transcript here.Only .pdf accepted</label>
-                <input type="file" id="transcript" name="transcript" accept="application/pdf" required>
-            </fieldset>
-            <fieldset>
-                <legend>Identity Document</legend>
-                <label for="idCopy">Upload your ID Copy here.Only .pdf accepted</label>
-                <input type="file" id="id_coopy" name="id_copy" accept="application/pdf" required>
-            </fieldset>
-            <button type="submit" class="upload-button">Upload Files</button>
-        </form>
+      <h1>Bursary Documents</h1>
+      <p>Please upload all the required documents below</p>
+      <form id="fileUploadForm" enctype="multipart/form-data">
+        <fieldset>
+          <legend>Resume</legend>
+          <label for="resume"
+            ><em>Upload your CV/Resume here.Only .pdf accepted</em></label
+          >
+          <input
+            type="file"
+            id="resume"
+            name="resume"
+            accept="application/pdf"
+            required
+          />
+        </fieldset>
+        <fieldset>
+          <legend>Academic Transcript</legend>
+          <label for="transcript"
+            >Upload your Transcript here.Only .pdf accepted</label
+          >
+          <input
+            type="file"
+            id="transcript"
+            name="transcript"
+            accept="application/pdf"
+            required
+          />
+        </fieldset>
+        <fieldset>
+          <legend>Identity Document</legend>
+          <label for="idCopy"
+            >Upload your ID Copy here.Only .pdf accepted</label
+          >
+          <input
+            type="file"
+            id="id_coopy"
+            name="id_copy"
+            accept="application/pdf"
+            required
+          />
+        </fieldset>
+        <button type="submit" class="upload-button">Upload Files</button>
+      </form>
     </article>
     <script type="module" src="../js/fileUpload.js"></script>
-</body>
+  </body>
 </html>
