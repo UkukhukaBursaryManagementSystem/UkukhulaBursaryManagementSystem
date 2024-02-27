@@ -16,14 +16,19 @@ function selectAccount() {
 }
 
 function handleResponse(response) {
-
-    if (response !== null) {
+    try
+    {
+        if (response !== null) {
         sessionStorage.setItem("username", response.account.username);
         sessionStorage.setItem("name", response.account.name)
         sessionStorage.setItem("token", response.accessToken)
         window.location.href = "http://localhost:3000/pages/admin.html"
-    } else {
-        selectAccount();
+        } else {
+            selectAccount();
+        }
+    } catch (error)
+    {
+        console.log(error);
     }
 }
 
