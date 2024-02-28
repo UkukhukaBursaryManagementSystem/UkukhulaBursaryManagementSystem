@@ -53,10 +53,10 @@ function populateTable(data) {
             <td>${student.bursaryAmount}</td>
             <td>${student.fundingYear}</td>
             <td>${student.status}</td>
-             <td>${student.hodname}</td>
-             <td>
-             <button class="edit-button" data-id="${student.applicationID}">Edit</button>
-             <button class="delete-button" data-id="${student.applicationID}">Delete</button>
+            <td>${student.hodname}</td>
+            <td>
+              <button class="edit-button" data-id="${student.applicationID}">Edit</button>
+              <button class="delete-button" data-id="${student.applicationID}">Delete</button>
            </td>
         `;
     tableBody.appendChild(row);

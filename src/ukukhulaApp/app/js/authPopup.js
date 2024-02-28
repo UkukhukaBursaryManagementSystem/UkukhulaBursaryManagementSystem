@@ -46,16 +46,18 @@ function handleResponse(response) {
                 return { error: `An error occured: ${error}` }; 
             });
 
-            fetch(`http://localhost:8080/${username}`, {
+            fetch(`http://localhost:8080/user/${username.toLocaleLowerCase()}`, {
                 method: "GET", 
-                headers: { "Content-Type" : "application/json" } 
+                headers: { 
+                    "Content-Type" : "application/json"
+                }
             }).then(response => {
                 if(!response.ok)
                 {
                     return { error: `An error occured: ${response}` };
                 }
                 return response.json();
-            }).then(data => { 
+            }).then(data => {
                 sessionStorage.setItem("userFromDataBase", data.email); 
             }).catch(error => {
                 return { error: `An error occured: ${error}` };
@@ -63,15 +65,17 @@ function handleResponse(response) {
 
             
             sessionStorage.setItem("username", username);
-
-            if (sessionStorage.getItem("userFromDataBase") === username && role.toLowerCase === "admin") 
+            
+            console.log(sessionStorage.getItem("userFromDataBase").toLocaleLowerCase());
+            if (sessionStorage.getItem("userFromDataBase").toLocaleLowerCase() === username.toLocaleLowerCase() && role.toLowerCase() === "admin") 
             {
-                updateLoginUI(username);
+                document.addEventListener("DOMContentLoaded",
+                    updateLoginUI(username)); 
 
-            } else if (sessionStorage.getItem("userFromDataBase") == username && role.toLowerCase === "hod")
+            } else if (sessionStorage.getItem("userFromDataBase").toLocaleLowerCase() == username.toLocaleLowerCase() && role.toLowerCase() === "hod")
             {
-                updateLoginUI(username);
-                
+                document.addEventListener("DOMContentLoaded",
+                    updateLoginUI(username)); 
             } else
             {
                 window.location.href = "http://localhost:3000/"
