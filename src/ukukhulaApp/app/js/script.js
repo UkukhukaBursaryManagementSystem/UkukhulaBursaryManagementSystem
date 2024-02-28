@@ -6,11 +6,18 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   fetchAllStudentApplicationData();
-  const editButtons = document.getElementsByClassName(".edit-button");
+  const editButtons = document.querySelectorAll(".edit-button");
   editButtons.forEach(function (button) {
     button.addEventListener("click", function () {
       const applicationId = button.getAttribute("data-application-id");
       editStudentApplication(applicationId);
+    });
+  });
+  const deleteButtons = document.querySelectorAll(".delete-button");
+  deleteButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      const applicationId = button.getAttribute("data-application-id");
+      removeStudentApplication(applicationId);
     });
   });
 });
@@ -78,6 +85,19 @@ async function editStudentApplication(applicationId) {
 
     form.style.display = "flex";
     table.style.display = "none";
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+}
+
+async function removeStudentApplication(studentID) {
+  try {
+    const response = await fetch(`http://localhost:8080/student/${studentID}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
   } catch (error) {
     console.error("Error fetching data:", error);
   }
