@@ -87,3 +87,23 @@ a {
   display: flex;
   flex-direction: column;
 }
+
+option {
+  padding: 8px;
+  font-size: 14px;
+  background-color: #fff;
+  color: #333;
+}
+
+#head-of-department {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 200px;
+}
+
+#head-of-department:focus {
+  outline: none;
+  border-color: #007bff;
+}
