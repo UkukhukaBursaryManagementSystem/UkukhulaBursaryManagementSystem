@@ -19,17 +19,11 @@
       </nav>
     </header>
 
-    <section id="selection">
-      <h2>View Student Applications</h2>
-      <label for="filter">Filter by HOD Name:</label>
-      <input type="text" id="hodName" name="hodName">
-      <button id="fetch-button">Fetch Applications</button>
-  </section>
 
   <section class="hidden" >
-    <article>
+    <article class="student-application-form">
       <h1> Update Student Application Form</h1>
-      <p>Please complete the form below to apply for a student</p>
+      <p>Please complete the form below to Update student Application</p>
       <form method="post" class="student-application-form">
 
           <fieldset class="personal-field-set">
@@ -88,10 +82,18 @@
 
           <input class="submit-button" type="submit" value="Submit" >
   </form>
+  <p id="message"></p>
   </article>
-
+</section >
+    <section id="table" class="hide-table">
+      
+    <section id="selection">
+      <h2>View Student Applications</h2>
+      <label for="filter">Filter by HOD Name:</label>
+      <input type="text" id="hodName" name="hodName">
+      <button id="fetch-button">Fetch Applications</button>
   </section>
-    <section id="table">
+
       <h1>Student Application Table</h1>
 
       <table>
