@@ -33,10 +33,10 @@ const msalConfig = {
 };
 
 const loginRequest = {
-    scopes: ["openid", "profile"]
+    scopes: ["User.Read"]
 };
 
 const tokenRequest = {
-    scopes: ["openid", "profile"],
+    scopes: ["User.Read"],
     forceRefresh: false
 };
