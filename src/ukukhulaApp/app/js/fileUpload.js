@@ -28,16 +28,30 @@ document.getElementById('fileUploadForm').addEventListener('submit',async functi
         // Upload each file individually and get the file URL
         const resumeUrl = await uploadFile(resumeFile, 'file');
         const transcriptUrl = await uploadFile(transcriptFile, 'file');
-        const idCopyUrl = await uploadFile(idCopyFile, 'file');
+        const idUrl = await uploadFile(idCopyFile, 'file');
 
         // Use the file URLs in another request or perform other actions
         console.log('Resume URL:', resumeUrl.url);
         console.log('Transcript URL:', transcriptUrl.url);
-        console.log('ID Copy URL:', idCopyUrl.url);
+        console.log('ID Copy URL:', idUrl.url);
 
         // Proceed with further actions using the file URLs
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+            get: (searchParams, prop) => searchParams.get(prop),
+          });
+
+        let docBody = {
+            "studentID": parseInt(params.studentID),
+            "resumeURL": encodeURI(resumeUrl.url),
+            "transcriptURL" : encodeURI(transcriptUrl.url),
+            "idURL" : encodeURI(idUrl.url)
+        }
+
+        let finalResponse = await post('http://localhost:8080/student-documents', docBody);
+        alert("Documents Uploaded Successully");
     } catch (error) {
         console.error('Error uploading files:', error);
-        // Handle error
+        // Handle erro
+        alert('Error uploading files', error);
     }
 });
