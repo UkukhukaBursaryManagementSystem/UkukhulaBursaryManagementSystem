@@ -6,8 +6,13 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   fetchAllStudentApplicationData();
-  const applicationId = document.getElementById("applicationId").value;
-  editStudentApplication(applicationId);
+  const editButtons = document.getElementsByClassName(".edit-button");
+  editButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      const applicationId = button.getAttribute("data-application-id");
+      editStudentApplication(applicationId);
+    });
+  });
 });
 
 async function fetchAllStudentApplicationData() {
@@ -37,43 +42,47 @@ async function editStudentApplication(applicationId) {
   const table = document.querySelector(".hide-table");
   const form = document.querySelector(".hidden");
   const submitButton = document.querySelector(".submit-button");
-  form.style.display = "none";
-  table.style.display = "flex";
+
   try {
     const response = await fetch(
       `http://localhost:8080/student-application/${applicationId}`
     );
     const data = await response.json();
-    console.log(data[0].genderIdentity);
-    document.getElementById("first-name").value = data[0].firstName;
-    document.getElementById("last-name").value = data[0].lastName;
-    document.getElementById("id-number").value = data[0].idnumber;
-    document.getElementById("sex").value = data[0].genderIdentity;
-    document.getElementById("ethnicity").value = data[0].ethnicity;
-    document.getElementById("phone").value = data[0].phoneNumber;
-    document.getElementById("student-email").value = data[0].email;
-    document.getElementById("student-study-course").value =
-      data[0].courseOfStudy;
-    document.getElementById("bursary-amount").value = data[0].bursaryAmount;
-    document.getElementById("university").value = data[0].universityName;
-    document.getElementById("department").value = data[0].department;
-    document.getElementById("year-of-application").value = data[0].fundingYear;
-    document.getElementById("head-of-department").value = data[0].hodName;
-    document.getElementById("Motivation").value = data[0].motivation;
+    const fieldMappings = {
+      "first-name": "firstName",
+      "last-name": "lastName",
+      "id-number": "idnumber",
+      sex: "genderIdentity",
+      ethnicity: "ethnicity",
+      phone: "phoneNumber",
+      "student-email": "email",
+      "student-study-course": "courseOfStudy",
+      "bursary-amount": "bursaryAmount",
+      university: "universityName",
+      department: "department",
+      "year-of-application": "fundingYear",
+      "head-of-department": "hodName",
+      Motivation: "motivation",
+    };
+
+    for (const fieldId in fieldMappings) {
+      const dataProperty = fieldMappings[fieldId];
+      const fieldValue = data[0][dataProperty];
+      document.getElementById(fieldId).value = fieldValue;
+    }
 
     submitButton.addEventListener("click", () => {
-      // const table = document.querySelector(".hide-table")
       table.style.display = "flex";
       form.style.display = "none";
     });
-    table.style.display = "none";
+
     form.style.display = "flex";
+    table.style.display = "none";
   } catch (error) {
     console.error("Error fetching data:", error);
   }
 }
 
-editStudentApplication("applicationId");
 function populateTable(data) {
   const tableBody = document.getElementById("table-body");
   tableBody.innerHTML = "";
