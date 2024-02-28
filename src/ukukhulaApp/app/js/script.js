@@ -30,6 +30,8 @@ async function fetchDataByHodName(hodName) {
   }
 }
 
+function editStudentApplication() {}
+
 function populateTable(data) {
   const tableBody = document.getElementById("table-body");
   tableBody.innerHTML = "";
@@ -55,8 +57,8 @@ function populateTable(data) {
             <td>${student.status}</td>
              <td>${student.hodname}</td>
              <td>
-             <button class="edit-button" data-id="${student.applicationID}">Edit</button>
-             <button class="delete-button" data-id="${student.applicationID}">Delete</button>
+             <button class="edit-button" data-id="${student.applicationID}" onclick ="editStudentApplication(${student.applicationID})">Edit</button>
+             <button class="delete-button" data-id="${student.applicationID}" onclick ="removeStudentApplication(${student.applicationID})">Delete</button>
            </td>
         `;
     tableBody.appendChild(row);
