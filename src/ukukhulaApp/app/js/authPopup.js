@@ -21,9 +21,9 @@ function handleResponse(response) {
     if (response !== null) {
 
         const username = response.account.username;
-        sessionStorage.setItem("username", username);
-
         const role = document.getElementById("role").value;
+
+        let welcomeMessage = "";
         
         try
         {
@@ -32,7 +32,7 @@ function handleResponse(response) {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 role: `${role}`,
-                email: `${sessionStorage.getItem("username")}`
+                email: `${username}`
             })
             }).then(response => {
                 if (!response.ok)
@@ -62,14 +62,15 @@ function handleResponse(response) {
                 });
 
             
+            sessionStorage.setItem("username", username);
 
             if (sessionStorage.getItem("userFromDataBase") === username && role.toLowerCase === "admin") 
             {
-                window.location.href = "http://localhost:3000/pages/admin.html";
+                updateLoginUI(username);
 
             } else if (sessionStorage.getItem("userFromDataBase") == username && role.toLowerCase === "hod")
             {
-                window.location.href = "http://localhost:3000/pages/university_applications.html";
+                updateLoginUI(username);
                 
             } else
             {

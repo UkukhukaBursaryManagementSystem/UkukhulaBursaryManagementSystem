@@ -5,7 +5,7 @@ body {
   height: 100vh;
 }
 
-section {
+#signIn-section {
   display: flex;
   flex-direction: column;
   padding: 5px;
@@ -30,4 +30,23 @@ label {
 #login {
   padding: 0;
   display: flex;
+}
+
+.loginUpdate {
+  background-image: "../images/bbd_white_background.jpg";
+  background-size: auto;
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+.loginUpdateHeading {
+  font: 18px arial;
+  border: 2px solid #4d4d4d;
+  color: #e6e6e6;
+  padding: 5px;
+}
+
+.hideElements {
+  display: none;
 }
