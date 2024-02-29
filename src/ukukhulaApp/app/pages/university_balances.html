@@ -9,6 +9,7 @@
     <section id="university-balances">
       <h1>Balances:</h1>
       <p>Remaining balance: <span id="remaining_university_balance"></span></p>
+      <p>Total Spent: <span id="total_spent"></span></p>
     </section>
 
     <script src="/src/ukukhulaApp/app/js/fetch_data.js"></script>
@@ -26,10 +27,26 @@
         }
       }
 
+      async function displayTotalSpent(universityName, url) {
+        try {
+          const data = await fetchData(url);
+          const balance = await data;
+          const totalSpentElement = document.getElementById(
+            "total_spent"
+          );
+          totalSpentElement.innerHTML = `R${balance}`;
+        } catch (error) {
+          alert("Error fetching data:", error);
+        }
+      }
       document.addEventListener("DOMContentLoaded", () => {
         displayUniversityBalances(
           fetchData,
           "http://localhost:8080/balance?universityName=University OF PRETORIA"
+        );
+        displayTotalSpent(
+          fetchData,
+          "http://localhost:8080/total-student-allocations?universityName=University of pretoria"
         );
       });
       // --UNCOMMENT WHEN WE HAVE UNIVERSITY NAME LINK
