@@ -108,6 +108,26 @@ h1 {
   opacity: 0.5;
 }
 
+#back-button {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  cursor: pointer;
+  background-color: transparent;
+  color: white;
+  border: 2px solid #fc040499;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 15px;
+  text-decoration: none;
+}
+
+#back-button:hover {
+  background-color: #c5c6c7;
+  color: #0b0c10;
+}
+
 #login-form input {
   width: 250px;
   background: transparent;
@@ -131,6 +151,8 @@ h1 {
   cursor: pointer;
   color: #c5c6c7;
   background: transparent;
+  font-size: 15px;
+  text-align: center;
   transition: background-color 0.3s ease;
 }
 
@@ -148,8 +170,8 @@ h1 {
   padding: 3px;
 }
 
-#login-button p {
-  font-size: 15px;
+#login-button span {
+  margin-top: 10px;
 }
 
 #input {
