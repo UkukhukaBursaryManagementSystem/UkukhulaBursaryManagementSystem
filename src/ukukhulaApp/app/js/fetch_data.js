@@ -9,7 +9,7 @@ async function fetchData(url) {
   return result.json();
 }
 
-<<<<<<< HEAD
+
 
 async function fetchAllStudentApplicationData() {
   try {
@@ -20,6 +20,4 @@ async function fetchAllStudentApplicationData() {
   }
 }
 
-export {fetchData, fetchAllStudentApplicationData}
-=======
->>>>>>> main
+

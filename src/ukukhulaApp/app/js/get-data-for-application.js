@@ -1,5 +1,7 @@
-import  {fetchData} from  './fetch_data.js'
-let data;
+
+document.addEventListener("DOMContentLoaded", async function () {
+
+    let data;
 
 
 const selectSexElement = document.getElementById('sex');
@@ -107,3 +109,8 @@ function submitFormData(event) {
 
 // Add an event listener to the form for form submission
 document.querySelector('.student-application-form').addEventListener('submit', submitFormData);
+
+    
+}
+);
+

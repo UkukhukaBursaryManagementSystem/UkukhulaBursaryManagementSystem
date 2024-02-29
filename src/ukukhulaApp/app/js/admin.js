@@ -1,8 +1,3 @@
-import { fetchAllStudentApplicationData } from "../js/fetch_data.js";
-
-
-
-
 function populateTableForAdmin(data) {
     const tableBody = document.getElementById("table-body");
     tableBody.innerHTML = "";
