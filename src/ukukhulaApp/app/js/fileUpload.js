@@ -18,7 +18,8 @@ import {post} from '../js/post_data.js'
 
 document.getElementById('fileUploadForm').addEventListener('submit',async function(event) {
     event.preventDefault(); // Prevent default form submission
-
+    const loadImage = document.querySelector('.load');
+    loadImage.classList.toggle('show');
     try {
         // Get file inputs
         let resumeFile = document.getElementById('resume').files[0];
@@ -48,7 +49,9 @@ document.getElementById('fileUploadForm').addEventListener('submit',async functi
         }
 
         let finalResponse = await post('http://localhost:8080/student-documents', docBody);
+        
         alert("Documents Uploaded Successully");
+        window.location.reload();
     } catch (error) {
         console.error('Error uploading files:', error);
         // Handle erro

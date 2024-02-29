@@ -87,3 +87,8 @@ a {
   display: flex;
   flex-direction: column;
 }
+
+
+.new-application-button a {
+  color: black;
+}
