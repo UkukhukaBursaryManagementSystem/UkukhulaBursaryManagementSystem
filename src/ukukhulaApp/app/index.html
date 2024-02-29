@@ -24,7 +24,8 @@
 
   <body>
     <section id="login-page">
-        <form id="login-form">
+      <button id="back-button" onclick="window.history.back()">Back</button>
+      <form id="login-form">
         <h2>LOGIN</h2>
         <label for="role">Select Role: </label>
         <input id="role" placeholder="Admin/HOD" required />
@@ -34,9 +35,9 @@
             src="./css/images/microsoft-icon.png"
             alt="sign in with microsoft dark button"
           />
-        </form>
- <p>Sign in with microsoft</p>
-      </button>
+          <span>Sign in with microsoft</span>
+        </button>
+      </form>
     </section>
 
     <script
