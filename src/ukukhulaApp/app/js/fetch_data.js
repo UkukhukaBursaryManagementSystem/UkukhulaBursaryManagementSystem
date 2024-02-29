@@ -9,4 +9,14 @@ async function fetchData(url) {
   return result.json();
 }
 
-export {fetchData}
+
+async function fetchAllStudentApplicationData() {
+  try {
+    const response = await fetch(`http://localhost:8080/student-application`);
+    return response.json();
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+}
+
+export {fetchData, fetchAllStudentApplicationData}

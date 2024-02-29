@@ -1,6 +1,24 @@
+:root {
+  --primary-color-back-one : #0B0C10;
+
+  --primary-color-back-two : #1F2833;
+
+  --secondary-color-text:  #C5C6C7 ;
+
+  --secondary-color-red : #fc040499;
+}
+
+
 section {
   height: 100vh;
   width: 100vw;
+}
+
+body {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  background-color: var(--primary-color-back-two);
+  color: var(--secondary-color-text);
 }
 form {
   height: 50rem;
@@ -25,6 +43,7 @@ form {
   border: 2px solid black;
 }
 
+
 table {
   border-collapse: collapse;
   width: 100%;
@@ -33,10 +52,49 @@ th,
 td {
   border: 1px solid #dddddd;
   text-align: left;
-  padding: 8px;
+  /* padding: 8px; */
 }
 th {
-  background-color: #f2f2f2;
+  background-color: var(--primary-color-back-one);
+  font-weight: bolder;
+}
+
+.rejected {
+  color: red;
+}
+
+.approved {
+   color: green;
+}
+
+.review{
+  color: yellow;
+}
+
+
+.pop-up-content {
+  display: none;
+  background-color: var(--secondary-color-text);
+
+}
+
+.active {
+  display: flex;
+  row-gap: 20px;
+}
+
+.application-info {
+  color: var(--primary-color-back-one);
+  display: flex;
+  column-gap: 20px;
+  width: 500px;
+  height: auto;
+}
+
+
+
+.description{
+  font-weight: bold;
 }
 
 nav {
@@ -45,7 +103,7 @@ nav {
   align-items: center;
   justify-content: center;
   height: 3rem;
-  width: 100rem;
+  width: 100vw;
   background-color: black;
 }
 
@@ -53,6 +111,21 @@ a {
   text-decoration: none;
   padding-left: 2rem;
   color: #f2f2f2;
+}
+
+button {
+  background-color: var(--secondary-color-red);
+  font-weight: bold;
+  border-radius: 1px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.7;
+}
+
+.popUpTable {
+  display: none;
 }
 
 #dashboard {
@@ -91,4 +164,12 @@ a {
 
 .new-application-button a {
   color: black;
+}
+
+
+@media screen and (max-width: 800px) {
+  .hide-mobile {
+    display: none;
+  }
+
 }
