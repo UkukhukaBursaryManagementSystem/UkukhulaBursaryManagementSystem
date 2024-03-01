@@ -69,11 +69,11 @@ function handleResponse(response) {
 
             if (sessionStorage.getItem("userFromDataBase").toLocaleLowerCase() === username.toLocaleLowerCase() && role.toLowerCase() === "admin") 
             {
-                updateLoginUI(username); 
+                window.location.href = "../pages/admin.html"; 
 
             } else if (sessionStorage.getItem("userFromDataBase").toLocaleLowerCase() == username.toLocaleLowerCase() && role.toLowerCase() === "hod")
             {
-                updateLoginUI(username); 
+                window.location.href = "../pages/hod.html"; 
             }
          
         } catch(error)
