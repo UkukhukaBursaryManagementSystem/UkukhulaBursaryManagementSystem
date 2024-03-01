@@ -217,6 +217,7 @@ form {
   justify-content: center;
   align-items: center;
   background-image: url('../images/6173960.jpg');
+  width: 100vw;
 
 }
 
@@ -287,19 +288,22 @@ td{
 .pop-up-content {
   display: none;
   background-color: var(--secondary-color-text);
+  width: 100%;
 
 }
 
 .active {
   display: flex;
+  flex-wrap: wrap;
   row-gap: 20px;
+  column-gap: 10px;
 }
 
 .application-info {
   color: var(--primary-color-back-one);
   display: flex;
   column-gap: 20px;
-  width: 500px;
+  width: fit-content;
   height: auto;
 }
 
