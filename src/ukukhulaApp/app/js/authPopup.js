@@ -15,15 +15,13 @@ function selectAccount() {
     }
 }
 
-
+debugger
 function handleResponse(response) {
 
     if (response !== null) {
 
         const username = response.account.username;
         const role = document.getElementById("role").value;
-
-        let welcomeMessage = "";
         
         try
         {
@@ -69,16 +67,11 @@ function handleResponse(response) {
             console.log(sessionStorage.getItem("userFromDataBase").toLocaleLowerCase());
             if (sessionStorage.getItem("userFromDataBase").toLocaleLowerCase() === username.toLocaleLowerCase() && role.toLowerCase() === "admin") 
             {
-                document.addEventListener("DOMContentLoaded",
-                    updateLoginUI(username)); 
+                updateLoginUI(username); 
 
             } else if (sessionStorage.getItem("userFromDataBase").toLocaleLowerCase() == username.toLocaleLowerCase() && role.toLowerCase() === "hod")
             {
-                document.addEventListener("DOMContentLoaded",
-                    updateLoginUI(username)); 
-            } else
-            {
-                window.location.href = "http://localhost:3000/"
+                updateLoginUI(username); 
             }
          
         } catch(error)
