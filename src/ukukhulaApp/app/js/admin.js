@@ -4,10 +4,7 @@ function populateTableForAdmin(data) {
   
     data.forEach((student) => {
       const row = document.createElement("tr");
-  
-      const applicationIdCell = document.createElement("td");
-      applicationIdCell.textContent = student.applicationID;
-      row.appendChild(applicationIdCell);
+      row.setAttribute('class', 'table-row');
   
   
       const FullName = `${student.firstName} ${student.lastName}`;
@@ -28,10 +25,6 @@ function populateTableForAdmin(data) {
       applicationAmountCell.setAttribute("class", "hide-mobile");
       row.appendChild(applicationAmountCell);
   
-      const fundingYearCell = document.createElement("td");
-      fundingYearCell.textContent = student.fundingYear;
-      fundingYearCell.setAttribute("class", "hide-mobile");
-      row.appendChild(fundingYearCell);
   
       const statusCell = document.createElement("td");
       statusCell.textContent = student.status;
@@ -43,7 +36,7 @@ function populateTableForAdmin(data) {
   
       const buttonCell = document.createElement("td");
       const viewButton = document.createElement("button");
-      viewButton.setAttribute("class", `view-app-button-${student.applicationID}`);
+      viewButton.setAttribute("class", 'view-app-button');
       viewButton.setAttribute("data-applicationID", student.applicationID);
       viewButton.textContent = "View";
       buttonCell.appendChild(viewButton);
@@ -83,11 +76,11 @@ function viewStudentApplication(student){
 }
 
 
+document.addEventListener('DOMContentLoaded', async function(){
+  let data = [];
+  data = await fetchAllStudentApplicationData();
+  populateTableForAdmin(data);
+});
 
-let data = [];
-data = await fetchAllStudentApplicationData();
-populateTableForAdmin(data);
-
-console.log(typeof(data));
 
 
