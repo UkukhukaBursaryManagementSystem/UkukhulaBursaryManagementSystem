@@ -79,6 +79,18 @@ async function editStudentApplication(applicationId) {
   }
 }
 
+async function removeStudentApplication(applicationId) {
+  try {
+    const response = await fetch(
+      `http://localhost:8080/student/${applicationId}`
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+}
+
 // function populateTable(data) {
 //   const tableBody = document.getElementById("table-body");
 //   tableBody.innerHTML = "";
