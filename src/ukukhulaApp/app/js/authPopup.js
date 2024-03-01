@@ -21,9 +21,11 @@ function handleResponse(response) {
     if (response !== null) {
 
         const username = response.account.username;
+        const microsoftAccessToken = response.accessToken;
+
         sessionStorage.setItem("username", username);
 
-        const role = document.getElementById("role").value;
+        const role = document.getElementById("role").value.toUpperCase();
         
         try
         {
@@ -32,7 +34,8 @@ function handleResponse(response) {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 role: `${role}`,
-                email: `${sessionStorage.getItem("username")}`
+                email: `${username}`,
+                microsoftAccessToken: `${microsoftAccessToken}`
             })
             }).then(response => {
                 if (!response.ok)
@@ -46,34 +49,31 @@ function handleResponse(response) {
                 return { error: `An error occured: ${error}` }; 
             });
 
-            fetch(`http://localhost:8080/${username}`, {
+            fetch(`http://localhost:8080/user/${username.toLocaleLowerCase()}`, {
                 method: "GET", 
-                headers: { "Content-Type" : "application/json" } 
+                headers: { 
+                    "Content-Type" : "application/json"
+                }
             }).then(response => {
                 if(!response.ok)
                 {
                     return { error: `An error occured: ${response}` };
                 }
                 return response.json();
-            }).then(data => { 
+            }).then(data => {
                 sessionStorage.setItem("userFromDataBase", data.email); 
             }).catch(error => {
                 return { error: `An error occured: ${error}` };
                 });
-
             
 
-            if (sessionStorage.getItem("userFromDataBase") === username && role.toLowerCase === "admin") 
+            if (sessionStorage.getItem("userFromDataBase").toLocaleLowerCase() === username.toLocaleLowerCase() && role.toLowerCase() === "admin") 
             {
-                window.location.href = "http://localhost:3000/pages/admin.html";
+                window.location.href = "../pages/admin.html"; 
 
-            } else if (sessionStorage.getItem("userFromDataBase") == username && role.toLowerCase === "hod")
+            } else if (sessionStorage.getItem("userFromDataBase").toLocaleLowerCase() == username.toLocaleLowerCase() && role.toLowerCase() === "hod")
             {
-                window.location.href = "http://localhost:3000/pages/university_applications.html";
-                
-            } else
-            {
-                window.location.href = "http://localhost:3000/"
+                window.location.href = "../pages/hod.html"; 
             }
          
         } catch(error)

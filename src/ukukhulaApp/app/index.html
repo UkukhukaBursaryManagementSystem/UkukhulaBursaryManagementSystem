@@ -8,44 +8,45 @@
     />
     <title>Microsoft identity platform</title>
     <link rel="SHORTCUT ICON" href="./favicon.svg" type="image/x-icon" />
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/index.css" />
     <script
       src="https://alcdn.msauth.net/browser/2.30.0/js/msal-browser.js"
       integrity="sha384-o4ufwq3oKqc7IoCcR08YtZXmgOljhTggRwxP2CLbSqeXGtitAxwYaUln/05nJjit"
       crossorigin="anonymous"
     ></script>
 
-    <link
-      rel="SHORTCUT ICON"
-      href="https://c.s-microsoft.com/favicon.ico?v2"
-      type="image/x-icon"
-    />
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <title>Microsoft identity platform</title>
+  <link rel="SHORTCUT ICON" href="./favicon.svg" type="image/x-icon">
+  <link rel="stylesheet" href="./css/login.css">
+  <script id="load-msal" src="https://alcdn.msauth.net/browser/2.31.0/js/msal-browser.js"
+    integrity="sha384-BO4qQ2RTxj2akCJc7t6IdU9aRg6do4LGIkVVa01Hm33jxM+v2G+4q+vZjmOCywYq"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous" defer></script>
+  <script type="text/javascript" src="./js/authConfig.js" defer></script>
+  <script type="text/javascript" src="./js/authPopup.js" defer></script>
+  <script type="text/javascript" src="./js/domFunctions.js" defer></script>
+  
+  <link rel="SHORTCUT ICON" href="https://c.s-microsoft.com/favicon.ico?v2" type="image/x-icon">
+</head>
 
-  <body>
-    <section id="login-page">
-      <button id="back-button" onclick="window.history.back()">Back</button>
-      <form id="login-form">
-        <h2>LOGIN</h2>
-        <label for="role">Select Role: </label>
-        <input id="role" placeholder="Admin/HOD" required />
-        <input id="role" placeholder="Email" required />
-        <button id="login-button">
-          <img
-            src="./css/images/microsoft-icon.png"
-            alt="sign in with microsoft dark button"
-          />
-          <span>Sign in with microsoft</span>
-        </button>
-      </form>
-    </section>
+<body>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-      crossorigin="anonymous"
-    ></script>
-    <script type="text/javascript" src="./authConfig.js"></script>
-    <script type="text/javascript" src="./authPopup.js"></script>
-  </body>
+  <section id="welcome-screen" style="display: none;">
+    <h1 id="username"></h1>
+  </section>
+  
+  <section id="signIn-section">
+      <label for="role">Select Role: </label>
+      <input id="role" placeholder="Admin/HOD" required>
+      <button id="login">
+          <img src="./images/ms-symbollockup_signin_dark.svg" alt="sign in with microsoft dark button">
+      </button>
+  </section>
+</body>
+
 </html>
