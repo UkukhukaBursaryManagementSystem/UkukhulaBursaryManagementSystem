@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ukukhula Admin Dashboard</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/admin.js"></script>
+    
+</head>
+<body>
+    <header>
+        <nav>
+          <a href="./admin.html"> Home</a>
+          <a href="./student_appplications.html"> Student Applications</a>
+          <a href="university_applications.html">University Applications</a>
+          <a href="./student_allocations.html">Student Allocations</a>
+          <a href="./university_allocations.html"> University Allocations</a>
+        </nav>
+      </header>
+      <main>
+
+        <article class="student-applications">
+            <h1>Student Application Table</h1>
+
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th >FullName</th>
+                    <th class="hide-mobile">UniversityName</th>
+                    <th class="hide-mobile">BursaryAmount</th>
+                    <th class="hide-mobile">FundingYear</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody id="table-body">
+                </tbody>
+            </table>
+
+                <article class="pop-up-content">
+
+                    <article class="application-info">
+                        <p class="description">Student Name: </p>
+                        <p class="student-name"></p>
+                    </article>
+
+                    <article class="application-info">
+                        <p class="description">IdNumber: </p>
+                        <p class="student-id-number"></p>
+                    </article>
+
+                    <article class="application-info">
+                        <p class="description">Sex: </p>
+                        <p class="student-sex"></p>
+                    </article>
+
+                    <article class="application-info">
+                        <p class="description">Ethnicity: </p>
+                        <p class="student-ethnicity"></p>
+                    </article>
+
+                    <article class="application-info">
+                        <p class="description">Email: </p>
+                        <p class="student-email"></p>
+                    </article>
+
+                    <article class="application-info">
+                        <p class="description">Phone Number: </p>
+                        <p class="student-phone-number"></p>
+                    </article>
+
+                    <article class="application-info">
+                        <p class="description">University Name: </p>
+                        <p class="student-university"></p>
+                    </article>
+
+                    <article class="application-info">
+                        <p class="description">Department: </p>
+                        <p class="student-department"></p>
+                    </article>
+
+                    <article class="application-info">
+                        <p class="description">Bursary Amount: </p>
+                        <p class="student-amount"></p>
+                    </article>
+
+                    <article class="application-info">
+                        <p class="description">Course Of Study: </p>
+                        <p class="student-study"></p>
+                    </article>
+
+                    <article class="application-info">
+                        <p class="description">Hod Name:</p>
+                        <p class="hod-name"></p>
+                    </article>
+
+                    <article class="application-info">
+                        <p class="description">Motivation: </p>
+                        <p class="student-motivation"></p>
+                    </article>
+
+                    <article class="application-info">
+                        <p class="description">Reviewer Comment: </p>
+                        <p class="comment"></p>
+                    </article>
+
+                </article>
+        </article>
+                
+
+      </main>
+
+      <script type="module" src="../js/admin.js"></script>
+</body>
+</html>
