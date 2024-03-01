@@ -6,9 +6,18 @@ document.addEventListener("DOMContentLoaded", async function () {
   const editButtons = document.querySelector(".edit-button");
   const studentApplicationForm = document.querySelector(".hidden");
   const table = document.querySelector(".hide-table");
+  const deleteButton = document.querySelector(".delete-button");
   editButtons.addEventListener("click", function () {
     table.style.display = "none";
     studentApplicationForm.style.display = "flex";
+  });
+
+  deleteButton.addEventListener("click", function () {
+    const applicationId = document.querySelector(
+      ".student-applicationID"
+    ).textContent;
+    console.log(applicationId);
+    removeStudentApplication(applicationId);
   });
 });
 
@@ -82,12 +91,16 @@ async function editStudentApplication(applicationId) {
 async function removeStudentApplication(applicationId) {
   try {
     const response = await fetch(
-      `http://localhost:8080/student/${applicationId}`
+      `http://localhost:8080/student/${applicationId}`,
+      {
+        method: "DELETE",
+      }
     );
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error("Error fetching data:", error);
+    console.error("Error deleting application:", error);
+    throw error;
   }
 }
 
