@@ -1,9 +1,11 @@
-import  {fetchData} from  './fetch_data.js'
-let data;
+
+document.addEventListener("DOMContentLoaded", async function () {
+
+    let data;
 
 
 const selectSexElement = document.getElementById('sex');
-data = await fetchData(`http://localhost:8080/biological-sex`);
+data = await fetchData(`https://ukukhulaapi.azurewebsites.net/biological-sex`);
 data.forEach(option => {
     const optionElement = document.createElement('option');
     optionElement.value = option.id;
@@ -12,7 +14,7 @@ data.forEach(option => {
 });
 
 const selectEthnicityElement = document.getElementById('ethnicity');
-data = await fetchData(`http://localhost:8080/ethnicity`);
+data = await fetchData(`https://ukukhulaapi.azurewebsites.net/ethnicity`);
 data.forEach(option => {
     const optionElement = document.createElement('option');
     optionElement.value = option.id;
@@ -22,7 +24,7 @@ data.forEach(option => {
 
 
 const selectDepartmentElement = document.getElementById('department');
-data = await fetchData(`http://localhost:8080/department`);
+data = await fetchData(`https://ukukhulaapi.azurewebsites.net/department`);
 data.forEach(option => {
     const optionElement = document.createElement('option');
     optionElement.value = option.id;
@@ -31,7 +33,7 @@ data.forEach(option => {
 });
 
 const selectHeadOfDepartmentElement = document.getElementById('head-of-department');
-data = await fetchData(`http://localhost:8080/hod`);
+data = await fetchData(`https://ukukhulaapi.azurewebsites.net/hod`);
 data.forEach(option => {
     const optionElement = document.createElement('option');
     optionElement.value = option.id;
@@ -47,7 +49,7 @@ data.forEach(option => {
 
 
 const selectUniverisytElement = document.getElementById('university');
-data = await fetchData(`http://localhost:8080/universities`);
+data = await fetchData(`https://ukukhulaapi.azurewebsites.net/universities`);
 data.forEach(option => {
     const optionElement = document.createElement('option');
     optionElement.value = option.id;
@@ -58,7 +60,8 @@ data.forEach(option => {
 
 function submitFormData(event) {
     event.preventDefault(); // Prevent the default form submission behavior
-
+    const loadImage = document.querySelector('.load');
+    loadImage.classList.toggle('show');
     // Get form data
     const formData = {
         "firstName": document.getElementById('first-name').value,
@@ -80,7 +83,7 @@ function submitFormData(event) {
     console.log(JSON.stringify(formData));
 
     // Send the form data to the endpoint using fetch API
-    fetch('http://localhost:8080/student-application', {
+    fetch('https://ukukhulaapi.azurewebsites.net/create-student-application', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -94,14 +97,20 @@ function submitFormData(event) {
         return response.json();
     })
     .then(data => {
-        console.log('Form data submitted successfully:', data);
-        // Optionally, you can show a success message or redirect the user
+        alert(data.message)
+        window.location.assign('http://127.0.0.1:5501/src/ukukhulaApp/app/pages/student_appplications.html');
     })
     .catch(error => {
-        console.error('There was a problem submitting the form data:', error.message);
+        alert('There was a problem submitting the form data:', error.message);
         // Optionally, you can show an error message to the user
     });
+    
 }
 
 // Add an event listener to the form for form submission
 document.querySelector('.student-application-form').addEventListener('submit', submitFormData);
+
+    
+}
+);
+

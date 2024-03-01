@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <section id="university-balances">
+      <h1>Balances:</h1>
+      <p>Remaining balance: <span id="remaining_university_balance"></span></p>
+      <p>Total Spent: <span id="total_spent"></span></p>
+    </section>
+
+    <script src="/src/ukukhulaApp/app/js/fetch_data.js"></script>
+    <script>
+      async function displayUniversityBalances(universityName, url) {
+        try {
+          const data = await fetchData(url);
+          const balance = await data;
+          const universityBalanceElement = document.getElementById(
+            "remaining_university_balance"
+          );
+          universityBalanceElement.innerHTML = `R${balance}`;
+        } catch (error) {
+          alert("Error fetching data:", error);
+        }
+      }
+
+      async function displayTotalSpent(universityName, url) {
+        try {
+          const data = await fetchData(url);
+          const balance = await data;
+          const totalSpentElement = document.getElementById(
+            "total_spent"
+          );
+          totalSpentElement.innerHTML = `R${balance}`;
+        } catch (error) {
+          alert("Error fetching data:", error);
+        }
+      }
+      document.addEventListener("DOMContentLoaded", () => {
+        displayUniversityBalances(
+          fetchData,
+          "http://localhost:8080/balance?universityName=University OF PRETORIA"
+        );
+        displayTotalSpent(
+          fetchData,
+          "http://localhost:8080/total-student-allocations?universityName=University of pretoria"
+        );
+      });
+      // --UNCOMMENT WHEN WE HAVE UNIVERSITY NAME LINK
+      //   document.addEventListener("DOMContentLoaded", () => {
+      //     const urlParams = new URLSearchParams(window.location.search);
+      //     const universityName = urlParams.get("universityName");
+      //     const encodedUniversityName = encodeURIComponent(universityName);
+      //     const url = `http://localhost:8080/balance?universityName=${encodedUniversityName}`;
+      //     displayUniversityBalances(universityName, url);
+      //   });
+    </script>
+  </body>
+</html>
