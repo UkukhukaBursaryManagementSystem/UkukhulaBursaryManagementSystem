@@ -21,7 +21,11 @@ function handleResponse(response) {
     if (response !== null) {
 
         const username = response.account.username;
-        const role = document.getElementById("role").value;
+        const microsoftAccessToken = response.accessToken;
+
+        sessionStorage.setItem("username", username);
+
+        const role = document.getElementById("role").value.toUpperCase();
         
         try
         {
@@ -30,7 +34,8 @@ function handleResponse(response) {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 role: `${role}`,
-                email: `${username}`
+                email: `${username}`,
+                microsoftAccessToken: `${microsoftAccessToken}`
             })
             }).then(response => {
                 if (!response.ok)
@@ -60,11 +65,8 @@ function handleResponse(response) {
             }).catch(error => {
                 return { error: `An error occured: ${error}` };
                 });
+            
 
-            
-            sessionStorage.setItem("username", username);
-            
-            console.log(sessionStorage.getItem("userFromDataBase").toLocaleLowerCase());
             if (sessionStorage.getItem("userFromDataBase").toLocaleLowerCase() === username.toLocaleLowerCase() && role.toLowerCase() === "admin") 
             {
                 updateLoginUI(username); 
