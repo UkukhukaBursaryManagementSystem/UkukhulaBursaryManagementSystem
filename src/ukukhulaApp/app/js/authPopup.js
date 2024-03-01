@@ -15,7 +15,7 @@ function selectAccount() {
     }
 }
 
-debugger
+
 function handleResponse(response) {
 
     if (response !== null) {
