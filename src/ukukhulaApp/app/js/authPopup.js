@@ -61,7 +61,9 @@ function handleResponse(response) {
                 }
                 return response.json();
             }).then(data => {
-                sessionStorage.setItem("userFromDataBase", data.email); 
+                console.log(data);
+                sessionStorage.setItem("userFromDataBase", data.email)
+                sessionStorage.setItem("userId", data.userId); 
             }).catch(error => {
                 return { error: `An error occured: ${error}` };
                 });
@@ -69,7 +71,7 @@ function handleResponse(response) {
 
             if (sessionStorage.getItem("userFromDataBase").toLocaleLowerCase() === username.toLocaleLowerCase() && role.toLowerCase() === "admin") 
             {
-                window.location.href = "../pages/admin.html"; 
+                window.location.href = "../pages/admin-dashboard.html"; 
 
             } else if (sessionStorage.getItem("userFromDataBase").toLocaleLowerCase() == username.toLocaleLowerCase() && role.toLowerCase() === "hod")
             {
