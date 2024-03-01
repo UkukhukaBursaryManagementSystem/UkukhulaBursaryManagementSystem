@@ -1,9 +1,19 @@
 :root {
+
+  --normal-font-size : 20px;
+
   --primary-color-back-one : #0B0C10;
 
   --primary-color-back-two : #1F2833;
 
-  --secondary-color-text:  #C5C6C7 ;
+  --primary-color-table : #2e3c65;
+
+  /* --secondary-color-text:  #C5C6C7 ; */
+
+  --secondary-color-text:  rgba(199, 199, 199,1) ;
+
+
+  --text-color-white : #1F2833;
 
   --secondary-color-red : #fc040499;
 }
@@ -85,8 +95,8 @@ h1 {
 body {
   overflow-x: hidden;
   scroll-behavior: smooth;
-  background-color: var(--primary-color-back-two);
-  color: var(--secondary-color-text);
+  background-color: var(--secondary-color-text);
+  color: var(--primary-color-back-one);
 }
 form {
   height: 50rem;
@@ -201,20 +211,64 @@ form {
   border: 2px solid black;
 }
 
+.student-applications-table {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url('../images/6173960.jpg');
+
+}
+
+.student-applications-table h1 {
+  color: var(--secondary-color-text);
+ 
+
+}
+
 
 table {
   border-collapse: collapse;
+  border: none;
   width: 100%;
+  padding: 2px;
+  opacity: 0.9;
+}
+
+
+.table-row {
+  /* background-color: var(--secondary-color-text); */
+  padding-top:20px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--secondary-color-text) ;
+  /* border: 2px solid var(--primary-color-back-two); */
+  
+}
+.view-app-button {
+background-color: var(--primary-color-back-two);
+color: var(--secondary-color-text);
+font-weight: bold;
+border-radius: 15px;
+cursor: pointer;
 }
 th,
 td {
-  border: 1px solid #dddddd;
+  /* border: 1px solid #dddddd; */
   text-align: left;
-  /* padding: 8px; */
+  padding: 8px;
+  color: var(--secondary-color-text);
 }
 th {
-  background-color: var(--primary-color-back-one);
+  color: var(--primary-color-back-one);
+  background-color: var(--secondary-color-text);
   font-weight: bolder;
+  height: 50px;
+  font-size: var(--normal-font-size);
+  /* color: var(--primary-color-back-one); */
+}
+td{
+  padding-top:20px;
+  padding-bottom: 20px;
 }
 
 .rejected {
@@ -226,7 +280,7 @@ th {
 }
 
 .review{
-  color: yellow;
+  color: rgb(218, 149, 23);
 }
 
 
@@ -271,12 +325,7 @@ a {
   color: #f2f2f2;
 }
 
-button {
-  background-color: var(--secondary-color-red);
-  font-weight: bold;
-  border-radius: 1px;
-  cursor: pointer;
-}
+
 
 button:hover {
   opacity: 0.7;

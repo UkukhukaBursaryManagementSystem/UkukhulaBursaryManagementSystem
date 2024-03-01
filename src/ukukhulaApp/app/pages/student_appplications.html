@@ -85,8 +85,8 @@
   <p id="message"></p>
   </article>
 </section >
+
     <section id="table" class="hide-table">
-      
     <section   id="selection">
       <h2>View Student Applications</h2>
       <label for="filter">Filter by HOD Name:</label>
@@ -94,36 +94,94 @@
       <button id="fetch-button">Fetch Applications</button>
       <button class="new-application-button"><a href="./add-new-application-page.html">New Application</a></button>
   </section>
-
-      <h1>Student Application Table</h1>
-
-      <table>
+  
+  <article class="student-applications-table">
+    <h1>Student Applications </h1>
+    <table>
         <thead>
-          <tr>
-            <th>ApplicationID</th>
-            <th>FullName</th>
-            <th>ID Number</th>
-            <th>Gender</th>
-            <th>Ethnicity</th>
-            <th>Phone Number</th>
-            <th>Email Address</th>
-            <th>UniversityName</th>
-            <th>Department</td>
-            <th>CourseOfStudy</th>
-            <th>ReviewerComment</th>
-            <th>Motivation</th>
-            <th>BursaryAmount</th>
-            <th>FundingYear</th>
+        <tr>
+            <th >FullName</th>
+            <th class="hide-mobile">UniversityName</th>
+            <th class="hide-mobile">BursaryAmount</th>
             <th>Status</th>
-            <th>HodName</th>
             <th>Actions</th>
-          </tr>
+        </tr>
         </thead>
         <tbody id="table-body">
         </tbody>
-      </table>
+    </table>
 
-      
+    <article class="pop-up-content">
+
+        <article class="application-info">
+            <p class="description">Student Name: </p>
+            <p class="student-name"></p>
+        </article>
+
+        <article class="application-info">
+            <p class="description">IdNumber: </p>
+            <p class="student-id-number"></p>
+        </article>
+
+        <article class="application-info">
+            <p class="description">Sex: </p>
+            <p class="student-sex"></p>
+        </article>
+
+        <article class="application-info">
+            <p class="description">Ethnicity: </p>
+            <p class="student-ethnicity"></p>
+        </article>
+
+        <article class="application-info">
+            <p class="description">Email: </p>
+            <p class="student-email"></p>
+        </article>
+
+        <article class="application-info">
+            <p class="description">Phone Number: </p>
+            <p class="student-phone-number"></p>
+        </article>
+
+        <article class="application-info">
+            <p class="description">University Name: </p>
+            <p class="student-university"></p>
+        </article>
+
+        <article class="application-info">
+            <p class="description">Department: </p>
+            <p class="student-department"></p>
+        </article>
+
+        <article class="application-info">
+            <p class="description">Bursary Amount: </p>
+            <p class="student-amount"></p>
+        </article>
+
+        <article class="application-info">
+            <p class="description">Course Of Study: </p>
+            <p class="student-study"></p>
+        </article>
+
+        <article class="application-info">
+            <p class="description">Hod Name:</p>
+            <p class="hod-name"></p>
+        </article>
+
+        <article class="application-info">
+            <p class="description">Motivation: </p>
+            <p class="student-motivation"></p>
+        </article>
+
+        <article class="application-info">
+            <p class="description">Reviewer Comment: </p>
+            <p class="comment"></p>
+        </article>
+
+    </article>
+</article>
     </section>
+
+
   </body>
 </html>
