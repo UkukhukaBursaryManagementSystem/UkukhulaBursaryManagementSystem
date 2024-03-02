@@ -63,7 +63,8 @@ function handleResponse(response) {
             }).then(data => {
                 console.log(data);
                 sessionStorage.setItem("userFromDataBase", data.email)
-                sessionStorage.setItem("userId", data.userId); 
+                sessionStorage.setItem("userId", data.userId)
+                sessionStorage.setItem("userRole", data.role); 
             }).catch(error => {
                 return { error: `An error occured: ${error}` };
                 });

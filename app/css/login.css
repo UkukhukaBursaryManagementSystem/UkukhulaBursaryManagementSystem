@@ -52,5 +52,14 @@ label {
 }
 
 #request-access {
-  margin: 5px 0 0 0;
+  margin: 5px 0 5px 0;
+}
+
+#requestAccess {
+  display: none;
+
+}
+
+.requestAccessFormFields {
+  margin-bottom: 5px;
 }
