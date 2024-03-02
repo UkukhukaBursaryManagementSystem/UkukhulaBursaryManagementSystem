@@ -36,7 +36,8 @@ body {
   display: block;
 }
 
-.student-application-page {
+.student-application-page,
+.university {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -146,4 +147,26 @@ form input {
 #form2,
 #form3 {
   display: none;
+}
+
+#university-form form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #0b0c10;
+  border-radius: 10px;
+  height: 200px;
+  width: 340px;
+}
+
+#universityName {
+  width: 300px;
+}
+#university-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
 }
