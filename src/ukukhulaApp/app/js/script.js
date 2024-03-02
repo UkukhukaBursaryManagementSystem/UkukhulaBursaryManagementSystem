@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   const studentApplicationForm = document.querySelector(".hidden");
   const table = document.querySelector(".hide-table");
   const deleteButton = document.querySelector(".delete-button");
+
   editButtons.addEventListener("click", function () {
     table.style.display = "none";
     studentApplicationForm.style.display = "flex";
@@ -16,8 +17,15 @@ document.addEventListener("DOMContentLoaded", async function () {
     const applicationId = document.querySelector(
       ".student-applicationID"
     ).textContent;
-    console.log(applicationId);
     removeStudentApplication(applicationId);
+  });
+
+  editButtons.addEventListener("click", function () {
+    const applicationId = document.querySelector(
+      ".student-applicationID"
+    ).textContent;
+    console.log(applicationId);
+    editStudentApplication(applicationId);
   });
 });
 
@@ -50,7 +58,10 @@ async function editStudentApplication(applicationId) {
 
   try {
     const response = await fetch(
-      `http://localhost:8080/student/${applicationId}`
+      `http://localhost:8080/student-application/${applicationId}`,
+      {
+        method: "GET",
+      }
     );
     const data = await response.json();
     const fieldMappings = {
@@ -72,7 +83,7 @@ async function editStudentApplication(applicationId) {
 
     for (const fieldId in fieldMappings) {
       const dataProperty = fieldMappings[fieldId];
-      const fieldValue = data[0][dataProperty];
+      const fieldValue = data[dataProperty];
       document.getElementById(fieldId).value = fieldValue;
     }
 
