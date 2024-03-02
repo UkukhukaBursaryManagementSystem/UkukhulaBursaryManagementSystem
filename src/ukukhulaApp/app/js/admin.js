@@ -1,7 +1,7 @@
 function populateTableForAdmin(data) {
     const tableBody = document.getElementById("table-body");
     tableBody.innerHTML = "";
-  
+    const popUpCard = document.querySelector(".pop-up-card");
     data.forEach((student) => {
       const row = document.createElement("tr");
       row.setAttribute('class', 'table-row');
@@ -30,19 +30,29 @@ function populateTableForAdmin(data) {
       statusCell.textContent = student.status;
 
       statusCell.setAttribute("class", "status review");
-      if(student.status == 'approved')    statusCell.setAttribute("class", "status approved");
-      if(student.status == 'rejected')    statusCell.setAttribute("class", "status rejected");
+      if(student.status.toLowerCase() == 'approved')    statusCell.setAttribute("class", "status approved");
+      if(student.status.toLowerCase()  == 'rejected')    statusCell.setAttribute("class", "status rejected");
       row.appendChild(statusCell);
   
       const buttonCell = document.createElement("td");
       const viewButton = document.createElement("button");
+      const cancelButton = document.querySelector(".cancel");
       viewButton.setAttribute("class", 'view-app-button');
       viewButton.setAttribute("data-applicationID", student.applicationID);
       viewButton.textContent = "View";
       buttonCell.appendChild(viewButton);
 
-      viewButton.addEventListener("click", function() {
+      viewButton.addEventListener("click", function(event) {
+        event.preventDefault();
+        popUpCard.style.display = "block";
+        popUpCard.style.zIndex = "9999";
         viewStudentApplication(student);
+      });
+
+      cancelButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        popUpCard.style.zIndex = "0";
+        popUpCard.style.display = "none";
       });
   
       row.appendChild(buttonCell);
@@ -54,10 +64,6 @@ function populateTableForAdmin(data) {
 
 
 function viewStudentApplication(student){
-
-      let pop = document.querySelector('.pop-up-content');
-
-      pop.classList.toggle('active');
 
       document.querySelector('.student-name').textContent =`${student.firstName} ${student.lastName}`;
       document.querySelector('.student-id-number').textContent = student.idnumber;
@@ -72,7 +78,123 @@ function viewStudentApplication(student){
       document.querySelector('.hod-name').textContent = student.hodname;
       document.querySelector('.student-motivation').textContent = student.motivation;      
       document.querySelector('.comment').textContent = student.reviewerComment;
+      if(student.status.toLowerCase() === 'rejected' || student.status.toLowerCase() === 'approved' ){
+        document.querySelector('.reject-button').style.display = 'none';
+        document.querySelector('.approve-button').style.display = 'none';
+        document.querySelector('.review-comment').style.display = 'none';
+      }
+      document.querySelector('.approve-button').addEventListener('click', function(event) {
+        event.preventDefault();
+        approveApplication(student)} )
+      document.querySelector('.reject-button').addEventListener('click', function(event) {
+        event.preventDefault();
+        rejectApplication(student)} )
  
+}
+
+
+function submitAdminForm(student) {
+  event.preventDefault(); // Prevent the default form submission behavior
+
+  // Get form data
+  const formData = {
+      "firstName": document.getElementById('admin-firstname').value,
+      "lastName": document.getElementById('admin-lastname').value,
+      "phoneNumber": document.getElementById('admin-number').value,
+      "email": document.getElementById('admin-email').value,
+  };
+
+  console.log(JSON.stringify(formData));
+
+  // Send the form data to the endpoint using fetch API
+  fetch('http://localhost:8080/user/insert-admin', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+  })
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+      return response.json();
+  })
+  .then(data => {
+      alert(data.message)
+      window.location.assign('http://127.0.0.1:5501/src/ukukhulaApp/app/pages/admin-dashboard.html');
+  })
+  .catch(error => {
+      alert('There was a problem submitting the form data:', error.message);
+      // Optionally, you can show an error message to the user
+  });
+  
+}
+
+function approveApplication(student){
+  formData = {
+    'applicationID' : student.applicationID,
+    'statusID' : 2, //Status Id for approved
+    'reviewerComment' : document.querySelector(".review-comment").value
+  } 
+
+    fetch('http://localhost:8080/student/review-student', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+  })
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+      return response.json();
+  })
+  .then(data => {
+      alert(data.message)
+      window.location.assign('http://127.0.0.1:5501/src/ukukhulaApp/app/pages/admin-dashboard.html');
+  })
+  .catch(error => {
+      alert('There was a problem submitting the form data:', error.message);
+      // Optionally, you can show an error message to the user
+  });
+
+
+}
+
+
+function rejectApplication(student){
+
+  formData = {
+    'applicationID' : student.applicationID,
+    'statusID' : 3, //Status Id for approved
+    'reviewerComment' : document.querySelector(".review-comment").value
+  } 
+
+    fetch('http://localhost:8080/student/review-student', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+  })
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+      return response.json();
+  })
+  .then(data => {
+      alert(data.message)
+      window.location.assign('http://127.0.0.1:5501/src/ukukhulaApp/app/pages/admin-dashboard.html');
+  })
+  .catch(error => {
+      alert('There was a problem submitting the form data:', error.message);
+      // Optionally, you can show an error message to the user
+  });
+
+
 }
 
 
@@ -80,6 +202,13 @@ document.addEventListener('DOMContentLoaded', async function(){
   let data = [];
   data = await fetchAllStudentApplicationData();
   populateTableForAdmin(data);
+
+    // Add an event listener to the form for form submission
+  document.querySelector('.add-admin-form').addEventListener('submit', submitAdminForm);
+
+  //Handle reject  and approve
+
+
 });
 
 

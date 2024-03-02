@@ -92,6 +92,15 @@ body {
   background-color: var(--secondary-color-text);
   color: var(--primary-color-back-one);
 }
+
+
+.add-hod-form , .add-admin-form{
+  display: flex;
+  flex-direction: column;
+}
+main {
+  scroll-behavior: smooth;
+}
 form {
   height: 50rem;
   width: 30rem;
@@ -274,7 +283,6 @@ td {
 }
 
 .pop-up-content {
-  display: none;
   background-color: var(--secondary-color-text);
   width: 100%;
 }

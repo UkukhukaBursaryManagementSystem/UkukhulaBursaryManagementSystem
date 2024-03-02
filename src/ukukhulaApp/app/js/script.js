@@ -182,11 +182,13 @@ function populateTableForAdmin(data) {
     viewButton.addEventListener("click", function (event) {
       event.preventDefault();
       popUpCard.style.display = "block";
+      popUpCard.style.zIndex = "999";
       viewStudentApplication(student);
     });
 
     cancelButton.addEventListener("click", function (event) {
       event.preventDefault();
+      popUpCard.style.zIndex = "0";
       popUpCard.style.display = "none";
     });
 
