@@ -50,3 +50,7 @@ label {
 .hideElements {
   display: none;
 }
+
+#request-access {
+  margin: 5px 0 0 0;
+}

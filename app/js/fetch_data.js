@@ -13,7 +13,7 @@ async function fetchData(url) {
 
 async function fetchAllStudentApplicationData() {
   try {
-    const response = await fetch(`http://localhost:8080/student-application`);
+    const response = await fetch(`https://ukukhulaapi.azurewebsites.net/student-application`);
     return response.json();
   } catch (error) {
     console.error("Error fetching data:", error);
