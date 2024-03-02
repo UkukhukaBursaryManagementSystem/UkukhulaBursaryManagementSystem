@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/style.css" />
+    <link href="../css/classes.css" rel="stylesheet" />
     <title>University Applications</title>
   </head>
   <body>
@@ -23,18 +24,40 @@
         <option value="all">All applications</option>
       </select>
     </section>
-    <table id="applicationsTable">
-      <thead>
-        <tr>
-          <th>Application ID</th>
-          <th>University Name</th>
-          <th>Motivation</th>
-          <th>Application Status</th>
-          <th>Reviewer Comment</th>
-        </tr>
-      </thead>
-      <tbody id="applicationsTableBody"></tbody>
-    </table>
+    <article id="university-application-list">
+      <table id="applicationsTable">
+        <thead>
+          <tr>
+            <th>Application ID</th>
+            <th>University Name</th>
+            <th>Motivation</th>
+            <th>Application Status</th>
+            <th>Reviewer Comment</th>
+          </tr>
+        </thead>
+        <tbody id="applicationsTableBody"></tbody>
+      </table>
+    </article>
+
+    <article id="add-uviversity">
+      <button id="add-university-button">Add new university</button>
+      <form
+        id="add-university-form"
+        action="/university-by-admin"
+        method="post"
+        class="hide"
+      >
+        <label  for="universityName">University Name:</label><br />
+        <input
+          type="text"
+          id="university-name"
+          name="universityName"
+          required
+        /><br /><br />
+        <input type="submit" value="Submit" />
+        <button id="cancel-add-university">Cancel</button>
+      </form>
+    </article>
 
     <script></script>
 
@@ -109,6 +132,32 @@
         }
       })();
       console.log(data);
+
+      const form = document.querySelector("#add-university-form");
+      const addButton = document.querySelector("#add-university-button");
+      const userId = localStorage.getItem("userId");
+      const cancelButton = document.querySelector("#cancel-add-university");
+
+      // const role = fetch(`http://localhost:8080/user-role/${userId}`);
+      // console.log(role);
+      // if (role.toLowerCase() != "admin") {
+      //   addButton.classList.add("hide");
+      // }
+      addButton.addEventListener("click", () => {
+        addButton.classList.add("hide");
+        form.classList.remove("hide");
+      });
+
+      cancelButton.addEventListener("click", () => {
+        form.classList.add("hide");
+        addButton.classList.remove("hide");
+      });
+      const universityName = document.getElementById("universityName").value;
+      form.addEventListener("submit", () => {
+        fetch(
+          `http://localhost:8080/university-by-admin?universityName=${universityName}`
+        );
+      });
     </script>
   </body>
 </html>
