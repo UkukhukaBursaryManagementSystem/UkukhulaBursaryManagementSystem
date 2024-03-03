@@ -95,13 +95,13 @@ body {
   background-color: var(--secondary-color-text);
   color: var(--primary-color-back-one);
 }
-/* form {
+form {
   height: 50rem;
   width: 30rem;
   border-radius: 1.5rem;
   background-color: black;
   color: #f2f2f2;
-} */
+}
 .student-application-form {
   display: flex;
   flex-direction: column;
