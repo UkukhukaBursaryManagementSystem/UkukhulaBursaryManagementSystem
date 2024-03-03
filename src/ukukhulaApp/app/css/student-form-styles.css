@@ -37,6 +37,7 @@ body {
 }
 
 .student-application-page,
+.student-upload-form,
 .university,
 #login,
 #university-allocations,
@@ -135,7 +136,21 @@ form input {
 #form2-next-button:hover,
 #form3-Back-button:hover,
 #form3-submit-button:hover,
-#allocate-button:hover {
+#allocate-button:hover .upload-button:hover {
+  background-color: #555;
+}
+
+.upload-button {
+  width: 150px;
+  transition: 0.3s;
+  text-align: center;
+  border-radius: 30px;
+  color: #fff;
+  background-color: #0b0c10;
+  border: 2px solid #fc0404;
+}
+
+.upload-button:hover {
   background-color: #555;
 }
 
@@ -276,4 +291,21 @@ form input {
 
 #university-allocations-table tbody tr:nth-child(even) {
   background-color: #f2f2f2;
+}
+
+.student-upload-form form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  height: 650px;
+  width: 600px;
+  background-color: #0b0c10;
+}
+
+em,
+legend,
+label {
+  color: #fff;
 }
