@@ -198,13 +198,22 @@ document.addEventListener("DOMContentLoaded", async function (event) {
   event.preventDefault();
 
   const addAllocationButton = document.querySelector("#add-allocation-button");
+  const addNewUniversityButton = document.querySelector(
+    "#add-university-button"
+  );
   const cancelIconButton = document.querySelector("#cancel-icon");
   const allocationButton = document.querySelector("#allocate-button");
+  const submitUniversityButton = document.querySelector("#university-button");
   const addNewAllocationForm = document.querySelector("#add-new-allocation");
+  const addNewUniversityForm = document.querySelector("#university-form");
   const allocationSection = document.querySelector("#add-new-allocation");
   const filterUniversityAllocationSection = document.querySelector(
     "#filter-university-allocation"
   );
+  const filterUniversityApplication = document.querySelector(
+    "#filter-university-application"
+  );
+
   const allocateEvenlyButton = document.querySelector("#allocate-evenly");
   const universityAllocationsTableSection = document.querySelector(
     "#university-allocations-table"
@@ -218,7 +227,27 @@ document.addEventListener("DOMContentLoaded", async function (event) {
   const form2 = document.querySelector("#form2");
   const form3 = document.querySelector("#form3");
 
-  addNewAllocationForm.style.display = "none";
+  addNewUniversityButton.addEventListener("click", function () {
+    console.log("clicked");
+    filterUniversityApplication.style.display = "none";
+    addNewUniversityForm.style.display = "flex";
+  });
+
+  submitUniversityButton.addEventListener("click", function () {
+    addNewUniversityForm.style.display = "none";
+    filterUniversityApplication.style.display = "flex";
+  });
+
+  cancelIconButton.addEventListener("click", function () {
+    console.log("clicked2");
+    addNewAllocationForm.style.display = "none";
+    filterUniversityAllocationSection.style.display = "flex";
+    universityAllocationsTableSection.style.display = "flex";
+    addNewUniversityForm.style.display = "none";
+    filterUniversityApplication.style.display = "flex";
+  });
+
+  // addNewAllocationForm.style.display = "none";
   addAllocationButton.addEventListener("click", function () {
     addNewAllocationForm.style.display = "flex";
     filterUniversityAllocationSection.style.display = "none";
@@ -227,12 +256,6 @@ document.addEventListener("DOMContentLoaded", async function (event) {
 
   allocationButton.addEventListener("click", function () {
     allocationSection.style.display = "none";
-    filterUniversityAllocationSection.style.display = "flex";
-    universityAllocationsTableSection.style.display = "flex";
-  });
-
-  cancelIconButton.addEventListener("click", function () {
-    addNewAllocationForm.style.display = "none";
     filterUniversityAllocationSection.style.display = "flex";
     universityAllocationsTableSection.style.display = "flex";
   });
