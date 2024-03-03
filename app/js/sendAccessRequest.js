@@ -34,7 +34,6 @@ function showRequestAccessForm()
 
 function submitFormData(event) {
   event.preventDefault();
-  console.log(document.getElementById("departmentDataDropdown").value)
 
   const formData = {
 
@@ -55,7 +54,6 @@ function submitFormData(event) {
       body: JSON.stringify(formData)
   })
   .then(response => {
-      console.log(JSON.stringify(formData));
       if (!response.ok) {
           throw new Error('Network response was not ok');
       }
