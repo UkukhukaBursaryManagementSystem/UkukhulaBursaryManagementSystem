@@ -12,7 +12,7 @@
       <p>Total Spent: <span id="total_spent"></span></p>
     </section>
 
-    <script src="/src/ukukhulaApp/app/js/fetch_data.js"></script>
+    <script src="./js/fetch_data.js"></script>
     <script>
       async function displayUniversityBalances(universityName, url) {
         try {
@@ -42,11 +42,11 @@
       document.addEventListener("DOMContentLoaded", () => {
         displayUniversityBalances(
           fetchData,
-          "http://localhost:8080/balance?universityName=University OF PRETORIA"
+          "https://ukukhulaapi.azurewebsites.net/balance?universityName=University OF PRETORIA"
         );
         displayTotalSpent(
           fetchData,
-          "http://localhost:8080/total-student-allocations?universityName=University of pretoria"
+          "https://ukukhulaapi.azurewebsites.net/total-student-allocations?universityName=University of pretoria"
         );
       });
       // --UNCOMMENT WHEN WE HAVE UNIVERSITY NAME LINK
