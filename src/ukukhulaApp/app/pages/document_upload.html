@@ -5,25 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ukukhula Documents Upload</title>
     <link rel="stylesheet" href="../css/documents-upload.css" />
-    <link rel="stylesheet" href="../css/student-form-styles.css">
+    <link rel="stylesheet" href="../css/student-form-styles.css" />
     <script src="../js/post_data.js"></script>
     <script src="../js/fileUpload.js"></script>
   </head>
   <body>
-    <header>
-      <nav>
-        <a href="./admin.html"> Home</a>
-        <a href="./student_appplications.html"> Student Applications</a>
-        <a href="university_applications.html">University Applications</a>
-        <a href="./student_allocations.html">Student Allocations</a>
-        <a href="./university_allocations.html"> University Allocations</a>
-      </nav>
-    </header>
-
-    <article class="student-upload-form">
+    <section class="student-upload-form">
       <h1>Bursary Documents</h1>
       <p>Please upload all the required documents below</p>
-      <form id="fileUploadForm" class="documents-upload" enctype="multipart/form-data">
+      <form
+        id="fileUploadForm"
+        class="documents-upload"
+        enctype="multipart/form-data"
+      >
         <fieldset>
           <legend>Resume</legend>
           <label for="resume"
@@ -65,7 +59,12 @@
         </fieldset>
         <button type="submit" class="upload-button">Upload Files</button>
       </form>
-      <img src="../images/loading_3305803.png" class="load" alt="Loading image">
-    </article>
+
+      <img
+        src="../images/loading_3305803.png"
+        class="load"
+        alt="Loading image"
+      />
+    </section>
   </body>
 </html>
