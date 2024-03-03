@@ -39,7 +39,8 @@ body {
 .student-application-page,
 .university,
 #login,
-#university-allocations {
+#university-allocations,
+#university-application {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -154,20 +155,27 @@ form input {
   display: none;
 }
 
-#university-form form {
-  display: flex;
+#university-form {
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #0b0c10;
   border-radius: 10px;
-  height: 200px;
-  width: 340px;
+  height: 300px;
+  width: 440px;
+}
+
+#university-form img {
+  position: relative;
+  top: 10px;
+  left: 200px;
 }
 
 #universityName {
   width: 300px;
 }
+
 #university-button {
   display: flex;
   flex-direction: column;
@@ -196,7 +204,7 @@ form input {
 }
 
 #add-new-allocation {
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
