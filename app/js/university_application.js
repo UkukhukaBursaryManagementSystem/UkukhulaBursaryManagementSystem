@@ -13,7 +13,7 @@
       let data;
       (async () => {
         data = await fetchData(
-          "http://localhost:8080/universities/applications"
+          "https://ukukhulaapi.azurewebsites.net/universities/applications"
         );
         const applicationsTableBody = document.getElementById(
           "applicationsTableBody"
@@ -92,7 +92,7 @@
       const universityName = document.getElementById("universityName").value;
       form.addEventListener("submit", () => {
         fetch(
-          `http://localhost:8080/university-by-admin?universityName=${universityName}`
+          `https://ukukhulaapi.azurewebsites.net/university-by-admin?universityName=${universityName}`
         );
       });
 
