@@ -3,7 +3,6 @@ const myMSALObj = new msal.PublicClientApplication(msalConfig);
 let username = "";
 
 function selectAccount() {
-
    
     const currentAccounts = myMSALObj.getAllAccounts();
     if (currentAccounts.length === 0) {
@@ -13,6 +12,7 @@ function selectAccount() {
     } else if (currentAccounts.length === 1) {
         username = currentAccounts[0].username;
     }
+    
 }
 
 
@@ -24,6 +24,7 @@ function handleResponse(response) {
         const microsoftAccessToken = response.accessToken;
 
         sessionStorage.setItem("username", username);
+        sessionStorage.setItem("microsoftAccessToken", response.accessToken);
 
         const role = document.getElementById("role").value.toUpperCase();
         

@@ -4,11 +4,10 @@ async function fetchData(url) {
     headers: {
       "Content-Type": "application/json",
       // "Authorization": `Bearer ${accessTokenAquired}`
-    },
+    }
   });
   return result.json();
 }
-
 
 
 async function fetchAllStudentApplicationData() {
