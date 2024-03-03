@@ -1,44 +1,3 @@
-document.addEventListener("DOMContentLoaded", async function () {
-  let data = [];
-  data = await fetchAllStudentApplicationData();
-  populateTableForAdmin(data);
-
-  const editButtons = document.querySelector(".edit-button");
-  const studentApplicationForm = document.querySelector(".hidden");
-  const table = document.querySelector(".hide-table");
-  const deleteButton = document.querySelector(".delete-button");
-
-  editButtons.addEventListener("click", function () {
-    table.style.display = "none";
-    studentApplicationForm.style.display = "flex";
-  });
-
-  deleteButton.addEventListener("click", function () {
-    const applicationId = document.querySelector(
-      ".student-applicationID"
-    ).textContent;
-    removeStudentApplication(applicationId);
-  });
-
-  editButtons.addEventListener("click", function () {
-    const applicationId = document.querySelector(
-      ".student-applicationID"
-    ).textContent;
-    console.log(applicationId);
-    populateStudentApplicationEditForm(applicationId);
-  });
-  const submitButton = document.querySelector(".submit-button");
-
-  submitButton.addEventListener("click", function (event) {
-    const applicationId = document.querySelector(
-      ".student-applicationID"
-    ).textContent;
-    event.preventDefault();
-    console.log("clicked");
-    updateStudentApplication(applicationId);
-  });
-});
-
 async function fetchAllStudentApplicationData() {
   try {
     const response = await fetch(`http://localhost:8080/student-application`);
@@ -184,40 +143,6 @@ async function updateStudentApplication() {
   }
 }
 
-
-// function populateTable(data) {
-//   const tableBody = document.getElementById("table-body");
-//   tableBody.innerHTML = "";
-
-//   data.forEach((student) => {
-//     const row = document.createElement("tr");
-//     const FullName = `${student.firstName} ${student.lastName}`;
-//     row.innerHTML = `
-//             <td id="applicationId">${student.applicationID}</td>
-//             <td>${FullName}</td>
-//             <td>${student.idnumber}</td>
-//             <td>${student.genderIdentity}</td>
-//             <td>${student.ethnicity}</td>
-//             <td>${student.phoneNumber}</td>
-//             <td>${student.email}</td>
-//             <td>${student.universityName}</td>
-//             <td>${student.department}</td>
-//             <td>${student.courseOfStudy}</td>
-//             <td>${student.reviewerComment}</td>
-//             <td>${student.motivation}</td>
-//             <td>${student.bursaryAmount}</td>
-//             <td>${student.fundingYear}</td>
-//             <td>${student.status}</td>
-//              <td>${student.hodname}</td>
-//              <td>
-//              <button class="edit-button" data-id="${student.applicationID}" onclick ="editStudentApplication(${student.applicationID})">Edit</button>
-//              <button class="delete-button" data-id="${student.applicationID}" onclick ="removeStudentApplication(${student.applicationID})">Delete</button>
-//            </td>
-//         `;
-//     tableBody.appendChild(row);
-//   });
-// }
-
 function populateTableForAdmin(data) {
   const tableBody = document.getElementById("table-body");
   tableBody.innerHTML = "";
@@ -305,12 +230,46 @@ function viewStudentApplication(student) {
   document.querySelector(".comment").textContent = student.reviewerComment;
 }
 
-
 document.addEventListener("DOMContentLoaded", async function (event) {
   event.preventDefault();
   let data = [];
-  event.preventDefault();
+  data = await fetchAllStudentApplicationData();
+  populateTableForAdmin(data);
 
+  const editButtons = document.querySelector(".edit-button");
+  const studentApplicationForm = document.querySelector(".hidden");
+  const table = document.querySelector(".hide-table");
+  const deleteButton = document.querySelector(".delete-button");
+
+  editButtons.addEventListener("click", function () {
+    table.style.display = "none";
+    studentApplicationForm.style.display = "flex";
+  });
+
+  deleteButton.addEventListener("click", function () {
+    const applicationId = document.querySelector(
+      ".student-applicationID"
+    ).textContent;
+    removeStudentApplication(applicationId);
+  });
+
+  editButtons.addEventListener("click", function () {
+    const applicationId = document.querySelector(
+      ".student-applicationID"
+    ).textContent;
+    console.log(applicationId);
+    populateStudentApplicationEditForm(applicationId);
+  });
+  const submitButton = document.querySelector(".submit-button");
+
+  submitButton.addEventListener("click", function (event) {
+    const applicationId = document.querySelector(
+      ".student-applicationID"
+    ).textContent;
+    event.preventDefault();
+    console.log("clicked");
+    updateStudentApplication(applicationId);
+  });
   const addAllocationButton = document.querySelector("#add-allocation-button");
   const addNewUniversityButton = document.querySelector(
     "#add-university-button"
@@ -401,4 +360,3 @@ document.addEventListener("DOMContentLoaded", async function (event) {
   // data = await fetchAllStudentApplicationData();
   // populateTableForAdmin(data);
 });
-
