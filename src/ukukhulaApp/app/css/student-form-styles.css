@@ -37,7 +37,9 @@ body {
 }
 
 .student-application-page,
-.university {
+.university,
+#login,
+#university-allocations {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -119,7 +121,8 @@ form input {
 #form2-Back-button,
 #form2-next-button,
 #form3-Back-button,
-#form3-submit-button {
+#form3-submit-button,
+#allocate-button {
   width: 150px;
   color: #fff;
   transition: background-color 0.3s;
@@ -130,7 +133,8 @@ form input {
 #form2-Back-button:hover,
 #form2-next-button:hover,
 #form3-Back-button:hover,
-#form3-submit-button:hover {
+#form3-submit-button:hover,
+#allocate-button:hover {
   background-color: #555;
 }
 
@@ -138,6 +142,7 @@ form input {
   color: #fff;
   padding: 10px;
 }
+
 #Motivation {
   width: 300px;
   height: 300px;
@@ -169,4 +174,98 @@ form input {
   justify-content: center;
   align-items: center;
   width: 150px;
+}
+/* for login form */
+/* #login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fc0404;
+} */
+
+.show {
+  display: flex;
+}
+
+#add-new-allocation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+  width: 400px;
+  border: none;
+  border-radius: 15px;
+  background-color: #0b0c10;
+  opacity: 0.8;
+}
+
+#add-new-allocation {
+  position: relative;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header img {
+  width: 30px;
+  height: 30px;
+}
+
+#add-new-allocation img {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+#filter-university-allocation {
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 10px;
+  width: 100vw;
+  height: 100vh;
+}
+
+.filter-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+#university-allocations-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#university-allocations-table th,
+#university-allocations-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+#university-allocations-table th {
+  background-color: #f2f2f2;
+}
+
+#university-allocations-table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
 }
