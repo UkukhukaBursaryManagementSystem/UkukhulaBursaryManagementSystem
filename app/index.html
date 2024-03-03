@@ -1,20 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
-    />
-    <title>Microsoft identity platform</title>
-    <link rel="SHORTCUT ICON" href="./favicon.svg" type="image/x-icon" />
-    <link rel="stylesheet" href="./css/index.css" />
-    <script
-      src="https://alcdn.msauth.net/browser/2.30.0/js/msal-browser.js"
-      integrity="sha384-o4ufwq3oKqc7IoCcR08YtZXmgOljhTggRwxP2CLbSqeXGtitAxwYaUln/05nJjit"
-      crossorigin="anonymous"
-    ></script>
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -29,11 +14,11 @@
     crossorigin="anonymous" defer></script>
   <script type="text/javascript" src="./js/authConfig.js" defer></script>
   <script type="text/javascript" src="./js/authPopup.js" defer></script>
-  <script type="text/javascript" src="./js/domFunctions.js" defer></script>
   <script type="text/javascript"
         src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js" defer>
   </script>
   <script type="text/javascript" src="./js/sendAccessRequest.js" defer></script>
+  <script type="text/javascript" src="./js/fetch_data.js" defer></script>
   
   <link rel="SHORTCUT ICON" href="https://c.s-microsoft.com/favicon.ico?v2" type="image/x-icon">
 </head>
@@ -51,29 +36,29 @@
           <img src="./images/ms-symbollockup_signin_dark.svg" alt="sign in with microsoft dark button">
       </button>
 
-      <button id="request-access" onclick="sendAccessRequestForm()">Request Access</button>
+      <button id="request-access" onclick="showRequestAccessForm()">Request Access</button>
 
-      <form id="requestAccess" action="http://localhost:8080/requestAccess" method="post" onsubmit="return redirectToLogin()">
+      <form id="requestAccess">
         <label for="firstname">First Name:</label>
-        <input type="text" id="firstname" class="requestAccessFormFields" name="firstname" required>
+        <input type="text" id="firstName" class="requestAccessFormFields" name="firstname" required>
 
         <label for="lastname">Last Name:</label>
-        <input type="text" id="lastname" class="requestAccessFormFields" name="lastname" required>
+        <input type="text" id="lastName" class="requestAccessFormFields" name="lastname" required>
 
         <label for="phone">Phone Number:</label>
-        <input type="tel" id="phone" class="requestAccessFormFields" name="phone" pattern="[0-9]{1,10}" maxlength="10" required>
+        <input type="tel" id="phoneNumber" class="requestAccessFormFields" name="phone" pattern="[0-9]{1,10}" maxlength="10" required>
         <small>Max 10 digits (numbers only)</small>
 
         <label for="email">Email Address:</label>
         <input type="email" id="email" class="requestAccessFormFields" name="email" maxlength="255" required>
 
-        <label for="deparmentRequest">Department:</label>
-        <input type="text" id="deparment" class="requestAccessFormFields" name="deparment" maxlength="255" required>
+        <label for="departmentDataDropdown">Department:</label>
+        <select id="departmentDataDropdown" class="requestAccessFormFields" required></select>
 
-        <label for="univeristyRequest">University:</label>
-        <input type="text" id="univeristyRequest" class="requestAccessFormFields" name="univeristyRequest" maxlength="255" required>
+        <label for="universityDataDropdown">University:</label>
+        <select id="universityDataDropdown" class="requestAccessFormFields" required></select>
 
-        <button type="submitAccessRequest">Submit Request</button>
+        <button id="submitRequestForm">Submit Request</button>
       </form>
 
   </section>
