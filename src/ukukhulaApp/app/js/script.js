@@ -197,16 +197,45 @@ document.addEventListener("DOMContentLoaded", async function (event) {
   let data = [];
   event.preventDefault();
 
-  // Selecting form elements
+  const addAllocationButton = document.querySelector("#add-allocation-button");
+  const cancelIconButton = document.querySelector("#cancel-icon");
+  const allocationButton = document.querySelector("#allocate-button");
+  const addNewAllocationForm = document.querySelector("#add-new-allocation");
+  const allocationSection = document.querySelector("#add-new-allocation");
+  const filterUniversityAllocationSection = document.querySelector(
+    "#filter-university-allocation"
+  );
+  const allocateEvenlyButton = document.querySelector("#allocate-evenly");
+  const universityAllocationsTableSection = document.querySelector(
+    "#university-allocations-table"
+  );
   const form1Button = document.querySelector("#form1-button");
   const form2BackButton = document.querySelector("#form2-Back-button");
   const form2NextButton = document.querySelector("#form2-next-button");
   const form3BackButton = document.querySelector("#form3-Back-button");
   const form3SubmitButton = document.querySelector("#form3-submit-button");
-
   const form1 = document.querySelector("#form1");
   const form2 = document.querySelector("#form2");
   const form3 = document.querySelector("#form3");
+
+  addNewAllocationForm.style.display = "none";
+  addAllocationButton.addEventListener("click", function () {
+    addNewAllocationForm.style.display = "flex";
+    filterUniversityAllocationSection.style.display = "none";
+    universityAllocationsTableSection.style.display = "none";
+  });
+
+  allocationButton.addEventListener("click", function () {
+    allocationSection.style.display = "none";
+    filterUniversityAllocationSection.style.display = "flex";
+    universityAllocationsTableSection.style.display = "flex";
+  });
+
+  cancelIconButton.addEventListener("click", function () {
+    addNewAllocationForm.style.display = "none";
+    filterUniversityAllocationSection.style.display = "flex";
+    universityAllocationsTableSection.style.display = "flex";
+  });
 
   form2.style.display = "none";
   form3.style.display = "none";
