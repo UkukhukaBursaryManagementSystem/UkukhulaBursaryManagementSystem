@@ -184,6 +184,40 @@ async function updateStudentApplication() {
   }
 }
 
+
+// function populateTable(data) {
+//   const tableBody = document.getElementById("table-body");
+//   tableBody.innerHTML = "";
+
+//   data.forEach((student) => {
+//     const row = document.createElement("tr");
+//     const FullName = `${student.firstName} ${student.lastName}`;
+//     row.innerHTML = `
+//             <td id="applicationId">${student.applicationID}</td>
+//             <td>${FullName}</td>
+//             <td>${student.idnumber}</td>
+//             <td>${student.genderIdentity}</td>
+//             <td>${student.ethnicity}</td>
+//             <td>${student.phoneNumber}</td>
+//             <td>${student.email}</td>
+//             <td>${student.universityName}</td>
+//             <td>${student.department}</td>
+//             <td>${student.courseOfStudy}</td>
+//             <td>${student.reviewerComment}</td>
+//             <td>${student.motivation}</td>
+//             <td>${student.bursaryAmount}</td>
+//             <td>${student.fundingYear}</td>
+//             <td>${student.status}</td>
+//              <td>${student.hodname}</td>
+//              <td>
+//              <button class="edit-button" data-id="${student.applicationID}" onclick ="editStudentApplication(${student.applicationID})">Edit</button>
+//              <button class="delete-button" data-id="${student.applicationID}" onclick ="removeStudentApplication(${student.applicationID})">Delete</button>
+//            </td>
+//         `;
+//     tableBody.appendChild(row);
+//   });
+// }
+
 function populateTableForAdmin(data) {
   const tableBody = document.getElementById("table-body");
   tableBody.innerHTML = "";
@@ -249,7 +283,7 @@ function viewStudentApplication(student) {
   let pop = document.querySelector(".pop-up-content");
 
   pop.classList.toggle("active");
-  student.applicationID;
+
   document.querySelector(
     ".student-name"
   ).textContent = `${student.firstName} ${student.lastName}`;
@@ -270,3 +304,49 @@ function viewStudentApplication(student) {
     student.motivation;
   document.querySelector(".comment").textContent = student.reviewerComment;
 }
+
+
+document.addEventListener("DOMContentLoaded", async function (event) {
+  event.preventDefault();
+  let data = [];
+  event.preventDefault();
+
+  // Selecting form elements
+  const form1Button = document.querySelector("#form1-button");
+  const form2BackButton = document.querySelector("#form2-Back-button");
+  const form2NextButton = document.querySelector("#form2-next-button");
+  const form3BackButton = document.querySelector("#form3-Back-button");
+  const form3SubmitButton = document.querySelector("#form3-submit-button");
+
+  const form1 = document.querySelector("#form1");
+  const form2 = document.querySelector("#form2");
+  const form3 = document.querySelector("#form3");
+
+  form2.style.display = "none";
+  form3.style.display = "none";
+
+  form1Button.addEventListener("click", function () {
+    console.log();
+    form1.style.display = "none";
+    form2.style.display = "flex";
+  });
+
+  form2BackButton.addEventListener("click", function () {
+    form2.style.display = "none";
+    form1.style.display = "flex";
+  });
+
+  form2NextButton.addEventListener("click", function () {
+    form2.style.display = "none";
+    form3.style.display = "flex";
+  });
+
+  form3BackButton.addEventListener("click", function () {
+    form3.style.display = "none";
+    form2.style.display = "flex";
+  });
+
+  // data = await fetchAllStudentApplicationData();
+  // populateTableForAdmin(data);
+});
+
