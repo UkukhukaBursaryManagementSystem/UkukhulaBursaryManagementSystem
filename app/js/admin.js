@@ -107,7 +107,7 @@ function submitAdminForm(student) {
   console.log(JSON.stringify(formData));
 
   // Send the form data to the endpoint using fetch API
-  fetch('http://localhost:8080/user/insert-admin', {
+  fetch('https://ukukhulaapi.azurewebsites.net/user/insert-admin', {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json'
@@ -122,7 +122,7 @@ function submitAdminForm(student) {
   })
   .then(data => {
       alert(data.message)
-      window.location.assign('http://127.0.0.1:5501/src/ukukhulaApp/app/pages/admin-dashboard.html');
+      window.location.assign('https://ukukhulawebapp.azurewebsites.net/pages/admin-dashboard.html');
   })
   .catch(error => {
       alert('There was a problem submitting the form data:', error.message);
@@ -138,7 +138,7 @@ function approveApplication(student){
     'reviewerComment' : document.querySelector(".review-comment").value
   } 
 
-    fetch('http://localhost:8080/student/review-student', {
+    fetch('https://ukukhulaapi.azurewebsites.net/student/review-student', {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json'
@@ -153,7 +153,7 @@ function approveApplication(student){
   })
   .then(data => {
       alert(data.message)
-      window.location.assign('http://127.0.0.1:5501/src/ukukhulaApp/app/pages/admin-dashboard.html');
+      window.location.assign('https://ukukhulawebapp.azurewebsites.net/pages/admin-dashboard.html');
   })
   .catch(error => {
       alert('There was a problem submitting the form data:', error.message);
@@ -172,7 +172,7 @@ function rejectApplication(student){
     'reviewerComment' : document.querySelector(".review-comment").value
   } 
 
-    fetch('http://localhost:8080/student/review-student', {
+    fetch('https://ukukhulaapi.azurewebsites.net/student/review-student', {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json'
@@ -187,7 +187,7 @@ function rejectApplication(student){
   })
   .then(data => {
       alert(data.message)
-      window.location.assign('http://127.0.0.1:5501/src/ukukhulaApp/app/pages/admin-dashboard.html');
+      window.location.assign('https://ukukhulawebapp.azurewebsites.net/pages/admin-dashboard.html');
   })
   .catch(error => {
       alert('There was a problem submitting the form data:', error.message);

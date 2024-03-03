@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", async function() {
   const departmentDataDropdown = document.getElementById('departmentDataDropdown');
   const universitiesDataDropdown = document.getElementById('universityDataDropdown');
 
-  data = await fetchData("http://localhost:8080/universities/applications/2");
+  data = await fetchData("https://ukukhulaapi.azurewebsites.net/universities/applications/2");
   data.forEach(option => {
     const optionElement = document.createElement('option');
     optionElement.value = option.id;
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async function() {
     universitiesDataDropdown.appendChild(optionElement);
   });
 
-  data = await fetchData("http://localhost:8080/department");
+  data = await fetchData("https://ukukhulaapi.azurewebsites.net/department");
   data.forEach(option => {
     const optionElement = document.createElement('option');
     optionElement.value = option.id;
@@ -47,7 +47,7 @@ function submitFormData(event) {
     
   };
 
-  fetch('http://localhost:8080/requestAccess', {
+  fetch('https://ukukhulaapi.azurewebsites.net/requestAccess', {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json'
@@ -63,7 +63,7 @@ function submitFormData(event) {
   })
   .then(data => {
       alert(data.message)
-      window.location.assign('http://localhost:3000');
+      window.location.assign('https://ukukhulawebapp.azurewebsites.net/');
   })
   .catch(error => {
       alert('There was a problem submitting the form data:', error.message);

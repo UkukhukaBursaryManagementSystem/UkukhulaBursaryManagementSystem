@@ -12,7 +12,7 @@ function selectAccount() {
     } else if (currentAccounts.length === 1) {
         username = currentAccounts[0].username;
     }
-    
+
 }
 
 
@@ -30,7 +30,7 @@ function handleResponse(response) {
         
         try
         {
-            fetch("http://localhost:8080/auth/login", {
+            fetch("https://ukukhulaapi.azurewebsites.net/auth/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -50,7 +50,7 @@ function handleResponse(response) {
                 return { error: `An error occured: ${error}` }; 
             });
 
-            fetch(`http://localhost:8080/user/${username.toLocaleLowerCase()}`, {
+            fetch(`https://ukukhulaapi.azurewebsites.net/user/${username.toLocaleLowerCase()}`, {
                 method: "GET", 
                 headers: { 
                     "Content-Type" : "application/json"
@@ -66,6 +66,8 @@ function handleResponse(response) {
                 sessionStorage.setItem("userFromDataBase", data.email)
                 sessionStorage.setItem("userId", data.userId)
                 sessionStorage.setItem("userRole", data.role); 
+                sessionStorage.setItem("firstName", data.firstName);
+                sessionStorage.setItem("lastName", data.lastName);
             }).catch(error => {
                 return { error: `An error occured: ${error}` };
                 });
@@ -73,11 +75,11 @@ function handleResponse(response) {
 
             if (sessionStorage.getItem("userFromDataBase").toLocaleLowerCase() === username.toLocaleLowerCase() && role.toLowerCase() === "admin") 
             {
-                window.location.href = "../pages/admin-dashboard.html"; 
+                window.location.href = "https://ukukhulawebapp.azurewebsites.net/pages/admin-dashboard.html"; 
 
             } else if (sessionStorage.getItem("userFromDataBase").toLocaleLowerCase() == username.toLocaleLowerCase() && role.toLowerCase() === "hod")
             {
-                window.location.href = "../pages/hod.html"; 
+                window.location.href = "https://ukukhulawebapp.azurewebsites.net/pages/hod.html"; 
             }
          
         } catch(error)
