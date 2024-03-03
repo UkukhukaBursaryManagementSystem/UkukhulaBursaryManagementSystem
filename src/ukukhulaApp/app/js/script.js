@@ -1,29 +1,52 @@
-// document.addEventListener("DOMContentLoaded", function () {
-//   const fetchButton = document.getElementById("fetch-button");
-//   fetchButton.addEventListener("click", function () {
-//     const hodName = document.getElementById("hodName").value;
-//     fetchDataByHodName(hodName);
-//   });
+document.addEventListener("DOMContentLoaded", async function () {
+  let data = [];
+  data = await fetchAllStudentApplicationData();
+  populateTableForAdmin(data);
 
-//   fetchAllStudentApplicationData();
-//   const editButtons = document.getElementsByClassName(".edit-button");
-//   editButtons.forEach(function (button) {
-//     button.addEventListener("click", function () {
-//       const applicationId = button.getAttribute("data-application-id");
-//       editStudentApplication(applicationId);
-//     });
-//   });
-// });
+  const editButtons = document.querySelector(".edit-button");
+  const studentApplicationForm = document.querySelector(".hidden");
+  const table = document.querySelector(".hide-table");
+  const deleteButton = document.querySelector(".delete-button");
 
-// async function fetchAllStudentApplicationData() {
-//   try {
-//     const response = await fetch(`http://localhost:8080/student-application`);
-//     const data = await response.json();
-//     populateTable(data);
-//   } catch (error) {
-//     console.error("Error fetching data:", error);
-//   }
-// }
+  editButtons.addEventListener("click", function () {
+    table.style.display = "none";
+    studentApplicationForm.style.display = "flex";
+  });
+
+  deleteButton.addEventListener("click", function () {
+    const applicationId = document.querySelector(
+      ".student-applicationID"
+    ).textContent;
+    removeStudentApplication(applicationId);
+  });
+
+  editButtons.addEventListener("click", function () {
+    const applicationId = document.querySelector(
+      ".student-applicationID"
+    ).textContent;
+    console.log(applicationId);
+    populateStudentApplicationEditForm(applicationId);
+  });
+  const submitButton = document.querySelector(".submit-button");
+
+  submitButton.addEventListener("click", function (event) {
+    const applicationId = document.querySelector(
+      ".student-applicationID"
+    ).textContent;
+    event.preventDefault();
+    console.log("clicked");
+    updateStudentApplication(applicationId);
+  });
+});
+
+async function fetchAllStudentApplicationData() {
+  try {
+    const response = await fetch(`http://localhost:8080/student-application`);
+    return response.json();
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+}
 
 // async function fetchDataByHodName(hodName) {
 //   hodName = hodName.split(" ");
@@ -38,50 +61,129 @@
 //   }
 // }
 
-// async function editStudentApplication(applicationId) {
-//   const table = document.querySelector(".hide-table");
-//   const form = document.querySelector(".hidden");
-//   const submitButton = document.querySelector(".submit-button");
+async function populateStudentApplicationEditForm(applicationId) {
+  const table = document.querySelector(".hide-table");
+  const form = document.querySelector(".hidden");
 
-//   try {
-//     const response = await fetch(
-//       `http://localhost:8080/student-application/${applicationId}`
-//     );
-//     const data = await response.json();
-//     const fieldMappings = {
-//       "first-name": "firstName",
-//       "last-name": "lastName",
-//       "id-number": "idnumber",
-//       sex: "genderIdentity",
-//       ethnicity: "ethnicity",
-//       phone: "phoneNumber",
-//       "student-email": "email",
-//       "student-study-course": "courseOfStudy",
-//       "bursary-amount": "bursaryAmount",
-//       university: "universityName",
-//       department: "department",
-//       "year-of-application": "fundingYear",
-//       "head-of-department": "hodName",
-//       Motivation: "motivation",
-//     };
+  try {
+    const response = await fetch(
+      `http://localhost:8080/student-application/${applicationId}`,
+      {
+        method: "GET",
+      }
+    );
 
-//     for (const fieldId in fieldMappings) {
-//       const dataProperty = fieldMappings[fieldId];
-//       const fieldValue = data[0][dataProperty];
-//       document.getElementById(fieldId).value = fieldValue;
-//     }
+    const data = await response.json();
+    const fieldMappings = {
+      "first-name": "firstName",
+      "last-name": "lastName",
+      idNumber: "idnumber",
+      gender: "genderIdentity",
+      ethnicity: "ethnicity",
+      phone: "phoneNumber",
+      "student-email": "email",
+      "student-study-course": "courseOfStudy",
+      "bursary-amount": "bursaryAmount",
+      university: "universityName",
+      department: "departmentName",
+      "year-of-application": "fundingYear",
+      "head-of-department": "hodname",
+      motivation: "motivation",
+    };
 
-//     submitButton.addEventListener("click", () => {
-//       table.style.display = "flex";
-//       form.style.display = "none";
-//     });
+    for (const fieldId in fieldMappings) {
+      const dataProperty = fieldMappings[fieldId];
+      const fieldValue = data[dataProperty];
+      document.getElementById(fieldId).value = fieldValue;
+    }
 
-//     form.style.display = "flex";
-//     table.style.display = "none";
-//   } catch (error) {
-//     console.error("Error fetching data:", error);
-//   }
-// }
+    form.style.display = "flex";
+    table.style.display = "none";
+    return data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+}
+
+async function removeStudentApplication(applicationId) {
+  try {
+    const response = await fetch(
+      `http://localhost:8080/student/${applicationId}`,
+      {
+        method: "DELETE",
+      }
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error deleting application:", error);
+    throw error;
+  }
+}
+
+async function updateStudentApplication() {
+  try {
+    const form = document.getElementById("studentApplicationForm");
+    const formData = new FormData(form);
+    const applicationId = document.querySelector(
+      ".student-applicationID"
+    ).textContent;
+
+    const applicationData = {
+      applicationId: parseInt(applicationId),
+      firstName: "",
+      lastName: "",
+      idNumber: "",
+      gender: "",
+      phoneNumber: "",
+      email: "",
+      ethnicity: "",
+      courseOfStudy: "",
+      departmentName: "",
+      reviewerComment: "",
+      motivation: "",
+      universityName: "",
+      requestedAmount: 0,
+      fundingYear: 0,
+      applicationStatus: "",
+    };
+
+    const numericFields = ["bursaryAmount", "fundingYear"];
+    formData.forEach((value, key) => {
+      console.log(value, key);
+      if (numericFields.includes(key)) {
+        applicationData[key] = parseFloat(value);
+      } else {
+        applicationData[key] = value;
+      }
+    });
+    console.log(applicationData["idNumber"]);
+
+    const response = await fetch("http://localhost:8080/student-application", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(applicationData),
+    });
+    const data = await response.json();
+    console.log(response.json());
+    if (response.ok) {
+      const data = await response.json();
+      console.log("Student application updated successfully:", data);
+    } else {
+      console.error(
+        "Error updating student application. Status:",
+        response.status
+      );
+    }
+
+    return response.json();
+  } catch (error) {
+    console.error("Error updating student application:", error);
+  }
+}
+
 
 // function populateTable(data) {
 //   const tableBody = document.getElementById("table-body");
@@ -115,10 +217,11 @@
 //     tableBody.appendChild(row);
 //   });
 // }
+
 function populateTableForAdmin(data) {
   const tableBody = document.getElementById("table-body");
   tableBody.innerHTML = "";
-
+  const popUpCard = document.querySelector(".pop-up-card");
   data.forEach((student) => {
     const row = document.createElement("tr");
     row.setAttribute("class", "table-row");
@@ -151,17 +254,27 @@ function populateTableForAdmin(data) {
 
     const buttonCell = document.createElement("td");
     const viewButton = document.createElement("button");
+    const cancelButton = document.querySelector(".cancel");
     viewButton.setAttribute("class", "view-app-button");
     viewButton.setAttribute("data-applicationID", student.applicationID);
     viewButton.textContent = "View";
     buttonCell.appendChild(viewButton);
 
-    viewButton.addEventListener("click", function () {
+    viewButton.addEventListener("click", function (event) {
+      event.preventDefault();
+      popUpCard.style.display = "block";
+      popUpCard.style.zIndex = "999";
       viewStudentApplication(student);
     });
 
-    row.appendChild(buttonCell);
+    cancelButton.addEventListener("click", function (event) {
+      event.preventDefault();
+      popUpCard.style.zIndex = "0";
+      popUpCard.style.display = "none";
+    });
 
+    row.appendChild(buttonCell);
+    console.log(row);
     tableBody.appendChild(row);
   });
 }
@@ -174,7 +287,7 @@ function viewStudentApplication(student) {
   document.querySelector(
     ".student-name"
   ).textContent = `${student.firstName} ${student.lastName}`;
-  document.querySelector(".student-id-number").textContent = student.idnumber;
+  document.querySelector(".student-idnumber").textContent = student.idnumber;
   document.querySelector(".student-sex").textContent = student.genderIdentity;
   document.querySelector(".student-ethnicity").textContent = student.ethnicity;
   document.querySelector(".student-email").textContent = student.email;
@@ -191,6 +304,7 @@ function viewStudentApplication(student) {
     student.motivation;
   document.querySelector(".comment").textContent = student.reviewerComment;
 }
+
 
 document.addEventListener("DOMContentLoaded", async function (event) {
   event.preventDefault();
@@ -235,3 +349,4 @@ document.addEventListener("DOMContentLoaded", async function (event) {
   // data = await fetchAllStudentApplicationData();
   // populateTableForAdmin(data);
 });
+
