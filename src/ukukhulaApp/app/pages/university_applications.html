@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/student-form-styles.css" />
     <link href="../css/classes.css" rel="stylesheet" />
+    <script src="../js/script.js"></script>
     <title>University Applications</title>
   </head>
   <body>
@@ -17,27 +19,50 @@
         <a href="./university_allocations.html"> University Allocations</a>
       </nav>
     </header>
+    <section id="university-application">
+      <h2>University Applications</h2>
+      <section id="filter-university-application">
+        <select id="select-university">
+          <option value="all">All applications</option>
+        </select>
+        <article id="add-uviversity">
+          <button id="add-university-button">Add new university</button>
+        </article>
+        <article id="university-application-list">
+          <table id="applicationsTable">
+            <thead>
+              <tr>
+                <th>Application ID</th>
+                <th>University Name</th>
+                <th>Motivation</th>
+                <th>Application Status</th>
+                <th>Reviewer Comment</th>
+              </tr>
+            </thead>
+            <tbody id="applicationsTableBody"></tbody>
+          </table>
+        </article>
+      </section>
 
-    <h2>University Applications</h2>
-    <section id="filter-university-application">
-      <select id="select-university">
-        <option value="all">All applications</option>
-      </select>
+      <section id="university-form">
+        <article class="header">
+          <img src="../css/images/cancel.png" alt="" id="cancel-icon" />
+          <h3>Add New University</h3>
+          <p>Please fill in the form</p>
+        </article>
+
+        <form id="universityForm" action="/university-by-admin" method="post">
+          <input
+            type="text"
+            id="universityName"
+            name="universityName"
+            required
+            placeholder="University Name"
+          /><br /><br />
+          <input type="submit" value="Submit" id="university-button" />
+        </form>
+      </section>
     </section>
-    <article id="university-application-list">
-      <table id="applicationsTable">
-        <thead>
-          <tr>
-            <th>Application ID</th>
-            <th>University Name</th>
-            <th>Motivation</th>
-            <th>Application Status</th>
-            <th>Reviewer Comment</th>
-          </tr>
-        </thead>
-        <tbody id="applicationsTableBody"></tbody>
-      </table>
-    </article>
 
     <article id="add-uviversity">
       <button id="add-university-button">Add new university</button>
@@ -129,7 +154,7 @@
       console.log(data);
 
       const form = document.querySelector("#add-university-form");
-      const addButton = document.querySelector("#add-university-button");
+      // const addButton = document.querySelector("#add-university-button");
       const userId = localStorage.getItem("userId");
       const cancelButton = document.querySelector("#cancel-add-university");
 
@@ -138,10 +163,10 @@
       // if (role.toLowerCase() != "admin") {
       //   addButton.classList.add("hide");
       // }
-      addButton.addEventListener("click", () => {
-        addButton.classList.add("hide");
-        form.classList.remove("hide");
-      });
+      // addButton.addEventListener("click", () => {
+      //   addButton.classList.add("hide");
+      //   form.classList.remove("hide");
+      // });
 
       cancelButton.addEventListener("click", () => {
         form.classList.add("hide");
@@ -175,6 +200,6 @@
           console.error("Error:", error);
         }
       });
-    </script>
+    </script> 
   </body>
 </html>
