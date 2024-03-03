@@ -41,12 +41,7 @@
 
     <article id="add-uviversity">
       <button id="add-university-button">Add new university</button>
-      <form
-        id="add-university-form"
-        action="/university-by-admin"
-        method="post"
-        class="hide"
-      >
+      <form id="add-university-form" method="post" class="hide">
         <label for="universityName">University Name:</label><br />
         <input
           type="text"
@@ -166,7 +161,6 @@
               headers: {
                 "Content-Type": "application/json",
               },
-        
             }
           );
 
