@@ -85,8 +85,8 @@
     
     
 
-    <script src="/src/ukukhulaApp/app/js/fetch_data.js"></script>
-    <script src="/src/ukukhulaApp/app/js/add_option_values.js"></script>
+    <script src="../js/fetch_data.js"></script>
+    <script src="../js/add_option_values.js"></script>
     "
 
     <script>
@@ -101,7 +101,7 @@
       // };
       const allocateEvenlyButton = document.getElementById("allocate-evenly");
       allocateEvenlyButton.addEventListener("click", () => {
-        fetch("http://localhost:8080/allocations/allocate-to-all", {
+        fetch("https://ukukhulaapi.azurewebsites.net/allocations/allocate-to-all", {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -121,7 +121,7 @@
       });
       let data;
       (async () => {
-        data = await fetchData("http://localhost:8080/allocations/all");
+        data = await fetchData("https://ukukhulaapi.azurewebsites.net/allocations/all");
         const applicationsTableBody = document.getElementById(
           "allocations-table-body"
         );
@@ -200,7 +200,7 @@
           });
           try {
             const response = await fetch(
-              "http://localhost:8080/allocations/addnew",
+              "https://ukukhulaapi.azurewebsites.net/allocations/addnew",
               {
                 method: "POST",
                 headers: {
