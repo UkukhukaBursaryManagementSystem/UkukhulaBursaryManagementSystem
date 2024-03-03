@@ -67,7 +67,7 @@ function submitFormData(event) {
         "firstName": document.getElementById('first-name').value,
         "lastName": document.getElementById('last-name').value,
         "idNumber": document.getElementById('id-number').value,
-        "phoneNumber": document.getElementById('id-number').value,
+        "phoneNumber": document.getElementById('phone').value,
         "email": document.getElementById('student-email').value,
         "courseOfStudy": document.getElementById('student-study-course').value,
         "genderID": parseInt(document.getElementById('sex').value),

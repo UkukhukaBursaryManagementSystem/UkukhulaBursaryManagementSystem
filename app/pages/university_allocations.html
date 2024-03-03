@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/student-form-styles.css">
+    <script src="../js/script.js"></script>
     <title>University Allocations</title>
   </head>
   <body>
@@ -16,49 +18,76 @@
         <a href="./university_allocations.html"> University Allocations</a>
       </nav>
     </header>
+<section id="university-allocations">
+  <h1>University Allocations</h2>
 
-    <h2>University Allocations</h2>
+  <section id="add-new-allocation">
+    <article class="header">
+      <img src="../css/images/cancel.png" alt="" id="cancel-icon">
+      <h3>Allocate Funds To An University</h3>
+      <p>Please fill in the form</p>
 
-    <section id="add-new-allocation">
-      <form id="allocation-form">
-        <label for="university-name">University Name:</label>
-        <input
-          type="text"
-          id="university-name"
-          name="universityName"
-        /><br /><br />
+    </article>
 
-        <label for="amount">Amount:</label>
-        <input type="text" id="amount" name="amount" /><br /><br />
+    <form id="allocation-form">
+      <input
+        type="text"
+        id="university-name"
+        name="universityName"
+        placeholder="University Name"
+      /><br /><br />
+      <input
+        type="text"
+        id="amount"
+        name="amount"
+        placeholder="Amount:"
+      /><br /><br />
 
-        <label for="bursary-year">year</label>
-        <input type="text" id="bursary-year" name="year" /><br /><br />
+      <input
+        type="text"
+        id="bursary-year"
+        name="year"
+        placeholder="year"
+      /><br /><br />
 
-        <button type="submit">Submit</button>
-      </form>
-      <button id="allocate-evenly">Allocate to all approved</button>
-    </section>
-    <section id="filter-university-allocation">
-      <select id="select-year">
-        <option value="all">All years</option>
-      </select>
-      <select id="select-university-name">
-        <option value="all-universities">All universities</option>
-      </select>
-    </section>
-    <table id="university-allocations-table">
-      <thead>
-        <tr>
-          <th>University Name</th>
-          <th>Amount</th>
-          <th>Year</th>
-        </tr>
-      </thead>
-      <tbody id="allocations-table-body"></tbody>
-    </table>
+      <article class="button-container">
+        <input type="submit" id="allocate-button" value="Submit" />
+      </div>
+    </form>
+  </section>
+
+<section id="filter-university-allocation">
+  <article id="filter-container">
+    <button id="add-allocation-button">Add allocation</button>
+    <button id="allocate-evenly">Allocate to all approved</button>
+    <select id="select-year">
+      <option value="all">All years</option>
+    </select>
+    <select id="select-university-name">
+      <option value="all-universities">All universities</option>
+    </select>
+  </article>
+
+  <table id="university-allocations-table">
+    <thead>
+      <tr>
+        <th>University Name</th>
+        <th>Amount</th>
+        <th>Year</th>
+      </tr>
+    </thead>
+    <tbody id="allocations-table-body"></tbody>
+  </table>
+</section>
+
+
+</section>
+    
+    
 
     <script src="/src/ukukhulaApp/app/js/fetch_data.js"></script>
-    <script src="/src/ukukhulaApp/app/js/add_option_values.js"></script>"
+    <script src="/src/ukukhulaApp/app/js/add_option_values.js"></script>
+    "
 
     <script>
       // const fetchData = async function fetchData(url) {
