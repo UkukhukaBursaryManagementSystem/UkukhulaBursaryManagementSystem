@@ -4,23 +4,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     let data;
 
 
-const selectSexElement = document.getElementById('sex');
-data = await fetchData(`https://ukukhulaapi.azurewebsites.net/biological-sex`);
-data.forEach(option => {
-    const optionElement = document.createElement('option');
-    optionElement.value = option.id;
-    optionElement.textContent = option.name;
-    selectSexElement.appendChild(optionElement);
-});
-
-const selectEthnicityElement = document.getElementById('ethnicity');
-data = await fetchData(`https://ukukhulaapi.azurewebsites.net/ethnicity`);
-data.forEach(option => {
-    const optionElement = document.createElement('option');
-    optionElement.value = option.id;
-    optionElement.textContent = option.name;
-    selectEthnicityElement.appendChild(optionElement);
-});
 
 
 const selectDepartmentElement = document.getElementById('department');
@@ -108,3 +91,50 @@ document.querySelector('.student-application-form').addEventListener('submit', s
 }
 );
 
+
+
+document.addEventListener("DOMContentLoaded", async function (event) {
+    event.preventDefault();
+
+    const form1Button = document.querySelector("#form1-button");
+    const form2BackButton = document.querySelector("#form2-Back-button");
+    const form2NextButton = document.querySelector("#form2-next-button");
+    const form3BackButton = document.querySelector("#form3-Back-button");
+    const form3SubmitButton = document.querySelector("#form3-submit-button");
+    const form1 = document.querySelector("#form1");
+    const form2 = document.querySelector("#form2");
+    const form3 = document.querySelector("#form3");
+  
+  
+  
+
+  
+
+  
+    form2.style.display = "none";
+    form3.style.display = "none";
+  
+    form1Button.addEventListener("click", function () {
+      console.log();
+      form1.style.display = "none";
+      form2.style.display = "flex";
+    });
+  
+    form2BackButton.addEventListener("click", function () {
+      form2.style.display = "none";
+      form1.style.display = "flex";
+    });
+  
+    form2NextButton.addEventListener("click", function () {
+      form2.style.display = "none";
+      form3.style.display = "flex";
+    });
+  
+    form3BackButton.addEventListener("click", function () {
+      form3.style.display = "none";
+      form2.style.display = "flex";
+    });
+  
+    // data = await fetchAllStudentApplicationData();
+    // populateTableForAdmin(data);
+  });
