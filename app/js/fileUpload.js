@@ -5,7 +5,7 @@
 
     let url;
 
-    const result = await fetch('http://localhost:8080/api/blob/upload', {
+    const result = await fetch('https://ukukhulaapi.azurewebsites.net/api/blob/upload', {
         method: 'POST',
         body: formData
     });
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 "idURL" : encodeURI(idUrl.url)
             }
 
-            let finalResponse = await post('http://localhost:8080/student-documents', docBody);
+            let finalResponse = await post('https://ukukhulaapi.azurewebsites.net/student-documents', docBody);
             
             alert("Documents Uploaded Successully");
             window.location.reload();

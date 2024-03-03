@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <title>Microsoft identity platform</title>
+  <link rel="SHORTCUT ICON" href="./favicon.svg" type="image/x-icon">
+  <link rel="stylesheet" href="./css/login.css">
+  <script id="load-msal" src="https://alcdn.msauth.net/browser/2.31.0/js/msal-browser.js"
+    integrity="sha384-BO4qQ2RTxj2akCJc7t6IdU9aRg6do4LGIkVVa01Hm33jxM+v2G+4q+vZjmOCywYq"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous" defer></script>
+  <script type="text/javascript" src="./js/authConfig.js" defer></script>
+  <script type="text/javascript" src="./js/authPopup.js" defer></script>
+  <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js" defer>
+  </script>
+  <script type="text/javascript" src="./js/sendAccessRequest.js" defer></script>
+  <script type="text/javascript" src="./js/fetch_data.js" defer></script>
+  
+  <link rel="SHORTCUT ICON" href="https://c.s-microsoft.com/favicon.ico?v2" type="image/x-icon">
+</head>
+
+<body>
+
+  <section id="welcome-screen" style="display: none;">
+    <h1 id="username"></h1>
+  </section>
+  
+  <section id="signIn-section">
+      <label for="role">Select Role: </label>
+      <input id="role" placeholder="Admin/HOD" required>
+      <button id="login">
+          <img src="./images/ms-symbollockup_signin_dark.svg" alt="sign in with microsoft dark button">
+      </button>
+
+      <button id="request-access" onclick="showRequestAccessForm()">Request Access</button>
+
+      <form id="requestAccess">
+        <label for="firstname">First Name:</label>
+        <input type="text" id="firstName" class="requestAccessFormFields" name="firstname" required>
+
+        <label for="lastname">Last Name:</label>
+        <input type="text" id="lastName" class="requestAccessFormFields" name="lastname" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phoneNumber" class="requestAccessFormFields" name="phone" pattern="[0-9]{1,10}" maxlength="10" required>
+        <small>Max 10 digits (numbers only)</small>
+
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" class="requestAccessFormFields" name="email" maxlength="255" required>
+
+        <label for="departmentDataDropdown">Department:</label>
+        <select id="departmentDataDropdown" class="requestAccessFormFields" required></select>
+
+        <label for="universityDataDropdown">University:</label>
+        <select id="universityDataDropdown" class="requestAccessFormFields" required></select>
+
+        <button id="submitRequestForm">Submit Request</button>
+      </form>
+
+  </section>
+</body>
+
+</html>

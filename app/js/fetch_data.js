@@ -4,16 +4,15 @@ async function fetchData(url) {
     headers: {
       "Content-Type": "application/json",
       // "Authorization": `Bearer ${accessTokenAquired}`
-    },
+    }
   });
   return result.json();
 }
 
 
-
 async function fetchAllStudentApplicationData() {
   try {
-    const response = await fetch(`http://localhost:8080/student-application`);
+    const response = await fetch(`https://ukukhulaapi.azurewebsites.net/student-application`);
     return response.json();
   } catch (error) {
     console.error("Error fetching data:", error);

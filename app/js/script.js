@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 async function fetchAllStudentApplicationData() {
   try {
-    const response = await fetch(`http://localhost:8080/student-application`);
+    const response = await fetch(`https://ukukhulaapi.azurewebsites.net/student-application`);
     return response.json();
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -67,7 +67,7 @@ async function populateStudentApplicationEditForm(applicationId) {
 
   try {
     const response = await fetch(
-      `http://localhost:8080/student-application/${applicationId}`,
+      `https://ukukhulaapi.azurewebsites.net/student-application/${applicationId}`,
       {
         method: "GET",
       }
@@ -108,7 +108,7 @@ async function populateStudentApplicationEditForm(applicationId) {
 async function removeStudentApplication(applicationId) {
   try {
     const response = await fetch(
-      `http://localhost:8080/student/${applicationId}`,
+      `https://ukukhulaapi.azurewebsites.net/student/${applicationId}`,
       {
         method: "DELETE",
       }
@@ -159,7 +159,7 @@ async function updateStudentApplication() {
     });
     console.log(applicationData["idNumber"]);
 
-    const response = await fetch("http://localhost:8080/student-application", {
+    const response = await fetch("https://ukukhulaapi.azurewebsites.net/student-application", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
