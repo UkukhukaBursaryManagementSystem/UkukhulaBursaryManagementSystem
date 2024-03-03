@@ -101,24 +101,26 @@
       // };
       const allocateEvenlyButton = document.getElementById("allocate-evenly");
       allocateEvenlyButton.addEventListener("click", () => {
+    // Display a confirmation dialog
+    const confirmAllocation = confirm("Are you sure you want to allocate funds evenly to all?");
+
+    if (confirmAllocation) {
         fetch("https://ukukhulaapi.azurewebsites.net/allocations/allocate-to-all", {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
         })
-          .then((response) => {
+        .then((response) => {
             if (response.ok) {
-              return response.json();
-            } else {
-              throw new Error("Failed to allocate evenly");
-            }
-          })
-          .catch((error) => {
-            alert("Error allocating evenly:", error.message);
-            alert("Error allocating evenly: " + error.message);
-          });
-      });
+                alert("Funds allocated evenly");
+                window.location.reload();
+            } 
+        });
+    } else {
+        alert("Allocation canceled");
+    }
+});
       let data;
       (async () => {
         data = await fetchData("https://ukukhulaapi.azurewebsites.net/allocations/all");
