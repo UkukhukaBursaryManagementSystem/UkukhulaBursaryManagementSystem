@@ -40,12 +40,14 @@ document.addEventListener("DOMContentLoaded", function () {
     .addEventListener("click", function (e) {
       e.preventDefault();
 
-      var firstName = document.getElementById("firstName").value;
-      var lastName = document.getElementById("lastName").value;
-      var phoneNumber = document.getElementById("phoneNumber").value;
-      var email = document.getElementById("email").value;
-      var department = document.getElementById("departmentDataDropdown").value;
-      var universityName = document.getElementById(
+      const firstName = document.getElementById("firstName").value;
+      const lastName = document.getElementById("lastName").value;
+      const phoneNumber = document.getElementById("phoneNumber").value;
+      const email = document.getElementById("email").value;
+      const department = document.getElementById(
+        "departmentDataDropdown"
+      ).value;
+      const universityName = document.getElementById(
         "universityDataDropdown"
       ).value;
 
