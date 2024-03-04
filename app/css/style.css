@@ -436,6 +436,70 @@ button:hover {
   flex-direction: column;
 }
 
+
+.select-application {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+
+.welcome-hod-section{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  
+
+}
+.budget, .money-spent {
+  display: flex;
+  flex-direction: column;
+  width: 120px;
+  height: 100px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  
+  
+}
+
+.budget {
+  background-color: #4db44d;
+}
+
+.money-spent {
+  background-color: var(--secondary-color-red);
+
+}
+
+.money-spent p, .budget p {
+  font-weight: bolder;
+}
+
+.balances {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 8px;
+  flex-wrap: wrap;
+  
+}
+
+.select-status {
+  margin-right: 5px;
+}
+
+
+.username {
+  font-weight: bolder;
+}
+
+.welcome-message {
+  font-size: 24px;
+  font-style: italic;
+}
+
 @media screen and (max-width: 800px) {
   .hide-mobile {
     display: none;
