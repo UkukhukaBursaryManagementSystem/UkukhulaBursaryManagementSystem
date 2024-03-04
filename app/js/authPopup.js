@@ -95,12 +95,16 @@ function handleResponse(response) {
 
             if (sessionStorage.getItem("userFromDataBase").toLocaleLowerCase() === username.toLocaleLowerCase() && role.toLowerCase() === "admin") 
             {   
+                
+                window.location.href = "https://ukukhulawebapp.azurewebsites.net/pages/admin-dashboard.html";
                 document.getElementById("signIn-section").style.display = "none";
-                window.location.href = "https://ukukhulawebapp.azurewebsites.net/pages/admin-dashboard.html"; 
 
             } else if (sessionStorage.getItem("userFromDataBase").toLocaleLowerCase() == username.toLocaleLowerCase() && role.toLowerCase() === "hod")
             {
                 window.location.href = "https://ukukhulawebapp.azurewebsites.net/pages/hod.html";
+                document.getElementById("signIn-section").style.display = "none";
+                
+            } else {
                 document.alert("User can't be found")
             }
 
