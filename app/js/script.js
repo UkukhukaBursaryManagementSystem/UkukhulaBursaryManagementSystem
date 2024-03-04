@@ -1,10 +1,12 @@
 document.addEventListener("DOMContentLoaded", async function () {
   let data;
   data = await fetchAllStudentApplicationData();
+
+  const hodData = data.filter((app) => app.universityName.toLocaleLowerCase() === sessionStorage.getItem('universityName').toLocaleLowerCase());
   await getUniversityInfo();
   await getTotalBalance();
   await getTotalMoneySpent();
-  populateTableForAdmin(data);
+  populateTableForAdmin(hodData);
 
   const editButtons = document.querySelector(".edit-button");
   const studentApplicationForm = document.querySelector(".hidden");
@@ -19,9 +21,9 @@ document.addEventListener("DOMContentLoaded", async function () {
   statusSelect.addEventListener('change', function (){
 
         if(statusSelect.value === 'all'){
-          populateTableForAdmin(data);
+          populateTableForAdmin(hodData);
         }else{
-          const result = data.filter((app) => app.status.toLowerCase() == statusSelect.value);
+          const result = hodData.filter((app) => app.status.toLowerCase() == statusSelect.value);
           populateTableForAdmin(result);
         }
   });
