@@ -302,8 +302,22 @@ td {
   height: auto;
 }
 
-.description {
+.description,.link {
   font-weight: bold;
+}
+
+.link {
+  display: none;
+}
+
+.link a {
+  color: var(--primary-color-back-one);
+  text-decoration: underline;
+}
+
+.link a:hover {
+  color: var(--secondary-color-red);
+  opacity: 0.7;
 }
 
 nav {
@@ -396,7 +410,8 @@ button:hover {
 .delete-button,
 .edit-button,
 .reject-button,
-.approve-button {
+.approve-button,
+.generate-link-button {
   cursor: pointer;
   background-color: transparent;
   color: rgb(12, 12, 12);

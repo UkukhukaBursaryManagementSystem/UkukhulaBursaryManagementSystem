@@ -271,6 +271,7 @@ function populateTableForAdmin(data) {
       event.preventDefault();
       popUpCard.style.zIndex = "0";
       popUpCard.style.display = "none";
+      document.querySelector('.link').style.display = 'block';
     });
 
     row.appendChild(buttonCell);
@@ -279,6 +280,40 @@ function populateTableForAdmin(data) {
   });
 }
 
+
+function generateLink(applicationID){
+      let formData = {
+        applicationID : applicationID,
+        baseURL : 'https://ukukhulawebapp.azurewebsites.net/pages/document_upload.html'
+      }
+    
+        fetch('http://localhost:8080/generate-link', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+      })
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Network response was not ok');
+          }
+          return response.json();
+      })
+      .then(data => {
+          const anchor = document.querySelector(`.gen-link-${applicationID}`);
+          const linkParagraph = document.querySelector('.link').style.display = 'block';
+          console.log(data.url)
+          anchor.setAttribute('href', data.url);
+          anchor.textContent= data.url;
+      })
+      .catch(error => {
+          alert('There was a problem submitting the form data:', error.message);
+          // Optionally, you can show an error message to the user
+      });
+    
+
+}
 function viewStudentApplication(student) {
   let pop = document.querySelector(".pop-up-content");
 
@@ -303,6 +338,19 @@ function viewStudentApplication(student) {
   document.querySelector(".student-motivation").textContent =
     student.motivation;
   document.querySelector(".comment").textContent = student.reviewerComment;
+
+  if(student.status.toLowerCase() === 'rejected' || student.status.toLowerCase() === 'approved' ){
+    document.querySelector('.edit-button').style.display = 'none';
+    document.querySelector('.delete-button').style.display = 'none';
+    document.querySelector('.generate-link-button').style.display = 'none';
+  }
+
+  document.querySelector('.gen-link').setAttribute('class', `gen-link-${student.applicationID}`);
+  document.querySelector('.generate-link-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    generateLink(student.applicationID)} );
+
+
 }
 
 
