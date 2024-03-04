@@ -69,9 +69,9 @@ document.addEventListener("DOMContentLoaded", function () {
       })
         .then(function (response) {
           if (response.ok) {
-            console.log(requestBody);
+            alert("Request submitted successfuly")
           } else {
-            console.error("Error submitting request. Status:", response.status);
+            alert("Error submitting request. Status:", response.status);
           }
         })
         .catch(function (error) {
