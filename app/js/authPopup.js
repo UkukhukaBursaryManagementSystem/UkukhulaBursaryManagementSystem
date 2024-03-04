@@ -100,7 +100,8 @@ function handleResponse(response) {
 
             } else if (sessionStorage.getItem("userFromDataBase").toLocaleLowerCase() == username.toLocaleLowerCase() && role.toLowerCase() === "hod")
             {
-                window.location.href = "https://ukukhulawebapp.azurewebsites.net/pages/hod.html"; 
+                window.location.href = "https://ukukhulawebapp.azurewebsites.net/pages/hod.html";
+                document.alert("User can't be found")
             }
 
          
