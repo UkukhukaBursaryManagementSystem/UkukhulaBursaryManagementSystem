@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ukukhula Admin Dashboard</title>
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/admin.css" />
     <link rel="stylesheet" href="../css/student-form-styles.css">
     <link rel="stylesheet" href="../css/classes.css"/>
     <script defer src="../js/fetch_data.js"></script>
@@ -13,9 +13,9 @@
     <script src="../js/university_application.js"></script>
     <script src="../js/fetch_data.js"></script>
     <script src="../js/add_option_values.js"></script>
-    <!-- <script src="../js/requests.js"></script> -->
+    <script src="../js/requests.js"></script>
     <script src="../js/display_admin_balance.js"></script>
-    <script src="../js/manage_page_sections.js"></script>
+    <!-- <script src="../js/manage_page_sections.js"></script> -->
     
 </head>
 <body>
@@ -29,11 +29,6 @@
         </nav>
       </header>
       <main style="height: auto;">
-
-<section id = "home">
-  Welcome home
-</section>
-
 
 <section id = "requests">
   <h2>Add a New Admin</h2>
@@ -55,6 +50,23 @@
         <button class="submit-add-admin" type="submit">Submit</button>
     </form>
 </article>
+
+
+<table id="data-table">
+  <thead>
+      <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Phone Number</th>
+          <th>Email</th>
+          <th>Department</th>
+          <th>University Name</th>
+          <th>Actions</th>
+      </tr>
+  </thead>
+  <tbody id="requests-table-body">
+  </tbody>
+</table>
 </section>
 
 </section>
@@ -105,7 +117,7 @@
       
               </section>
             </section>
-            <section id="university-allocations">
+            <section id="university-allocations"  >
               <h1>University Allocations</h2>
             <p id = "admin-remaining-balance"></p>
             <p id = "admin-total-spent"></p>
@@ -172,7 +184,7 @@
             
             </section>
 
-    <section id="university_application">
+    <section id="university_application" >
       <h2>University Applications</h2>
       <section id="filter-university-application">
         <select id="select-university">
