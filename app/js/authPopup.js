@@ -15,7 +15,6 @@ function selectAccount() {
 
 }
 
-debugger
 function handleResponse(response) {
 
     if (response !== null) {
@@ -79,7 +78,7 @@ function handleResponse(response) {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     userId: `${sessionStorage.getItem("userId")}`,
-                    userName: `${sessionStorage.getItem("username")}`,
+                    userName: `${username}`,
                     userAccessToken: `${microsoftAccessToken}`
                 })
                 }).then(response => {
