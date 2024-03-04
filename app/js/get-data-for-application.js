@@ -94,7 +94,7 @@ function submitFormData(event) {
     })
     .then(data => {
         alert(data.message)
-        window.location.assign('https://ukukhulawebapp.azurewebsites.net/pages/student_appplications.html');
+        window.location.assign('https://ukukhulawebapp.azurewebsites.net/pages/hod.html');
     })
     .catch(error => {
         alert('There was a problem submitting the form data:', error.message);
