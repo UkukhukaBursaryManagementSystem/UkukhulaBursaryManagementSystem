@@ -339,12 +339,6 @@ function viewStudentApplication(student) {
     student.motivation;
   document.querySelector(".comment").textContent = student.reviewerComment;
 
-  if(student.status.toLowerCase() === 'rejected' || student.status.toLowerCase() === 'approved' ){
-    document.querySelector('.edit-button').style.display = 'none';
-    document.querySelector('.delete-button').style.display = 'none';
-    document.querySelector('.generate-link-button').style.display = 'none';
-  }
-
   document.querySelector('.gen-link').setAttribute('class', `gen-link-${student.applicationID}`);
   document.querySelector('.generate-link-button').addEventListener('click', function(event) {
     event.preventDefault();

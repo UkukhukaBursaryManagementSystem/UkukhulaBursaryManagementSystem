@@ -78,11 +78,7 @@ function viewStudentApplication(student){
       document.querySelector('.hod-name').textContent = student.hodname;
       document.querySelector('.student-motivation').textContent = student.motivation;      
       document.querySelector('.comment').textContent = student.reviewerComment;
-      if(student.status.toLowerCase() === 'rejected' || student.status.toLowerCase() === 'approved' ){
-        document.querySelector('.reject-button').style.display = 'none';
-        document.querySelector('.approve-button').style.display = 'none';
-        document.querySelector('.review-comment').style.display = 'none';
-      }
+
       document.querySelector('.approve-button').addEventListener('click', function(event) {
         event.preventDefault();
         approveApplication(student)} )
