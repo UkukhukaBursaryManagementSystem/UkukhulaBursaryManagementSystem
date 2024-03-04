@@ -15,7 +15,6 @@ function selectAccount() {
 
 }
 
-debugger
 function handleResponse(response) {
 
     if (response !== null) {
@@ -63,7 +62,6 @@ function handleResponse(response) {
                 }
                 return response.json();
             }).then(data => {
-                console.log(data);
                 sessionStorage.setItem("userFromDataBase", data.email)
                 sessionStorage.setItem("userId", data.userId)
                 sessionStorage.setItem("userRole", data.role); 
@@ -79,7 +77,7 @@ function handleResponse(response) {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     userId: `${sessionStorage.getItem("userId")}`,
-                    userName: `${sessionStorage.getItem("username")}`,
+                    userName: `${username}`,
                     userAccessToken: `${microsoftAccessToken}`
                 })
                 }).then(response => {
@@ -88,8 +86,7 @@ function handleResponse(response) {
                         return { error: `An error occured: ${response}` };
                     }
                     return response.json();
-                }).then(data => { 
-                    console.log(data);
+                }).then(data => {
                     return data; 
                 }).catch(error => { 
                     return { error: `An error occured: ${error}` }; 
@@ -97,7 +94,8 @@ function handleResponse(response) {
             
 
             if (sessionStorage.getItem("userFromDataBase").toLocaleLowerCase() === username.toLocaleLowerCase() && role.toLowerCase() === "admin") 
-            {
+            {   
+                document.getElementById("signIn-section").style.display = "none";
                 window.location.href = "https://ukukhulawebapp.azurewebsites.net/pages/admin-dashboard.html"; 
 
             } else if (sessionStorage.getItem("userFromDataBase").toLocaleLowerCase() == username.toLocaleLowerCase() && role.toLowerCase() === "hod")

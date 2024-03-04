@@ -4,6 +4,25 @@ document.addEventListener("DOMContentLoaded", async function () {
     let data;
 
 
+    const selectSexElement = document.getElementById('sex');
+    data = await fetchData(`https://ukukhulaapi.azurewebsites.net/biological-sex`);
+    data.forEach(option => {
+        const optionElement = document.createElement('option');
+        optionElement.value = option.id;
+        optionElement.textContent = option.name;
+        selectSexElement.appendChild(optionElement);
+    });
+
+    const selectEthnicityElement = document.getElementById('ethnicity');
+    data = await fetchData(`https://ukukhulaapi.azurewebsites.net/ethnicity`);
+    data.forEach(option => {
+        const optionElement = document.createElement('option');
+        optionElement.value = option.id;
+        optionElement.textContent = option.name;
+        selectEthnicityElement.appendChild(optionElement);
+    });
+
+
 
 
 const selectDepartmentElement = document.getElementById('department');
@@ -75,7 +94,7 @@ function submitFormData(event) {
     })
     .then(data => {
         alert(data.message)
-        window.location.assign('https://ukukhulawebapp.azurewebsites.net/pages/student_appplications.html');
+        window.location.assign('https://ukukhulawebapp.azurewebsites.net/pages/hod.html');
     })
     .catch(error => {
         alert('There was a problem submitting the form data:', error.message);
