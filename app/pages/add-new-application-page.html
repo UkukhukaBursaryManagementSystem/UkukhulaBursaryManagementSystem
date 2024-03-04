@@ -1,264 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Student Application</title>
-    <link rel="stylesheet" href="../css/student-form-styles.css" />
-<script src="../js/fetch_data.js"></script> -
-    <script src="../js/get-data-for-application.js"></script> 
-  </head>
-  <body>
-    <section class="student-application-page">
-      <h1>Student Application Form</h1>
-      <p>Please complete the form below to apply for a student</p>
-      <article class="student-application">
-        <form method="post" class="student-application-form" id="form1">
-          <h3>Personal Information</h3>
-          <input
-            type="text"
-            name="first-name"
-            id="first-name"
-            placeholder="FirstName"
-            required
-          />
+    <link rel="stylesheet" href="../css/student-form-styles.css">
+    <script src="../js/fetch_data.js"></script>
+    <script src="../js/get-data-for-application.js"></script>
+</head>
+<body>
+<section class="student-application-page">
 
-          <input
-            type="text"
-            name="last-name"
-            id="last-name"
-            placeholder="lastName"
-            required
-          />
 
-          <input
-            type="text"
-            name="id-number"
-            id="id-number"
-            required
-            placeholder="ID Number"
-          />
+    <article class="student-application">
+        <h1>Student Application Form</h1>
+        <p>Please complete the form below to apply for a student</p>
+        <form method="post" class="student-application-form">
 
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            pattern="^(\+27|0)[6-8][0-9]{8}$"
-            required
-            placeholder="Phone Number"
-          />
+            <fieldset class="personal-field-set">
+                <legend>Student Personal Information</legend>
 
-          <input
-            type="email"
-            name="student-email"
-            id="student-email"
-            required
-            placeholder="Email"
-          />
-          <fieldset class="radio-group">
-            <legend>Race</legend>
-            <label for="black">Black</label>
-            <input
-              type="radio"
-              id="black"
-              name="ethnicity"
-              value="1"
-              required
-            />
+                <label for="first-name">FirstName</label>
+                <input type="text" name="first-name" id="first-name" required>
 
-            <label for="coloured">Coloured</label>
-            <input
-              type="radio"
-              id="coloured"
-              name="ethnicity"
-              value="2"
-              required
-            />
+                <label for="last-name">LastName</label>
+                <input type="text" name="last-name" id="last-name" required>
 
-            <label for="indian">Indian</label>
-            <input
-              type="radio"
-              id="indian"
-              name="ethnicity"
-              value="3"
-              required
-            />
-          </fieldset>
+                <label for="id-number">ID Number</label>
+                <input type="text" name="id-number" id="id-number" required>
 
-          <fieldset class="radio-group">
-            <legend>Gender</legend>
-            <label for="male">Male</label>
-            <input type="radio" id="male" name="gender" value="male" required />
+                <label for="sex">Sex</label>
+                <select id="sex" required>
+                </select>
 
-            <label for="female">Female</label>
-            <input
-              type="radio"
-              id="female"
-              name="gender"
-              value="female"
-              required
-            />
+                <label for="ethnicity">Ethnicity</label>
+                <select id="ethnicity" name="ethnicity" required>
+                </select>
+            </fieldset>
 
-            <label for="other">Other</label>
-            <input
-              type="radio"
-              id="other"
-              name="gender"
-              value="other"
-              required
-            />
-          </fieldset>
-          <input class="submit-button" value="Next" id="form1-button" />
-        </form>
-        
-        <form method="post" id="form2" class="student-application-form">
-          <h3>Academic Information</h3>
-          <input
-            type="text"
-            name="student-study-course"
-            id="student-study-course"
-            required
-            placeholder="Course Of Study"
-          />
-          <input
-            type="number"
-            id="bursary-amount"
-            name="bursary-amount"
-            min="1"
-            max="125000"
-            required
-            placeholder="Bursary Amount"
-          />
-          <input
-            id="university"
-            name="university"
-            required
-            placeholder="University Name"
-          ></input>
+            <fieldset class="personal-field-set">
+                <legend>Student Contact Information</legend>
+                <label for="phone">Contact Number</label>
+                <input type="tel" id="phone" name="phone" pattern="^(\+27|0)[6-8][0-9]{8}$" required>
+                <label for="student-email">Email</label>
+                <input type="email" name="student-email" id="student-email" required>
+            </fieldset>
 
-          <input
-            id="department"
-            name="department"
-            required
-            placeholder="Department"
-          ></select>
+            <fieldset class="personal-field-set">
+                <legend>Student Academic Information</legend>
+                <label for="student-study-course">Course Of Study</label>
+                <input type="text" name="student-study-course" id="student-study-course" required>
+                <label for="bursary-amount">Bursary Amount</label>
+                <input type="number" id="bursary-amount" name="bursary-amount" min="1" max="125000" required>
+                <label for="university">Student University</label>
+                <select id="university" name="university" required>
+                </select>
+                <label for="department">Student University Department</label>
+                <select id="department" name="department" required>
+                </select>
+            </fieldset>
 
-          <input
-            class="submit-button"
-            type="submit"
-            value="Back"
-            id="form2-Back-button"
-          />
-          <input
-            class="submit-button"
-            type="submit"
-            value="Next"
-            id="form2-next-button"
-          />
-        </form>
+            <fieldset class="personal-field-set">
+                <legend>Application Motivation</legend>
+                <label for="year-of-application">Funding Year</label>
+                <input type="number" id="year-of-application" name="year-of-application" min="2024" max="2025" required>
+                <label for="head-of-department">Head Of Department Applying</label>
+                <select id="head-of-department" name="head-of-department" required>
+                </select>
+                <label for="Motivation">Head Of Department Motivation</label>
+                <textarea cols="5" rows="5" id="Motivation" placeholder="Please enter a brief motivation for the student..."></textarea>
+            </fieldset>
 
-        <form method="post" id="form3" class="student-application-form">
-          <h3>Application Motivation</h3>
-          <input
-            type="number"
-            id="year-of-application"
-            name="year-of-application"
-            min="2024"
-            max="2025"
-            required
-            placeholder="Funding Year"
-          />
+            <input class="submit-button" type="submit" value="Submit" >
+    </form>
 
-          <select
-            id="head-of-department"
-            name="head-of-department"
-            required
-            placeholder="Head Of Department Applying"
-          ></select>
-          <label for="Motivation" id="motivation-label"
-            >Head Of Department Motivation</label
-          >
-          <textarea
-            cols="5"
-            rows="5"
-            id="Motivation"
-            placeholder="Please enter a brief motivation for the student..."
-          ></textarea>
+    <img src="../images/loading_3305803.png" class="load" alt="Loading image">
+    </article>
 
-          <input
-            class="submit-button"
-            type="submit"
-            value="Back"
-            id="form3-Back-button"
-          />
-          <input
-            class="submit-button"
-            type="submit"
-            value="Submit"
-            id="form3-submit-button"
-          />
-        </form>
-<!-- 
-        <fieldset class="personal-field-set">
-            <legend>Student Academic Information</legend>
-            <label for="student-study-course">Course Of Study</label>
-            <input
-              type="text"
-              name="student-study-course"
-              id="student-study-course"
-              required
-            />
-            <label for="bursary-amount">Bursary Amount</label>
-            <input
-              type="number"
-              id="bursary-amount"
-              name="bursary-amount"
-              min="1"
-              max="125000"
-              required
-            />
-            <label for="university">Student University</label>
-            <select id="university" name="university" required></select>
-            <label for="department">Student University Department</label>
-            <select id="department" name="department" required></select>
 
-          </fieldset>
-
-          <fieldset class="personal-field-set">
-            <legend>Application Motivation</legend>
-            <label for="year-of-application">Funding Year</label>
-            <input
-              type="number"
-              id="year-of-application"
-              name="year-of-application"
-              min="2024"
-              max="2025"
-              required
-            />
-            <label for="head-of-department">Head Of Department Applying</label>
-            <select
-              id="head-of-department"
-              name="head-of-department"
-              required
-            ></select>
-            <label for="Motivation">Head Of Department Motivation</label>
-            <textarea
-              cols="5"
-              rows="5"
-              id="Motivation"
-              placeholder="Please enter a brief motivation for the student..."
-            ></textarea>
-          </fieldset>
-
-          <input class="submit-button" type="submit" value="Submit" /> -->
-        </form>
-
-        <img
-          src="../images/loading_3305803.png"
-          class="load"
-          alt="Loading image"
-        /> 
-      </article>
-    </section>
-  </body>
+  </section>
+    
+</body>
 </html>
