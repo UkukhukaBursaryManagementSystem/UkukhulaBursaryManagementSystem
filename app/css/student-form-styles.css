@@ -367,3 +367,11 @@ label {
   font-weight: bold;
   color: white;
 }
+
+
+.student-application {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
