@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             let docBody = {
-                "studentID": parseInt(params.studentID),
+                "applicationID": parseInt(params.applicationID),
                 "resumeURL": encodeURI(resumeUrl.url),
                 "transcriptURL" : encodeURI(transcriptUrl.url),
                 "idURL" : encodeURI(idUrl.url)
