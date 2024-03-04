@@ -215,6 +215,13 @@ form {
   border: 2px solid black;
 }
 
+.add-admin-section{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
 .student-applications-table {
   display: flex;
   flex-direction: column;
