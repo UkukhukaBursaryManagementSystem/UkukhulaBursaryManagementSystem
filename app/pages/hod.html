@@ -11,9 +11,32 @@
     <header>
       <nav>
         <a href="#"> Home</a>
-        <a href="./student_appplications.html"> Student Applications</a>
+        <a href="#student-applications-table"> Student Applications</a>
       </nav>
     </header>
+
+    <section class="welcome-hod-section"> 
+      <p class="welcome-message"> Welcome <span class="username"></span></p>
+
+      <section id="balances" class="balances">
+
+          <section class="money-spent">
+              <p>Amount Spent</p>
+              <p class="spent"></p>
+          </section>
+      
+      
+          <section class="budget">
+              <p>Budget</p>
+              <p class="allocated"></p>
+      
+          </section>
+      </section>
+
+
+
+
+    </section>
 
     <section class="hidden">
       <article class="student-application-form">
@@ -29,7 +52,7 @@
           <label for="idNumber">ID Number</label>
           <input type="text" name="idNumber" id="idNumber" required /><br><br>
       
-          <label for="sex">Sex:</label>
+          <label for="gender">Sex:</label>
           <input type="text" id="gender" name="sex"><br><br>
       
           <label for="ethnicity">Ethnicity:</label>
@@ -70,21 +93,28 @@
     </section>
 
 
-    <section id = "balances">
+    <section id = "balances"></section>
       
     </section>
     <section id="table" class="hide-table">
-      <section id="selection">
-        <h2>View Student Applications</h2>
-        <label for="filter">Filter by HOD Name:</label>
-        <input type="text" id="hodName" name="hodName" />
-        <button id="fetch-button">Fetch Applications</button>
+      <section id="selection" class="select-application">
         <button class="new-application-button">
           <a href="./add-new-application-page.html">New Application</a>
         </button>
+        <section>
+          <label for="select-status">Filter by Status</label>
+          <select id="select-status" class='select-status'>
+            <option value="all">All</option>
+            <option class="approved" value="approved">Approved</option>
+            <option class="rejected" value="rejected">Rejected</option>
+            <option class="review" value="review">Review</option>
+          </select>
+
+        </section>
+
       </section>
 
-      <article class="student-applications-table">
+      <article id="student-applications-table" class="student-applications-table">
         <h1>Student Applications</h1>
         <table>
           <thead>
@@ -122,7 +152,6 @@
               <p class="link description">Generated Link: <a name="gen-link" class="gen-link" href="" target="_blank" ></a></p> 
             <article .action-buttons >
               <button class="edit-button">Edit</button>
-              <button class="delete-button">Delete</button>
               <button class="generate-link-button">Generate Link</button>
             </article>
               

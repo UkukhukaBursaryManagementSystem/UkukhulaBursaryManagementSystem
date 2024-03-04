@@ -1,24 +1,38 @@
 document.addEventListener("DOMContentLoaded", async function () {
-  let data = [];
+  let data;
   data = await fetchAllStudentApplicationData();
-  populateTableForAdmin(data);
+
+  const hodData = data.filter((app) => app.universityName.toLocaleLowerCase() === sessionStorage.getItem('universityName').toLocaleLowerCase());
+  await getUniversityInfo();
+  await getTotalBalance();
+  await getTotalMoneySpent();
+  populateTableForAdmin(hodData);
 
   const editButtons = document.querySelector(".edit-button");
   const studentApplicationForm = document.querySelector(".hidden");
   const table = document.querySelector(".hide-table");
   const deleteButton = document.querySelector(".delete-button");
+  const statusSelect = document.querySelector('.select-status');
+  const nameFromSession = document.querySelector('.username')
+
+  nameFromSession.textContent = `${sessionStorage.getItem('firstName')}  ${sessionStorage.getItem('lastName')}!`
+
+
+  statusSelect.addEventListener('change', function (){
+
+        if(statusSelect.value === 'all'){
+          populateTableForAdmin(hodData);
+        }else{
+          const result = hodData.filter((app) => app.status.toLowerCase() == statusSelect.value);
+          populateTableForAdmin(result);
+        }
+  });
 
   editButtons.addEventListener("click", function () {
     table.style.display = "none";
     studentApplicationForm.style.display = "flex";
   });
 
-  deleteButton.addEventListener("click", function () {
-    const applicationId = document.querySelector(
-      ".student-applicationID"
-    ).textContent;
-    removeStudentApplication(applicationId);
-  });
 
   editButtons.addEventListener("click", function () {
     const applicationId = document.querySelector(
@@ -48,6 +62,35 @@ async function fetchAllStudentApplicationData() {
   }
 }
 
+async function getUniversityInfo(){
+
+    if(sessionStorage.getItem('userRole')){
+      userID = sessionStorage.getItem('userId')
+
+      fetch(`https://ukukhulaapi.azurewebsites.net/info/${parseInt(userID)}`, {
+        method: "GET", 
+        headers: { 
+            "Content-Type" : "application/json"
+        }
+    }).then(response => {
+        if(!response.ok)
+        {
+            return { error: `An error occured: ${response}` };
+        }
+        return response.json();
+    }).then(data => {
+        sessionStorage.setItem("headOfDepartmentID", data.headOfDepartmentID)
+        sessionStorage.setItem("departmentID", data.departmentID)
+        sessionStorage.setItem("universityID", data.universityID); 
+        sessionStorage.setItem("universityName", data.universityName);
+    }).catch(error => {
+        return { error: `An error occured: ${error}` };
+        });
+
+    }
+    
+}
+
 // async function fetchDataByHodName(hodName) {
 //   hodName = hodName.split(" ");
 //   try {
@@ -61,6 +104,61 @@ async function fetchAllStudentApplicationData() {
 //   }
 // }
 
+
+async function getTotalMoneySpent(){
+  if(sessionStorage.getItem('userRole').toLocaleLowerCase() === 'hod'){
+    universityName = sessionStorage.getItem('universityName');
+
+    fetch(`https://ukukhulaapi.azurewebsites.net/total-money-spent/${encodeURIComponent(universityName)}`, {
+      method: "GET", 
+      headers: { 
+          "Content-Type" : "application/json"
+      }
+  }).then(response => {
+      if(!response.ok)
+      {
+          return { error: `An error occured: ${response}` };
+      }
+      return response.json();
+  }).then(data => {
+      const spent = document.querySelector('.spent');
+      spent.textContent = data;
+      
+  }).catch(error => {
+      return { error: `An error occured: ${error}` };
+      });
+
+  }
+
+}
+
+
+async function getTotalBalance(){
+
+  if(sessionStorage.getItem('userRole').toLocaleLowerCase() === 'hod'){
+    universityName = sessionStorage.getItem('universityName');
+
+    fetch(`https://ukukhulaapi.azurewebsites.net/balance/${encodeURIComponent(universityName)}`, {
+      method: "GET", 
+      headers: { 
+          "Content-Type" : "application/json"
+      }
+  }).then(response => {
+      if(!response.ok)
+      {
+          return { error: `An error occured: ${response}` };
+      }
+      return response.json();
+  }).then(data => {
+      const balance = document.querySelector('.allocated');
+      balance.textContent = data;
+  }).catch(error => {
+      return { error: `An error occured: ${error}` };
+      });
+
+  }
+  
+}
 async function populateStudentApplicationEditForm(applicationId) {
   const table = document.querySelector(".hide-table");
   const form = document.querySelector(".hidden");
