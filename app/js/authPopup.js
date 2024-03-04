@@ -15,7 +15,7 @@ function selectAccount() {
 
 }
 
-
+debugger
 function handleResponse(response) {
 
     if (response !== null) {
@@ -79,7 +79,7 @@ function handleResponse(response) {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     userId: `${sessionStorage.getItem("userId")}`,
-                    userName: `${sessionStorage.getItem("userName")}`,
+                    userName: `${sessionStorage.getItem("username")}`,
                     userAccessToken: `${microsoftAccessToken}`
                 })
                 }).then(response => {
@@ -89,6 +89,7 @@ function handleResponse(response) {
                     }
                     return response.json();
                 }).then(data => { 
+                    console.log(data);
                     return data; 
                 }).catch(error => { 
                     return { error: `An error occured: ${error}` }; 
