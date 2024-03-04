@@ -78,7 +78,7 @@ function submitFormData(event) {
 
     console.log(JSON.stringify(formData));
 
-    // Send the form data to the endpoint using fetch API
+  
     fetch('https://ukukhulaapi.azurewebsites.net/create-student-application', {
         method: 'POST',
         headers: {
@@ -98,12 +98,12 @@ function submitFormData(event) {
     })
     .catch(error => {
         alert('There was a problem submitting the form data:', error.message);
-        // Optionally, you can show an error message to the user
+       
     });
     
 }
 
-// Add an event listener to the form for form submission
+
 document.querySelector('.student-application-form').addEventListener('submit', submitFormData);
 
     

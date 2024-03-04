@@ -122,7 +122,7 @@ function submitAdminForm(student) {
   })
   .catch(error => {
       alert('There was a problem submitting the form data:', error.message);
-      // Optionally, you can show an error message to the user
+
   });
   
 }
@@ -153,7 +153,6 @@ function approveApplication(student){
   })
   .catch(error => {
       alert('There was a problem submitting the form data:', error.message);
-      // Optionally, you can show an error message to the user
   });
 
 
@@ -187,7 +186,6 @@ function rejectApplication(student){
   })
   .catch(error => {
       alert('There was a problem submitting the form data:', error.message);
-      // Optionally, you can show an error message to the user
   });
 
 
@@ -201,7 +199,6 @@ document.addEventListener('DOMContentLoaded', async function(){
 
     // Add an event listener to the form for form submission
   document.querySelector('.add-admin-form').addEventListener('submit', submitAdminForm);
-
   //Handle reject  and approve
 
 

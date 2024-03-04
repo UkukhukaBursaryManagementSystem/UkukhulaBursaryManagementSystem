@@ -309,7 +309,7 @@ function generateLink(applicationID){
       })
       .catch(error => {
           alert('There was a problem submitting the form data:', error.message);
-          // Optionally, you can show an error message to the user
+         
       });
     
 

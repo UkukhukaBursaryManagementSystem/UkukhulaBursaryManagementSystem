@@ -19,22 +19,22 @@ document.addEventListener('DOMContentLoaded', function() {
         const loadImage = document.querySelector('.load');
         loadImage.classList.toggle('show');
         try {
-            // Get file inputs
+       
             let resumeFile = document.getElementById('resume').files[0];
             let transcriptFile = document.getElementById('transcript').files[0];
             let idCopyFile = document.getElementById('id_coopy').files[0];
 
-            // Upload each file individually and get the file URL
+       
             const resumeUrl = await uploadFile(resumeFile, 'file');
             const transcriptUrl = await uploadFile(transcriptFile, 'file');
             const idUrl = await uploadFile(idCopyFile, 'file');
 
-            // Use the file URLs in another request or perform other actions
+       
             console.log('Resume URL:', resumeUrl.url);
             console.log('Transcript URL:', transcriptUrl.url);
             console.log('ID Copy URL:', idUrl.url);
 
-            // Proceed with further actions using the file URLs
+      
             const params = new Proxy(new URLSearchParams(window.location.search), {
                 get: (searchParams, prop) => searchParams.get(prop),
             });
