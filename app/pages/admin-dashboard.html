@@ -13,27 +13,35 @@
     <script src="../js/university_application.js"></script>
     <script src="../js/fetch_data.js"></script>
     <script src="../js/add_option_values.js"></script>
+    <script src="../js/requests.js"></script>
+    <script src="../js/display_admin_balance.js"></script>
+    <!-- <script src="../js/manage_page_sections.js"></script> -->
     
-    
-    
+
 </head>
 <body>
     <header>
         <nav>
+          <a href="#home" class="default-link">Home</a>
           <a href="#student-applications" class="other-link"> Student Applications</a>
           <a href="#university_application" class="other-link">University Applications</a>
           <a href="#university-allocations" class="other-link"> University Allocations</a>
-          <a href="#requests" class="default-link"> Requests</a>
+          <a href="#requests" class="other-link"> Requests</a>
           
         </nav>
       </header>
       <main style="height: auto;">
 
-<section id = "requests">
-  <section id="add-admin-section" class="add-admin">
-    <h2>Add a New Admin</h2>
-    <form class="add-admin-form" method="post">
+<section id = "home">
+  Welcome home
+</section>
 
+
+<section id = "requests">
+  <h2>Add a New Admin</h2>
+  <button id="add-admin-button">Add admin</button>
+  <article  id="add-admin-section" class="add-admin">
+    <form class="add-admin-form" method="post">
         <label for="admin-firstname">First Name</label>
         <input type="text" id="admin-firstname" name="adminFirstName" required>
 
@@ -48,9 +56,9 @@
 
         <button class="submit-add-admin" type="submit">Submit</button>
     </form>
+</article>
 </section>
-</section>
-<button>Add admin</button>
+
 </section>
 
         <section id="student-applications" class="student-applications-table">
@@ -101,7 +109,8 @@
             </section>
             <section id="university-allocations">
               <h1>University Allocations</h2>
-            
+            <p id = "admin-remaining-balance"></p>
+            <p id = "admin-total-spent"></p>
               <section id="add-new-allocation">
                 <article class="header">
                   <img src="../css/images/cancel.png" alt="" id="cancel-icon">
