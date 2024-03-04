@@ -4,24 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ukukhula Admin Dashboard</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/student-form-styles.css">
+    <link rel="stylesheet" href="/app/css/classes.css"/>
     <script defer src="../js/fetch_data.js"></script>
     <script defer src="../js/admin.js"></script>
+    <script src="../js/university_allocation.js"></script>
+    <script src="../js/university_application.js"></script>
+    <script src="../js/fetch_data.js"></script>
+    <script src="../js/add_option_values.js"></script>
+    
+    
     
 </head>
 <body>
     <header>
         <nav>
-          <a href="#"> Home</a>
-          <a href="#student_appplications"> Student Applications</a>
-          <a href="#add-hod-section">Add Admin</a>
-          <a href="university_applications.html">University Applications</a>
-          <a href="./university_allocations.html"> University Allocations</a>
+          <a href="#student-applications" class="other-link"> Student Applications</a>
+          <a href="#university_application" class="other-link">University Applications</a>
+          <a href="#university-allocations" class="other-link"> University Allocations</a>
+          <a href="#requests" class="default-link"> Requests</a>
+          
         </nav>
       </header>
-      <main style="height: auto;;">
+      <main style="height: auto;">
 
-        <article id="student-applications" class="student-applications-table">
+<section id = "requests">
+  <section id="add-admin-section" class="add-admin">
+    <h2>Add a New Admin</h2>
+    <form class="add-admin-form" method="post">
+
+        <label for="admin-firstname">First Name</label>
+        <input type="text" id="admin-firstname" name="adminFirstName" required>
+
+        <label for="admin-lastname">Last Name</label>
+        <input type="text" id="admin-lastname" name="adminLastName" required>
+
+        <label for="admin-number">Phone Number</label>
+        <input type="text" id="admin-number" name="adminFirstName" pattern="^(\+27|0)[6-8][0-9]{8}$" required>
+
+        <label for="admin-email">Email</label>
+        <input type="email" id="admin-email" name="adminEmail">
+
+        <button class="submit-add-admin" type="submit">Submit</button>
+    </form>
+</section>
+</section>
+<button>Add admin</button>
+</section>
+
+        <section id="student-applications" class="student-applications-table">
             <h1>Student Applications </h1>
             <table>
                 <thead>
@@ -66,31 +98,255 @@
                 </article>
       
               </section>
+            </section>
+            <section id="university-allocations">
+              <h1>University Allocations</h2>
+            
+              <section id="add-new-allocation">
+                <article class="header">
+                  <img src="../css/images/cancel.png" alt="" id="cancel-icon">
+                  <h3>Allocate Funds To An University</h3>
+                  <p>Please fill in the form</p>
+            
+                </article>
+            
+                <form id="allocation-form">
+                  <input
+                    type="text"
+                    id="university-name"
+                    name="universityName"
+                    placeholder="University Name"
+                  /><br /><br />
+                  <input
+                    type="text"
+                    id="amount"
+                    name="amount"
+                    placeholder="Amount:"
+                  /><br /><br />
+            
+                  <input
+                    type="text"
+                    id="bursary-year"
+                    name="year"
+                    min = "0"
+                    placeholder="year"
+                  /><br /><br />
+            
+                  <article class="button-container">
+                    <input type="submit" id="allocate-button" value="Submit" />
+                  </div>
+                </form>
+              </section>
+            
+            <section id="filter-university-allocation">
+              <article id="filter-container">
+                <button id="add-allocation-button">Add allocation</button>
+                <button id="allocate-evenly">Allocate to all approved</button>
+                <select id="select-year">
+                  <option value="all">All years</option>
+                </select>
+                <select id="select-university-name">
+                  <option value="all-universities">All universities</option>
+                </select>
+              </article>
+            
+              <table id="university-allocations-table">
+                <thead>
+                  <tr>
+                    <th>University Name</th>
+                    <th>Amount</th>
+                    <th>Year</th>
+                  </tr>
+                </thead>
+                <tbody id="allocations-table-body"></tbody>
+              </table>
+            </section>
+            
+            
+            </section>
+
+    <section id="university_application">
+      <h2>University Applications</h2>
+      <section id="filter-university-application">
+        <select id="select-university">
+          <option value="all">All applications</option>
+        </select>
+        <article id="add-uviversity">
+          <button id="add-university-button">Add new university</button>
+        </article>
+        <article id="university-application-list">
+          <table id="applicationsTable">
+            <thead>
+              <tr>
+                <th>Application ID</th>
+                <th>University Name</th>
+                <th>Motivation</th>
+                <th>Application Status</th>
+                <th>Reviewer Comment</th>
+              </tr>
+            </thead>
+            <tbody id="applicationsTableBody"></tbody>
+          </table>
+        </article>
+      </section>
+
+      <section id="university-form">
+        <article class="header">
+          <img src="../css/images/cancel.png" alt="" id="cancel-icon" />
+          <h3>Add New University</h3>
+          <p>Please fill in the form</p>
         </article>
 
-        <article id="add-admin-section" class="add-admin">
-            <h2>Add a New Admin</h2>
-            <form class="add-admin-form" method="post">
-
-                <label for="admin-firstname">First Name</label>
-                <input type="text" id="admin-firstname" name="adminFirstName" required>
-
-                <label for="admin-lastname">Last Name</label>
-                <input type="text" id="admin-lastname" name="adminLastName" required>
-
-                <label for="admin-number">Phone Number</label>
-                <input type="text" id="admin-number" name="adminFirstName" pattern="^(\+27|0)[6-8][0-9]{8}$" required>
-
-                <label for="admin-email">Email</label>
-                <input type="email" id="admin-email" name="adminEmail">
-
-                <button class="submit-add-admin" type="submit">Submit</button>
-            </form>
-        </article>
-                
-
+        <form id="universityForm" >
+          <input
+            type="text"
+            id="universityName"
+            name="universityName"
+            required
+            placeholder="University Name"
+          /><br /><br />
+          <input type="submit" value="Submit" id="university-button" />
+        </form>
+      </section>
+    </section>
       </main>
 
-      
+
+
+      <script>
+        // const fetchData = async function fetchData(url) {
+        //   const result = await fetch(url, {
+        //     method: "GET",
+        //     headers: {
+        //       "Content-Type": "application/json",
+        //     },
+        //   });
+        //   return result.json();
+        // };
+        const allocateEvenlyButton = document.getElementById("allocate-evenly");
+        allocateEvenlyButton.addEventListener("click", () => {
+      // Display a confirmation dialog
+      const confirmAllocation = confirm("Are you sure you want to allocate funds evenly to all?");
+  
+      if (confirmAllocation) {
+          fetch("https://ukukhulaapi.azurewebsites.net/allocations/allocate-to-all", {
+              method: "PUT",
+              headers: {
+                  "Content-Type": "application/json",
+              },
+          })
+          .then((response) => {
+              if (response.ok) {
+                  alert("Funds allocated evenly");
+                  window.location.reload();
+              } 
+          });
+      } else {
+          alert("Allocation canceled");
+      }
+  });
+        let data;
+        (async () => {
+          data = await fetchData("https://ukukhulaapi.azurewebsites.net/allocations/all");
+          const applicationsTableBody = document.getElementById(
+            "allocations-table-body"
+          );
+  
+          const yearSelect = document.getElementById("select-year");
+          const universityNameSelect = document.getElementById(
+            "select-university-name"
+          );
+          addOptionValues(data, yearSelect, "year");
+          addOptionValues(data, universityNameSelect, "universityName");
+          data.forEach((allocation) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+            <td>${allocation.universityName}</td>
+            <td>${allocation.amount}</td>
+            <td>${allocation.year}</td>
+          `;
+            applicationsTableBody.appendChild(row);
+          });
+  
+          yearSelect.addEventListener("change", async (event) => {
+            const selectedYear = event.target.value;
+            if (selectedYear === "all") {
+              displayFilteredData(data);
+            } else {
+              const filteredData = data.filter(
+                (allocation) => allocation.year === parseInt(selectedYear)
+              );
+              displayFilteredData(filteredData);
+            }
+          });
+  
+          universityNameSelect.addEventListener("change", async (event) => {
+            const selectedUniversityName = event.target.value;
+            if (selectedUniversityName === "all-universities") {
+              displayFilteredData(data);
+            } else {
+              const filteredData = data.filter(
+                (allocation) =>
+                  allocation.universityName === selectedUniversityName
+              );
+              displayFilteredData(filteredData);
+            }
+          });
+  
+          function displayFilteredData(filteredData) {
+            const applicationsTableBody = document.getElementById(
+              "allocations-table-body"
+            );
+            applicationsTableBody.innerHTML = "";
+  
+            filteredData.forEach((allocation) => {
+              const row = document.createElement("tr");
+              row.innerHTML = `
+              <td>${allocation.universityName}</td>
+              <td>${allocation.amount}</td>
+              <td>${allocation.year}</td>
+            `;
+              applicationsTableBody.appendChild(row);
+            });
+          }
+        })();
+  
+        document.addEventListener("DOMContentLoaded", () => {
+          const allocationForm = document.getElementById("allocation-form");
+  
+          allocationForm.addEventListener("submit", async (event) => {
+            event.preventDefault();
+  
+            const formData = new FormData(allocationForm);
+            const requestData = {};
+  
+            formData.forEach((value, key) => {
+              requestData[key] = value;
+              console.log(requestData);
+            });
+            try {
+              const response = await fetch(
+                "https://ukukhulaapi.azurewebsites.net/allocations/addnew",
+                {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify(requestData),
+                }
+              );
+  
+              if (response.ok) {
+                alert("Allocation added successfully!");
+                location.reload();
+              } else {
+                throw new Error("Failed to add allocation");
+              }
+            } catch (error) {
+              alert(error);
+            }
+          });
+        });
+      </script>
 </body>
 </html>
