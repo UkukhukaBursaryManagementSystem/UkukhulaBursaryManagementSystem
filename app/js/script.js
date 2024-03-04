@@ -41,7 +41,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 async function fetchAllStudentApplicationData() {
   try {
-    const response = await fetch(`https://ukukhulaapi.azurewebsites.net/student-application`);
+    const response = await fetch(
+      `https://ukukhulaapi.azurewebsites.net/student-application`
+    );
     return response.json();
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -159,13 +161,16 @@ async function updateStudentApplication() {
     });
     console.log(applicationData["idNumber"]);
 
-    const response = await fetch("https://ukukhulaapi.azurewebsites.net/student-application", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(applicationData),
-    });
+    const response = await fetch(
+      "https://ukukhulaapi.azurewebsites.net/student-application",
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(applicationData),
+      }
+    );
     const data = await response.json();
     console.log(response.json());
     if (response.ok) {
@@ -183,7 +188,6 @@ async function updateStudentApplication() {
     console.error("Error updating student application:", error);
   }
 }
-
 
 // function populateTable(data) {
 //   const tableBody = document.getElementById("table-body");
@@ -305,5 +309,63 @@ function viewStudentApplication(student) {
   document.querySelector(".comment").textContent = student.reviewerComment;
 }
 
+async function fetchUniversityName() {
+  const userId = sessionStorage.getItem("userId");
+  const response = await fetch(`/university/hod/${userId}`);
+  const data = await response.json();
+  return data;
+}
 
+async function getUniversityName() {
+  const universityName = await fetchUniversityName();
+  return universityName;
+}
 
+async function displayUniversityBalances() {
+  try {
+    const universityName = await getUniversityName();
+    const data = fetch(
+      `https://ukukhulaapi.azurewebsites.net/balance?universityName=${universityName}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          // "Authorization": `Bearer ${accessTokenAquired}`
+        },
+      }
+    );
+    const balance = await data;
+    const universityBalanceElement = document.getElementById(
+      "remaining_university_balance"
+    );
+    universityBalanceElement.innerHTML = `R${balance}`;
+  } catch (error) {
+    alert("Error fetching data:", error);
+  }
+}
+
+async function displayTotalSpent() {
+  try {
+    const universityName = await getUniversityName();
+    const data = fetch(
+      `https://ukukhulaapi.azurewebsites.net/total-student-allocations?universityName=${universityName}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          // "Authorization": `Bearer ${accessTokenAquired}`
+        },
+      }
+    );
+    const balance = await data;
+    const totalSpentElement = document.getElementById("total_spent");
+    console.log(balance);
+    totalSpentElement.innerHTML = `R${balance}`;
+  } catch (error) {
+    alert("Error fetching data:", error);
+  }
+}
+document.addEventListener("DOMContentLoaded", () => {
+  displayUniversityBalances();
+  displayTotalSpent();
+});
