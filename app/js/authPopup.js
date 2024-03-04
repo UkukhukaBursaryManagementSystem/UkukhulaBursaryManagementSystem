@@ -50,6 +50,7 @@ function handleResponse(response) {
                 return { error: `An error occured: ${error}` }; 
             });
 
+
             fetch(`https://ukukhulaapi.azurewebsites.net/user/${username.toLocaleLowerCase()}`, {
                 method: "GET", 
                 headers: { 
@@ -71,6 +72,27 @@ function handleResponse(response) {
             }).catch(error => {
                 return { error: `An error occured: ${error}` };
                 });
+
+
+            fetch("https://ukukhulaapi.azurewebsites.net/user/log", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    userId: `${sessionStorage.getItem("userId")}`,
+                    userName: `${sessionStorage.getItem("userName")}`,
+                    userAccessToken: `${microsoftAccessToken}`
+                })
+                }).then(response => {
+                    if (!response.ok)
+                    {
+                        return { error: `An error occured: ${response}` };
+                    }
+                    return response.json();
+                }).then(data => { 
+                    return data; 
+                }).catch(error => { 
+                    return { error: `An error occured: ${error}` }; 
+                });
             
 
             if (sessionStorage.getItem("userFromDataBase").toLocaleLowerCase() === username.toLocaleLowerCase() && role.toLowerCase() === "admin") 
@@ -81,6 +103,7 @@ function handleResponse(response) {
             {
                 window.location.href = "https://ukukhulawebapp.azurewebsites.net/pages/hod.html"; 
             }
+
          
         } catch(error)
         {
@@ -100,7 +123,7 @@ function signOut() {
         postLogoutRedirectUri: msalConfig.auth.redirectUri,
         mainWindowRedirectUri: msalConfig.auth.redirectUri
     };
-
+    window.location.assign("https://ukukhulawebapp.azurewebsites.net/");
     myMSALObj.logoutPopup(logoutRequest);
 }
 

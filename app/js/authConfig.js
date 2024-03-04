@@ -1,7 +1,8 @@
 const msalConfig = {
     auth: {
         clientId: "3de2be63-d983-47bf-bd2f-92e7693477fa",
-        authority: "https://login.microsoftonline.com/common"
+        authority: "https://login.microsoftonline.com/common",
+        postLogoutRedirectUri: "https://ukukhulawebapp.azurewebsites.net/"
     },
     cache: {
         cacheLocation: "sessionStorage",
