@@ -1,72 +1,79 @@
-document.addEventListener("DOMContentLoaded", async function() {
-
+document.addEventListener("DOMContentLoaded", async function () {
   let data;
 
-  const departmentDataDropdown = document.getElementById('departmentDataDropdown');
-  const universitiesDataDropdown = document.getElementById('universityDataDropdown');
+  const departmentDataDropdown = document.getElementById(
+    "departmentDataDropdown"
+  );
+  const universitiesDataDropdown = document.getElementById(
+    "universityDataDropdown"
+  );
 
-  data = await fetchData("https://ukukhulaapi.azurewebsites.net/universities/applications/2");
-  data.forEach(option => {
-    const optionElement = document.createElement('option');
-    optionElement.value = option.id;
+  data = await fetchData(
+    "https://ukukhulaapi.azurewebsites.net/universities/applications/2"
+  );
+  data.forEach((option) => {
+    const optionElement = document.createElement("option");
+    optionElement.value = option.name;
     optionElement.textContent = option.name;
     universitiesDataDropdown.appendChild(optionElement);
   });
 
   data = await fetchData("https://ukukhulaapi.azurewebsites.net/department");
-  data.forEach(option => {
-    const optionElement = document.createElement('option');
-    optionElement.value = option.id;
+  data.forEach((option) => {
+    const optionElement = document.createElement("option");
+    optionElement.value = option.name;
     optionElement.textContent = option.name;
     departmentDataDropdown.appendChild(optionElement);
   });
 });
 
-
-function showRequestAccessForm()
-{    
+function showRequestAccessForm() {
   const requstAccessForm = document.getElementById("requestAccess");
 
   requstAccessForm.style.display = "flex";
   requstAccessForm.style.flexDirection = "column";
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+  document
+    .getElementById("submitRequestForm")
+    .addEventListener("click", function (e) {
+      e.preventDefault();
 
-function submitFormData(event) {
-  event.preventDefault();
+      var firstName = document.getElementById("firstName").value;
+      var lastName = document.getElementById("lastName").value;
+      var phoneNumber = document.getElementById("phoneNumber").value;
+      var email = document.getElementById("email").value;
+      var department = document.getElementById("departmentDataDropdown").value;
+      var universityName = document.getElementById(
+        "universityDataDropdown"
+      ).value;
 
-  const formData = {
-
-    firstName : document.getElementById("firstName").value,
-    lastName : document.getElementById("lastName").value,
-    phoneNumber : document.getElementById("phoneNumber").value,
-    email : document.getElementById("email").value,
-    department : document.getElementById("departmentDataDropdown").value,
-    university : document.getElementById("universityDataDropdown").value
-    
-  };
-
-  fetch('https://ukukhulaapi.azurewebsites.net/requestAccess', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formData)
-  })
-  .then(response => {
-      if (!response.ok) {
-          throw new Error('Network response was not ok');
-      }
-      return response.json();
-  })
-  .then(data => {
-      alert(data.message)
-      window.location.assign('https://ukukhulawebapp.azurewebsites.net/');
-  })
-  .catch(error => {
-      alert('There was a problem submitting the form data:', error.message);
-  });
-  
-}
-
-document.getElementById("submitRequestForm").addEventListener("click", submitFormData);
+      const requestBody = {
+        firstName: firstName,
+        lastName: lastName,
+        phoneNumber: phoneNumber,
+        email: email,
+        department: department,
+        universityName: universityName,
+      };
+      console.log(requestBody);
+      fetch("https://ukukhulaapi.azurewebsites.net/requestAccess", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestBody),
+      })
+        .then(function (response) {
+          if (response.ok) {
+            console.log(requestBody);
+          } else {
+            console.error("Error submitting request. Status:", response.status);
+          }
+        })
+        .catch(function (error) {
+          console.error("Error submitting request:", error);
+        });
+    });
+});
