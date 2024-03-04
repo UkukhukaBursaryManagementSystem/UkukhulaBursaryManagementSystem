@@ -46,11 +46,11 @@
         <input type="text" id="lastName" class="requestAccessFormFields" name="lastname" required>
 
         <label for="phone">Phone Number:</label>
-        <input type="tel" id="phoneNumber" class="requestAccessFormFields" name="phone" pattern="[0-9]{1,10}" maxlength="10" required>
+        <input required type="tel" id="phoneNumber" class="requestAccessFormFields" name="phone" pattern="[0-9]{1,10}" maxlength="10" required>
         <small>Max 10 digits (numbers only)</small>
 
         <label for="email">Email Address:</label>
-        <input type="email" id="email" class="requestAccessFormFields" name="email" maxlength="255" required>
+        <input type="email" id="email" class="requestAccessFormFields" name="email" maxlength="255"   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"    required>
 
         <label for="departmentDataDropdown">Department:</label>
         <select id="departmentDataDropdown" class="requestAccessFormFields" required></select>

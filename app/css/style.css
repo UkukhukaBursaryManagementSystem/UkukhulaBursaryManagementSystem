@@ -89,7 +89,6 @@ h1 {
 body {
   overflow-x: hidden;
   scroll-behavior: smooth;
-  background-color: var(--secondary-color-text);
   color: var(--primary-color-back-one);
 }
 
