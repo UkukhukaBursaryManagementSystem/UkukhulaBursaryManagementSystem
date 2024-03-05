@@ -31,7 +31,11 @@ function handleResponse(response) {
         {
             fetch("https://ukukhulaapi.azurewebsites.net/auth/login", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: { 
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${sessionStorage.getItem("accessToken")}`,
+                "role": `${sessionStorage.getItem("userRole")}`
+             },
             body: JSON.stringify({
                 role: `${role}`,
                 email: `${username}`,
@@ -53,7 +57,9 @@ function handleResponse(response) {
             fetch(`https://ukukhulaapi.azurewebsites.net/user/${username.toLocaleLowerCase()}`, {
                 method: "GET", 
                 headers: { 
-                    "Content-Type" : "application/json"
+                    "Content-Type" : "application/json",
+                    "Authorization": `Bearer ${sessionStorage.getItem("accessToken")}`,
+                    "role": `${sessionStorage.getItem("userRole")}`
                 }
             }).then(response => {
                 if(!response.ok)
@@ -72,9 +78,13 @@ function handleResponse(response) {
                 });
 
 
-            fetch("https://ukukhulaapi.azurewebsites.net/user/log", {
+            fetch("https://ukukhulaapi.azurewebsites.net/user/user/log", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: { 
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${sessionStorage.getItem("accessToken")}`,
+                    "role": `${sessionStorage.getItem("userRole")}`
+                 },
                 body: JSON.stringify({
                     userId: `${sessionStorage.getItem("userId")}`,
                     userName: `${username}`,
