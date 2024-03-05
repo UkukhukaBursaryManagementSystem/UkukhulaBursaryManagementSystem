@@ -34,15 +34,27 @@
 
   <button id="add-admin-button">Add admin</button>
 <article>
-  <h2>Add a New Admin</h2>
+  <h2>Add hod</h2>
   <form id="hodForm">
-    First Name: <input type="text" id="firstName" name = firstName><br>
-    Last Name: <input type="text" id="lastName" name="lastName"><br>
-    Phone Number: <input type="text" id="phoneNumber" name="phoneNumber"><br>
-    Email: <input type="email" id="email" name="email"><br>
-    Department: <input type="text" id="department" name="department"><br>
-    University Name: <input type="text" id="universityName" name="universityName"><br>
-    <input type = "submit"/>
+    <label for="firstName">First Name:</label><br>
+    <input type="text" id="firstName" name="firstName" required placeholder="First Name"><br>
+
+    <label for="lastName">Last Name:</label><br>
+    <input type="text" id="lastName" name="lastName" required placeholder="Last Name"><br>
+
+    <label for="phoneNumber">Phone Number:</label><br>
+    <input type="tel" id="phoneNumber" name="phoneNumber" required placeholder="Phone Number"><br>
+
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" required placeholder="Email"><br>
+
+    <label for="department">Department:</label><br>
+    <input type="text" id="department" name="department" required placeholder="Department"><br>
+
+    <label for="universityName">University Name:</label><br>
+    <input type="text" id="universityName" name="universityName" required placeholder="University Name"><br>
+
+    <input type="submit" value="Submit">
 </form>
 </article>
 
