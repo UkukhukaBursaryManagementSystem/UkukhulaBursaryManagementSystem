@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .then((response) => {
           if (response.ok) {
             alert("HOD added successfully!");
-            document.getElementById("hodForm").reset();
+            window.location.reload();
           } else {
             throw new Error("Failed to add HOD");
           }
