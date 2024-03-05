@@ -1,11 +1,12 @@
 document.addEventListener("DOMContentLoaded", async function () {
   let data;
   data = await fetchAllStudentApplicationData();
-
-  const hodData = data.filter((app) => app.universityName.toLocaleLowerCase() === sessionStorage.getItem('universityName').toLocaleLowerCase());
   await getUniversityInfo();
   await getTotalBalance();
   await getTotalMoneySpent();
+
+  const hodData = data.filter((app) => app.universityName.toLocaleLowerCase() === sessionStorage.getItem('universityName').toLocaleLowerCase());
+
   populateTableForAdmin(hodData);
 
   const editButtons = document.querySelector(".edit-button");
