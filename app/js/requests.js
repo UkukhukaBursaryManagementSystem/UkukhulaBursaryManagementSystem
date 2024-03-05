@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
         jsonObject[key] = value;
       });
 
-      fetch("http://localhost:8080/user/insert-hod", {
+      fetch("https://ukukhulaapi.azurewebsites.net/user/insert-hod", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
