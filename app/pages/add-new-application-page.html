@@ -21,13 +21,13 @@
                 <legend>Student Personal Information</legend>
 
                 <label for="first-name">FirstName</label>
-                <input type="text" name="first-name" id="first-name" required>
+                <input type="text" name="first-name" id="first-name" placeholder="Enter the students' first name" required>
 
                 <label for="last-name">LastName</label>
-                <input type="text" name="last-name" id="last-name" required>
+                <input type="text" name="last-name" id="last-name" placeholder="Enter the students' last name" required>
 
                 <label for="id-number">ID Number</label>
-                <input type="text" name="id-number" id="id-number" required>
+                <input type="text" name="id-number" id="id-number" maxlength="13" minlength="13" placeholder="Enter the students' ID number required">
 
                 <label for="sex">Sex</label>
                 <select id="sex" required>
@@ -41,25 +41,25 @@
             <fieldset class="personal-field-set">
                 <legend>Student Contact Information</legend>
                 <label for="phone">Contact Number</label>
-                <input type="tel" id="phone" name="phone" pattern="^(\+27|0)[6-8][0-9]{8}$" required>
+                <input type="tel" id="phone" name="phone" pattern="^^(\+27|0)[1,6-8][0-9]{8}$" placeholder="Student phone number i.e +27|0 848158252" required>
                 <label for="student-email">Email</label>
-                <input type="email" name="student-email" id="student-email" required>
+                <input type="email" name="student-email" id="student-email" placeholder="Enter the students' email" required>
             </fieldset>
 
             <fieldset class="personal-field-set">
                 <legend>Student Academic Information</legend>
-                <label for="student-study-course">Course Of Study</label>
-                <input type="text" name="student-study-course" id="student-study-course" required>
+                <label for="student-study-course" placeholder="Enter the students' course">Course Of Study</label>
+                <input type="text" name="student-study-course" id="student-study-course" placeholder="Enter the students' course" required>
                 <label for="bursary-amount">Bursary Amount</label>
-                <input type="number" id="bursary-amount" name="bursary-amount" min="1" max="125000" required>
+                <input type="number" id="bursary-amount" name="bursary-amount" min="1" max="125000" placeholder="Enter bursary amount MAX(125000)" required>
             </fieldset>
 
             <fieldset class="personal-field-set">
                 <legend>Application Motivation</legend>
-                <label for="year-of-application">Funding Year</label>
-                <input type="number" id="year-of-application" name="year-of-application" min="2024" max="2025" required>
+                <label for="year-of-application" placeholder="Enter the funding year i.e current year 2024 or next year">Funding Year</label>
+                <input type="number" id="year-of-application" name="year-of-application" min="2024"  required>
                 <label for="Motivation">Head Of Department Motivation</label>
-                <textarea cols="5" rows="5" id="Motivation" placeholder="Please enter a brief motivation for the student..."></textarea>
+                <textarea cols="5" rows="5" id="Motivation" placeholder="Please enter a brief motivation for the student..." required ></textarea>
             </fieldset>
 
             <input class="student-submit-button" type="submit" value="Submit" >
